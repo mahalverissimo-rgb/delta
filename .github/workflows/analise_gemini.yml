@@ -1,0 +1,82 @@
+name: Agente de Análise com Gemini
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  analisar_codigo:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Baixar código do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Instalar biblioteca do Gemini
+        run: |
+          python -m pip install --upgrade pip
+          pip install google-genai
+
+      - name: Executar Agente de IA
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python -c "
+          import os
+          import glob
+          from google import genai
+
+          client = genai.Client()
+
+          # Procura arquivos HTML, JS, CSS, PHP e Python no repositório
+          extensoes = ['*.html', '*.js', '*.css', '*.php', '*.py']
+          arquivos = []
+          for ext in extensoes:
+              arquivos.extend(glob.glob(f'./**/{ext}', recursive=True))
+
+          # Filtra arquivos minificados ou dentro de node_modules
+          arquivos_filtrados = [f for f in arquivos if 'node_modules' not in f and '.min.' not in f]
+
+          if not arquivos_filtrados:
+              print('Nenhum arquivo de código encontrado para análise.')
+              exit(0)
+
+          print(f'Arquivos encontrados para análise: {len(arquivos_filtrados)}')
+
+          conteudo_total = ''
+          for caminho in arquivos_filtrados[:10]: # Limite inicial de 10 arquivos
+              try:
+                  with open(caminho, 'r', encoding='utf-8') as file:
+                      conteudo_total += f'\n--- ARQUIVO: {caminho} ---\n'
+                      conteudo_total += file.read() + '\n'
+              except Exception as e:
+                  print(f'Não foi possível ler {caminho}: {e}')
+
+          prompt = (
+              'Você é um especialista em code review e segurança da informação.\n'
+              'Analise os arquivos do projeto abaixo e gere um relatório cobrindo:\n'
+              '1. Bugs e possíveis erros de execução.\n'
+              '2. Vulnerabilidades de segurança e boas práticas de código.\n'
+              '3. Sugestões de otimização de performance e limpeza.\n\n'
+              + conteudo_total
+          )
+
+          response = client.models.generate_content(
+              model='gemini-2.5-flash',
+              contents=prompt
+          )
+
+          print('\n==================================================')
+          print('      RELATÓRIO DE ANÁLISE DO AGENTE GEMINI       ')
+          print('==================================================\n')
+          print(response.text)
+          "
