@@ -196,3 +196,23 @@ FakesAssemblies/
 *.opt
 VillaBisutti.Delta/VillaBisutti.Delta.WebApp/Content/images/201*.jpg
 VillaBisutti.Delta/VillaBisutti.Delta.WebApp/OS/
+
+# OS / editor cruft
+.DS_Store
+**/.DS_Store
+
+# Runtime logs
+logs/
+**/logs/
+*.log
+
+# Local SQLite databases (não versionar dados)
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Arquivos de credenciais / acesso locais
+Acesso.txt
+**/Acesso.txt
