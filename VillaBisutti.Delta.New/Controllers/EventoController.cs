@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VillaBisutti.Delta.WebApp.Data;
@@ -7,11 +8,12 @@ using VillaBisutti.Delta.WebApp.Models;
 namespace VillaBisutti.Delta.WebApp.Controllers
 {
     [Authorize]
-    public class EventoController : Controller
+    public class EventoController : AppController
     {
         private readonly ApplicationDbContext _context;
 
-        public EventoController(ApplicationDbContext context)
+        public EventoController(ApplicationDbContext context, UserManager<Usuario> userManager)
+            : base(userManager)
         {
             _context = context;
         }
@@ -65,7 +67,7 @@ namespace VillaBisutti.Delta.WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                evento.UsuarioCreateId = GetCurrentUserId();
+                evento.UsuarioCreateId = await GetCurrentUserIdAsync();
                 evento.UsuarioCreateData = DateTime.Now;
                 
                 _context.Add(evento);
@@ -105,7 +107,7 @@ namespace VillaBisutti.Delta.WebApp.Controllers
             {
                 try
                 {
-                    evento.UsuarioUpdateId = GetCurrentUserId();
+                    evento.UsuarioUpdateId = await GetCurrentUserIdAsync();
                     evento.UsuarioUpdateData = DateTime.Now;
                     
                     _context.Update(evento);
@@ -165,13 +167,6 @@ namespace VillaBisutti.Delta.WebApp.Controllers
         private bool EventoExists(int id)
         {
             return _context.Eventos.Any(e => e.Id == id);
-        }
-
-        private int GetCurrentUserId()
-        {
-            // Implementar lógica para obter o ID do usuário atual
-            // Por enquanto retorna 1 como exemplo
-            return 1;
         }
     }
 }

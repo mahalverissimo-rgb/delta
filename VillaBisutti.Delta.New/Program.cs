@@ -10,7 +10,7 @@ namespace VillaBisutti.Delta.WebApp
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -38,7 +38,7 @@ namespace VillaBisutti.Delta.WebApp
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-            // Configuração do Identity
+            // Configuração do Identity (já registra o esquema de cookie da aplicação)
             builder.Services.AddIdentity<Usuario, IdentityRole>(options =>
             {
                 // Configurações de senha
@@ -74,15 +74,17 @@ namespace VillaBisutti.Delta.WebApp
             builder.Services.AddScoped<LogService>();
             builder.Services.AddScoped<UserService>();
 
-            // Configuração de autenticação e autorização
-            builder.Services.AddAuthentication(options =>
-            {
-                options.DefaultScheme = IdentityConstants.ApplicationScheme;
-                options.DefaultSignInScheme = IdentityConstants.ExternalScheme;
-            })
-            .AddCookie();
-
             var app = builder.Build();
+
+            // Preparar banco de dados e seed do administrador (assíncrono, credenciais via configuração)
+            await DbInitializer.InitializeAsync(app.Services, app.Configuration);
+
+            // Comando opcional: apenas cria o usuário master e encerra
+            if (args.Contains("--create-master-user"))
+            {
+                await Commands.CreateMasterUserCommand.ExecuteAsync(app.Services);
+                return;
+            }
 
             // Configure o pipeline de requisição HTTP
             if (!app.Environment.IsDevelopment())
@@ -99,41 +101,6 @@ namespace VillaBisutti.Delta.WebApp
             app.UseRouting();
 
             app.UseAuthentication();
-
-            // Criar o banco de dados
-            using (var scope = app.Services.CreateScope())
-            {
-                var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                context.Database.EnsureCreated();
-
-                // Criar usuário master se não existir
-                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<Usuario>>();
-                var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-
-                if (!roleManager.RoleExistsAsync("Admin").Result)
-                {
-                    var role = new IdentityRole("Admin");
-                    roleManager.CreateAsync(role).Wait();
-                }
-
-                if (userManager.FindByEmailAsync("admin@villabisutti.com.br").Result == null)
-                {
-                    var user = new Usuario
-                    {
-                        UserName = "admin@villabisutti.com.br",
-                        Email = "admin@villabisutti.com.br",
-                        Nome = "Administrador",
-                        EmailConfirmed = true
-                    };
-
-                    var result = userManager.CreateAsync(user, "Admin@123456").Result;
-                    if (result.Succeeded)
-                    {
-                        userManager.AddToRoleAsync(user, "Admin").Wait();
-                    }
-                }
-            }
-
             app.UseAuthorization();
 
             app.MapControllerRoute(
@@ -143,15 +110,7 @@ namespace VillaBisutti.Delta.WebApp
             try
             {
                 Log.Information("Iniciando aplicação");
-
-                // Se o argumento --create-master-user for passado, cria o usuário master
-                if (args.Contains("--create-master-user"))
-                {
-                    await Commands.CreateMasterUserCommand.ExecuteAsync(app.Services);
-                    return;
-                }
-
-                app.Run();
+                await app.RunAsync();
             }
             catch (Exception ex)
             {
@@ -164,4 +123,3 @@ namespace VillaBisutti.Delta.WebApp
         }
     }
 }
-

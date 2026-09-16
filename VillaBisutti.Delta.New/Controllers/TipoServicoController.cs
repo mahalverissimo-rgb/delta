@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VillaBisutti.Delta.WebApp.Data;
@@ -7,11 +8,12 @@ using VillaBisutti.Delta.WebApp.Models;
 namespace VillaBisutti.Delta.WebApp.Controllers
 {
     [Authorize]
-    public class TipoServicoController : Controller
+    public class TipoServicoController : AppController
     {
         private readonly ApplicationDbContext _context;
 
-        public TipoServicoController(ApplicationDbContext context)
+        public TipoServicoController(ApplicationDbContext context, UserManager<Usuario> userManager)
+            : base(userManager)
         {
             _context = context;
         }
@@ -53,7 +55,7 @@ namespace VillaBisutti.Delta.WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                tipoServico.UsuarioCreateId = GetCurrentUserId();
+                tipoServico.UsuarioCreateId = await GetCurrentUserIdAsync();
                 tipoServico.UsuarioCreateData = DateTime.Now;
                 
                 _context.Add(tipoServico);
@@ -93,7 +95,7 @@ namespace VillaBisutti.Delta.WebApp.Controllers
             {
                 try
                 {
-                    tipoServico.UsuarioUpdateId = GetCurrentUserId();
+                    tipoServico.UsuarioUpdateId = await GetCurrentUserIdAsync();
                     tipoServico.UsuarioUpdateData = DateTime.Now;
                     
                     _context.Update(tipoServico);
@@ -158,13 +160,6 @@ namespace VillaBisutti.Delta.WebApp.Controllers
         private bool TipoServicoExists(int id)
         {
             return _context.TiposServico.Any(e => e.Id == id);
-        }
-
-        private int GetCurrentUserId()
-        {
-            // Implementar lógica para obter o ID do usuário atual
-            // Por enquanto retorna 1 como exemplo
-            return 1;
         }
 
         // API Methods

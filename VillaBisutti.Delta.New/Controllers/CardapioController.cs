@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VillaBisutti.Delta.WebApp.Data;
@@ -7,11 +8,12 @@ using VillaBisutti.Delta.WebApp.Models;
 namespace VillaBisutti.Delta.WebApp.Controllers
 {
     [Authorize]
-    public class CardapioController : Controller
+    public class CardapioController : AppController
     {
         private readonly ApplicationDbContext _context;
 
-        public CardapioController(ApplicationDbContext context)
+        public CardapioController(ApplicationDbContext context, UserManager<Usuario> userManager)
+            : base(userManager)
         {
             _context = context;
         }
@@ -56,7 +58,7 @@ namespace VillaBisutti.Delta.WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                cardapio.UsuarioCreateId = GetCurrentUserId();
+                cardapio.UsuarioCreateId = await GetCurrentUserIdAsync();
                 cardapio.UsuarioCreateData = DateTime.Now;
                 
                 _context.Add(cardapio);
@@ -98,7 +100,7 @@ namespace VillaBisutti.Delta.WebApp.Controllers
             {
                 try
                 {
-                    cardapio.UsuarioUpdateId = GetCurrentUserId();
+                    cardapio.UsuarioUpdateId = await GetCurrentUserIdAsync();
                     cardapio.UsuarioUpdateData = DateTime.Now;
                     
                     _context.Update(cardapio);
@@ -164,13 +166,6 @@ namespace VillaBisutti.Delta.WebApp.Controllers
         private bool CardapioExists(int id)
         {
             return _context.Cardapios.Any(e => e.Id == id);
-        }
-
-        private int GetCurrentUserId()
-        {
-            // Implementar lógica para obter o ID do usuário atual
-            // Por enquanto retorna 1 como exemplo
-            return 1;
         }
 
         // API Methods
