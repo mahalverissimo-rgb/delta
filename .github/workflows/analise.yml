@@ -1,0 +1,45 @@
+name: Analisador de Codigo com IA
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Instalar dependências
+        run: |
+          python -m pip install --upgrade pip
+          pip install google-genai
+
+      - name: Executar Agente de Análise
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python -c "
+          import os
+          from google import genai
+
+          client = genai.Client()
+          
+          # Exemplo: lê um arquivo index.html do repositório
+          if os.path.exists('index.html'):
+              with open('index.html', 'r') as f:
+                  code = f.read()
+              
+              response = client.models.generate_content(
+                  model='gemini-2.5-flash',
+                  contents=f'Analise o seguinte código em busca de bugs e boas práticas:\n\n{code}'
+              )
+              print('--- RELATÓRIO DE ANÁLISE ---')
+              print(response.text)
+          "
