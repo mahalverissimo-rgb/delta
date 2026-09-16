@@ -1,0 +1,29 @@
+﻿@model VillaBisutti.Delta.Core.Model.PratoSelecionado
+@{
+	Layout = null;
+}
+@if (Model.Degustar || Model.Escolhido)
+{
+	<script language="javascript" type="text/javascript">
+		$(document).ready(function () {
+			if ($("#Observacoes_@Model.Id").length)
+				return
+			var $input = $("<input />");
+			$input.attr("id", "Observacoes_@Model.Id").attr("type", "text").attr("placeholder", "Observações").val("@(Model.Observacoes)")
+				.attr("data-id", "@Model.Id").attr("data-href", "@Url.Action("AlterarObservacoes", "PratoSelecionado")")
+				.addClass("observacoes-prato form-control");
+			$("#Observacoes_Container_@Model.Id").append($input);
+			$input.change(function () {
+				PostObs($(this).attr("id"));
+			});
+		});
+	</script>
+}
+else
+{
+	<script language="javascript" type="text/javascript">
+		$(document).ready(function () {
+			$("#Observacoes_Container_@Model.Id").empty();
+		});
+	</script>
+}

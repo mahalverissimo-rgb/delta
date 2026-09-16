@@ -1,0 +1,29 @@
+﻿@model IEnumerable<VillaBisutti.Delta.Core.Model.Local>
+@{
+    Layout = null;
+}
+@foreach (VillaBisutti.Delta.Core.Model.Local item in Model)
+{
+    <li class="@(item.Eventos.Count() > 0 ? "dropdown-hover" : "disabled")">
+        <a href="#" tabindex="-1" class="clearfix">
+            <span class="menu-text"> @(item.NomeCasa)</span>
+            <i class="ace-icon fa fa-caret-right pull-right"></i>
+        </a>
+        @if (item.Eventos.Count() > 0)
+        {
+            <ul class="dropdown-menu dropdown-menu-right">
+                @foreach (VillaBisutti.Delta.Core.Model.Evento e in item.Eventos)
+                {
+                    <li>
+                        <a href="@Url.Action("Details", "Evento", new { Id = e.Id })">
+                            @(e.Data.ToString("dd/MM/yyyy")) - @(e.NomeHomenageados)
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                }
+            </ul>
+        }
+
+    </li>
+
+}

@@ -1,0 +1,30 @@
+﻿@model VillaBisutti.Delta.Core.Model.Montagem
+@{
+    Layout = null;
+}
+@using (Html.BeginForm("Edited","Montagem"))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.EventoId)
+
+        <div class="form-group">
+            <label for="Observacoes" class="control-label col-md-4">Observações gerais</label>
+            <div class="col-md-8">
+				@Html.TextAreaFor(model => model.Observacoes, new { @rows = 5, @class = " form-control" })
+                @Html.ValidationMessageFor(model => model.Observacoes)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Salvar" class="btn btn-default form-control"/>
+            </div>
+        </div>
+    </div>
+}
+<div class="row">
+	@Html.Action("Index", "Foto", new { qual = "MS", eventoId = Model.EventoId })
+</div>

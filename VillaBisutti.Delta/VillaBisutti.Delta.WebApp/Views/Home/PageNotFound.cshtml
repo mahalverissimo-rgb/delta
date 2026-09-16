@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "PageNotFound";
+}
+<script>
+    $(document).ready(function () {
+        var width = $('.main-container').width();
+        $('.main-container').css('background', 'url(/Content/images/searching.jpg) center top repeat')
+        .css('background-size', width);
+        $('.footer').css('padding-top', 0)
+    });
+</script>
+<div style="background-color:rgba(255, 255, 255, 0.7); padding: 0px 20px 20px 20px" class="col-md-5 text-center">
+    <h1 class="grey lighter smaller">
+        <span class="blue bigger-125">
+            <i class="ace-icon fa fa-search"></i>
+            404
+        </span>
+        Página não encontrada
+    </h1>
+    <h4 class="red">A página que você está tentando acessar não existe.</h4>
+    <small><i class="fa fa-frown-o bigger-125"></i> Volte uma casa e perca a próxima rodada.</small>
+</div>
+

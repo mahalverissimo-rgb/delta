@@ -1,0 +1,37 @@
+﻿@model VillaBisutti.Delta.Core.Model.Foto
+@{
+	Layout = null;
+}
+<script language="javascript" type="text/javascript">
+	$(document).ready(function () {
+		$("#FileSearch").click(function () { $("#URL").click() });
+	});
+</script>
+@using (Html.BeginForm("ItemCreated", "Foto", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+	@Html.AntiForgeryToken()
+	<div class="form-inline">
+		@Html.ValidationSummary(true)
+		<input type="hidden" name="resize" value="false" />
+		<div class="form-group">
+            <div class="input-group">
+                <input type="hidden" name="qual" value="@ViewBag.Qual" />
+                <input type="hidden" name="eventoId" value="@ViewBag.EventoId" />
+                <span class="hidden">
+                    @Html.TextBoxFor(model => model.URL, new { @type = "file" })
+                </span>
+                <span class="input-group-btn">
+                    <button id="FileSearch" type="button" class="btn btn-xs btn-default col-xs-12 form-control">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+                @Html.TextBoxFor(model => model.Legenda, new { @placeholder = "Legenda", @class = "form-control" })
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-xs btn-default form-control">
+                        <i class="fa fa-cloud-upload"></i>
+                    </button>
+                </span>
+            </div>
+		</div>
+	</div>
+}

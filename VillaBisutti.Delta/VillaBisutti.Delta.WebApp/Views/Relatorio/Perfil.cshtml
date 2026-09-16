@@ -1,0 +1,90 @@
+﻿@model IEnumerable<VillaBisutti.Delta.Core.DTO.Evento>
+@{
+	ViewBag.Title = "Relatório de Perfil";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script language="javascript" type="text/javascript">
+	$(document).ready(function () {
+		$("#FiltroEventos input, #FiltroEventos select").change(function () {
+			this.form.submit();
+		});
+	});
+</script>
+<div class="col-xl-12 widget-container-col row">
+	<div class="widget-box">
+		<div class="widget-header widget-header-flat">
+			<h4 class="widget-title lighter">
+				<i class="fa fa-filter green"></i>
+				Filtros
+			</h4>
+			<div class="widget-toolbar">
+				<a href="#" data-toggle="collapse" data-target="#Filtro">
+					<i class="fa fa-chevron-up" onclick="$(this).toggleClass('fa-chevron-up fa-chevron-down')"></i>
+				</a>
+			</div>
+		</div>
+		<div class="widget-body" id="Filtro">
+			<div class="widget-main padding-8">
+				<form id="FiltroEventos" class="form-horizontal">
+					<div class="row">
+						<label for="inicio" class="control-label col-md-2"> Data inicial </label>
+						<input type="date" name="inicio" id="inicio" value="@((Request.QueryString["inicio"] != null ? DateTime.Parse(Request.QueryString["inicio"]) : DateTime.Now).ToString("yyyy-MM-dd"))" class="col-md-2" />
+						<label for="termino" class="control-label col-md-2"> Data final </label>
+						<input type="date" name="termino" id="termino" value="@((Request.QueryString["termino"] != null ? DateTime.Parse(Request.QueryString["termino"]) : DateTime.Now.AddMonths(7)).ToString("yyyy-MM-dd"))" class="col-md-2" />
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="col-xl-12 widget-container-col">
+	@foreach (var item in Model)
+	{
+		<div class="row">
+			<div class="widget-box">
+				<div class="widget-header widget-header-flat">
+					<h4 class="widget-title lighter">
+						<span class="col-sm-2 text-muted">Local:</span>
+						<span class="col-sm-4">@(item.NomeCasa)</span>
+						<span class="col-sm-2 text-muted">Data:</span>
+						<span class="col-sm-4">@(item.DataEvento.ToString("dddd - dd/MM/yy"))</span>
+					</h4>
+				</div>
+				<div class="widget-body">
+					<div class="container-fluid">
+						<div class="row">
+							<p class="col-sm-6">
+								<span class="col-sm-4 text-muted">@(item.TipoEvento):</span>
+								<span class="col-sm-8">@(item.NomeHomenageados)</span>
+							</p>
+							<p class="col-sm-6">
+								<span class="col-sm-4 text-muted">Produção:</span>
+								<span class="col-sm-8">@(item.Producao)</span>
+							</p>
+							<p class="col-sm-6">
+								<span class="col-sm-4 text-muted">Execução:</span>
+								<span class="col-sm-8">@(item.Execucao)</span>
+							</p>
+							<p class="col-sm-6">
+								<span class="col-sm-4 text-muted">Abertura da casa:</span>
+								<span class="col-sm-8">@(item.HorarioAberturaCasa.ToString())</span>
+							</p>
+							<p class="col-sm-6">
+								<span class="col-sm-4 text-muted">Termino do evento:</span>
+								<span class="col-sm-8">@(item.HorarioTerminoEvento.ToString())</span>
+							</p>
+							<p class="col-sm-6">
+								<span class="col-sm-4 text-muted">Pax:</span>
+								<span class="col-sm-8">@(item.Pax) (+10% = @(item.Pax * 1.1))</span>
+							</p>
+							<p class="col-sm-12">
+								<span class="col-sm-2 text-muted">Perfil:</span>
+								<span class="col-sm-10 text-left">@(item.Perfil == null ? "Não preenchido" : item.Perfil)</span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	}
+</div>

@@ -1,0 +1,2 @@
+Todos os dias (sábados e domingos inclusive), num determinado horário, o sistema executará esta rotina
+O sistema deverá procurar todos os eventos que ainda não tiveram este e-mail enviado (o atributo EmailEnviado)

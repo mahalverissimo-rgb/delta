@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C352F883-8610-4F5F-AD6C-EDBE3BA4EF55}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VillaBisutti.Delta.ServiceInterface</RootNamespace>
+    <AssemblyName>VillaBisutti.Delta.ServiceInterface</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ServiceStack">
+      <HintPath>..\packages\ServiceStack.3.9.71\lib\net35\ServiceStack.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Common">
+      <HintPath>..\packages\ServiceStack.Common.3.9.71\lib\net35\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces">
+      <HintPath>..\packages\ServiceStack.Common.3.9.71\lib\net35\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite">
+      <HintPath>..\packages\ServiceStack.OrmLite.SqlServer.3.9.71\lib\net35\ServiceStack.OrmLite.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite.SqlServer">
+      <HintPath>..\packages\ServiceStack.OrmLite.SqlServer.3.9.71\lib\net35\ServiceStack.OrmLite.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Redis">
+      <HintPath>..\packages\ServiceStack.Redis.3.9.71\lib\net35\ServiceStack.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.ServiceInterface">
+      <HintPath>..\packages\ServiceStack.3.9.71\lib\net35\ServiceStack.ServiceInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\packages\ServiceStack.Text.3.9.71\lib\net35\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="TipoReuniao.cs" />
+    <Compile Include="Reuniao.cs" />
+    <Compile Include="Bebida.cs" />
+    <Compile Include="BoloDoceBemCasado.cs" />
+    <Compile Include="Cardapio.cs" />
+    <Compile Include="ContratoAditivo.cs" />
+    <Compile Include="Decoracao.cs" />
+    <Compile Include="Evento.cs" />
+    <Compile Include="FotoVideo.cs" />
+    <Compile Include="ItemBebida.cs" />
+    <Compile Include="ItemBoloDoceBemCasado.cs" />
+    <Compile Include="ItemDecoracao.cs" />
+    <Compile Include="ItemFotoVideo.cs" />
+    <Compile Include="ItemMontagem.cs" />
+    <Compile Include="ItemOutrosItemItemDiverso.cs" />
+    <Compile Include="ItemSomIluminacao.cs" />
+    <Compile Include="Local.cs" />
+    <Compile Include="Montagem.cs" />
+    <Compile Include="OutroItem.cs" />
+    <Compile Include="Prato.cs" />
+    <Compile Include="PratoSelecionado.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoteiroPadrao.cs" />
+    <Compile Include="SomIluminacao.cs" />
+    <Compile Include="TipoItemBebida.cs" />
+    <Compile Include="TipoItemDecoracao.cs" />
+    <Compile Include="TipoItemFotoVideo.cs" />
+    <Compile Include="TipoItemMontagem.cs" />
+    <Compile Include="TipoItemOutroItemItemDiverso.cs" />
+    <Compile Include="TipoItemSomIluminacao.cs" />
+    <Compile Include="TipoPrato.cs" />
+    <Compile Include="Usuario.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VillaBisutti.Delta.Core\VillaBisutti.Delta.Core.csproj">
+      <Project>{83fb85ef-3d61-495b-be38-e28eac6307e7}</Project>
+      <Name>VillaBisutti.Delta.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VillaBisutti.Delta.ServiceModel\VillaBisutti.Delta.ServiceModel.csproj">
+      <Project>{c6224238-9d14-4568-a9e2-5211840637ea}</Project>
+      <Name>VillaBisutti.Delta.ServiceModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

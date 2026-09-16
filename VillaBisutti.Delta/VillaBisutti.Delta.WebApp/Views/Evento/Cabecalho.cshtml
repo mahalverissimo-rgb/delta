@@ -1,0 +1,113 @@
+﻿@using VillaBisutti.Delta;
+@model VillaBisutti.Delta.Core.Model.Evento
+@{
+	Layout = null;
+}
+@if (ViewBag.BloqueadoSemContrato == "SIM")
+{
+	<script language="javascript" type="text/javascript">
+		$(document).ready(function () {
+			MostrarAlerta("Nenhum contrato ou aditivo foi adicionado à este evento. <br />Para trabalhar com ele, é necessário incluir ao menos o contrato ou um aditivo", "Ops! que problema!!!");
+		});
+	</script>
+}
+<script language="javascript" type="text/javascript">
+	$(document).ready(function () {
+		$(".GeneralPopUpLinks").click(function (e) {
+			e.preventDefault();
+			ShowPopUp($(this).attr("href"), $(this).attr("title"), $(this).attr("aria-set-w"), $(this).attr("aria-set-h"));
+		});
+	});
+</script>
+@if (Model.LocalCerimonia == VillaBisutti.Delta.Core.Model.LocalCerimonia.Externo || Model.LocalCerimonia == VillaBisutti.Delta.Core.Model.LocalCerimonia.NaoPossui)
+{
+	<script language="javascript" type="text/javascript">
+		$(".LinkDecoracaoCerimonialMenu").hide();
+	</script>
+}
+<div class="col-xs-12 widget-container-col" style="min-height: 50px; margin-bottom: 20px; z-index: 1000">
+	<div class="widget-box widget-color-dark" style="opacity: 1; z-index: 0;">
+		<div class="widget-header widget-header-large">
+			<h4 class="widget-title" data-toggle="collapse" data-target="#CabecalhoEvento">
+				@(Model.Data.ToString("dddd", new System.Globalization.CultureInfo("pt-BR"))),  @(Model.Data.ToString("dd/MM/yyyy"))
+				<i class="ace-icon fa fa-angle-right"> </i>
+				@(Model.Local.NomeCasa)
+				<i class="ace-icon fa fa-angle-right"> </i>
+				@(Model.NomeHomenageados)
+			</h4>
+
+			<div class="widget-toolbar">
+				<a href="#" data-toggle="collapse" data-target="#CabecalhoEvento" title="Exibir / Ocultar">
+					<i class="ace-icon fa fa-plus white"></i>
+					<font class="sr-only" color="White">Detalhes</font>
+				</a>
+			</div>
+
+			<div class="widget-toolbar">
+				<a href="/Evento/Details/@Model.Id" title="Página principal do evento">
+					<i class="ace-icon fa fa-level-up red"></i>
+					<font class="sr-only" color="White">Página principal do evento</font>
+				</a>
+			</div>
+			@if (Model.EmailContato != null)
+			{
+			<div class="widget-toolbar">
+				<a href="mailto:@(Util.GenerateMailtoString(Model.EmailContato))" title="Enviar e-mail ao responsável">
+					<i class="ace-icon fa fa-envelope red"></i>
+					<font class="sr-only" color="White">Enviar e-mail aos responsáveis</font>
+				</a>
+			</div>
+			}
+			<div class="widget-toolbar">
+				<a href="/ContratoAditivo/Index/@Model.Id" class="GeneralPopUpLinks" title="Aditivos contratuais (gerenciar)" aria-set-w="650" aria-set-h="450">
+					<i class="ace-icon fa fa-folder-open red"></i>
+					<font class="sr-only" color="White">Aditivos contratuais</font>
+				</a>
+			</div>
+			<div class="widget-toolbar">
+				<a href="@Url.Action("Gerar", "Evento", new { id = Model.Id, qual = "EV" })" class="GeneralPopUpLinks" title="Exibir OS" aria-set-w="350" aria-set-h="50">
+					<i class="ace-icon fa fa-file-text red"></i>
+					<font class="sr-only" color="White">Exibir OS</font>
+				</a>
+			</div>
+			<div class="widget-toolbar">
+				<a href="@Url.Action("Gerar", "Evento", new { id = Model.Id, qual = "RD" })" class="GeneralPopUpLinks" title="Gerar dossiê de Degustação" aria-set-w="550" aria-set-h="550">
+					<i class="ace-icon fa fa-cutlery red"></i>
+					<font class="sr-only" color="White">Gerar dossiê de Degustação</font>
+				</a>
+			</div>
+			@if (Model.Cardapio != null)
+			{
+				<div class="widget-toolbar">
+					<a href="@Url.Action("Gerar", "Evento", new { id = Model.Id, qual = "CP" })" class="GeneralPopUpLinks" title="Gerar capa" aria-set-w="350" aria-set-h="50">
+						<i class="ace-icon fa fa-newspaper-o red"></i>
+						<font class="sr-only" color="White">Gerar capa</font>
+					</a>
+				</div>
+			}
+
+		</div>
+		<div class="widget-body in" id="CabecalhoEvento">
+			<div class="widget-main">
+				<div class="alert alert-info container-fluid">
+					<div class="col-sm-4">
+						<b>Tipo de Evento: </b>@(Model.TipoEvento.GetDescription())
+					</div>
+					<div class="col-sm-4">
+						<b>Pax: </b>@(Model.Pax) +10% (@(Model.PaxAproximado))
+					</div>
+					<div class="col-sm-4">
+						<b>Horário: </b>das @(Model.Inicio.ToString()) às @(Model.Termino.ToString())<br>
+						<b>Cerimonial: </b>@(Model.LocalCerimonia.GetDescription())
+					</div>
+					<div class="col-sm-12">
+						<b>Observações: </b>@(Model.PerfilFesta)
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<br>
+
+

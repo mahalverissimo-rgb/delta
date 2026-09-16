@@ -1,0 +1,82 @@
+﻿@model VillaBisutti.Delta.Core.DTO.FileSys
+@{
+	Layout = null;
+}
+<script language="javascript" type="text/javascript">
+	$(document).ready(function () {
+		$(".file-add-handle").click(function (e) {
+			e.preventDefault();
+			LoadPage($(this).attr("href"), "Downloads");
+		});
+	});
+</script> 
+<div class="col-xs-12 widget-container-col row">
+	<div class="widget-box">
+		<div class="widget-header widget-header-flat">
+			<h4 class="widget-title lighter">
+				<i class="fa fa-filter green"></i>
+				Arquivos
+			</h4>
+		</div>
+		<div class="widget-body" id="Filtro">
+			<div class="widget-main padding-8">
+				<div class="row">
+					<div id="Downloads" class="col-md-3 list-group">
+						@Html.Action("ListDownloads", "OS")
+					</div>
+					<div class="col-md-3 list-group">
+						<a href="#" class="list-group-item active">
+							<i class="fa fa-file-text pull-right green"></i>
+							OSs do período
+						</a>
+						@if (Model.OSs.Count == 0)
+						{
+							<a href="#" class="list-group-item list-group-item-warning">
+								<i class="ace-icon fa fa-frown-o pull-right red"></i>
+								Nenhuma OS disponível no período
+							</a>
+						}
+						@foreach (string s in Model.OSs)
+						{
+							<a href="@Url.Action("AddDownload", "OS", new { file = s })" class="list-group-item file-add-handle">@(s)</a>
+						}
+					</div>
+					<div class="col-md-3 list-group">
+						<a href="#" class="list-group-item active">
+							<i class="fa fa-cutlery pull-right green"></i>
+							Dossiês de degustação do período
+						</a>
+						@if (Model.Degustacoes.Count == 0)
+						{
+							<a href="#" class="list-group-item list-group-item-warning">
+								<i class="ace-icon fa fa-frown-o pull-right red"></i>
+								Nenhum dossiê de degustação disponível no período
+							</a>
+						}
+						@foreach (string s in Model.Degustacoes)
+						{
+							<a href="@Url.Action("AddDownload", "OS", new { file = s })" class="list-group-item file-add-handle">@(s)</a>
+						}
+					</div>
+					<div class="col-md-3 list-group">
+						<a href="#" class="list-group-item active">
+							<i class="fa fa-newspaper-o pull-right green"></i>
+							Capas do período
+						</a>
+						@if (Model.Capas.Count == 0)
+						{
+							<a href="#" class="list-group-item list-group-item-warning">
+								<i class="ace-icon fa fa-frown-o pull-right red"></i>
+								Nenhuma capa disponível no período
+							</a>
+						}
+						@foreach (string s in Model.Capas)
+						{
+							<a href="@Url.Action("AddDownload", "OS", new { file = s })" class="list-group-item file-add-handle">@(s)</a>
+						}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

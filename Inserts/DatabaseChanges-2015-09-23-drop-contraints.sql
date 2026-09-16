@@ -1,0 +1,40 @@
+
+ALTER TABLE 
+ItemBebidaSelecionado
+DROP CONSTRAINT 
+[FK_dbo.ItemBebidaSelecionado_dbo.ContratoAditivo_ContratoAditivoId]
+
+ALTER TABLE 
+ItemBoloDoceBemCasadoSelecionado
+DROP CONSTRAINT 
+[FK_dbo.ItemBoloDoceBemCasadoSelecionado_dbo.ContratoAditivo_ContratoAditivoId]
+
+ALTER TABLE 
+ItemDecoracaoCerimonialSelecionado
+DROP CONSTRAINT 
+[FK_dbo.ItemDecoracaoCerimonialSelecionado_dbo.ContratoAditivo_ContratoAditivoId]
+
+ALTER TABLE 
+ItemDecoracaoSelecionado
+DROP CONSTRAINT 
+[FK_dbo.ItemDecoracaoSelecionado_dbo.ContratoAditivo_ContratoAditivoId]
+
+ALTER TABLE 
+ItemFotoVideoSelecionado
+DROP CONSTRAINT 
+[FK_dbo.ItemFotoVideoSelecionado_dbo.ContratoAditivo_ContratoAditivoId]
+
+ALTER TABLE 
+ItemMontagemSelecionado
+DROP CONSTRAINT 
+[FK_dbo.ItemMontagemSelecionado_dbo.ContratoAditivo_ContratoAditivoId]
+
+ALTER TABLE 
+ItemOutrosItensSelecionado
+DROP CONSTRAINT 
+[FK_dbo.ItemOutrosItensSelecionado_dbo.ContratoAditivo_ContratoAditivoId]
+
+ALTER TABLE 
+ItemSomIluminacaoSelecionado
+DROP CONSTRAINT 
+[FK_dbo.ItemSomIluminacaoSelecionado_dbo.ContratoAditivo_ContratoAditivoId]

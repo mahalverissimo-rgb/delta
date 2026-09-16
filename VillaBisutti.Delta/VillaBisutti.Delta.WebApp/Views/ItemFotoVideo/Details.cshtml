@@ -1,0 +1,36 @@
+﻿@model VillaBisutti.Delta.Core.Model.ItemFotoVideo
+
+@{
+	Layout = null;
+	//ViewBag.Title = "Details";
+}
+
+<div>
+
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.TipoItemFotoVideo.Nome)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.TipoItemFotoVideo.Nome)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Nome)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Nome)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Quantidade)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Quantidade)
+		</dd>
+
+	</dl>
+</div>

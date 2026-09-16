@@ -1,0 +1,70 @@
+﻿@using VillaBisutti.Delta
+@model VillaBisutti.Delta.Core.Model.ItemRoteiro
+
+@{
+	Layout = null;
+	//ViewBag.Title = "Create";
+}
+	<script language="javascript" type="text/javascript">
+		$(document).ready(function () {
+			CreateHorarioEditor("HorarioInicio");
+		});
+	</script>
+@Scripts.Render("~/bundles/jqueryval")
+@using (Html.BeginForm("ItemCreated", "ItemRoteiro"))
+{
+	@Html.AntiForgeryToken()
+
+	<div class="form-horizontal">
+		<h4>Roteiro padrão para @(((VillaBisutti.Delta.Core.Model.TipoEvento)ViewBag.TipoEvento).GetDescription())</h4>
+		<hr />
+		@Html.ValidationSummary(true)
+		<input type="hidden" name="TipoEvento" value="@ViewBag.TipoEvento" />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Titulo, new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Titulo)
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(model => model.Titulo)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Inicio, new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.HorarioInicio)
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(model => model.Inicio)
+            </div>
+        </div>
+
+        <div class="form-group">
+           @Html.LabelFor(model => model.Importante, new { @class = "control-label col-md-2" })
+            <span class="col-md-2"></span>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Importante)
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(model => model.Importante)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Observacao, new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Observacao)
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(model => model.Observacao)
+            </div>
+        </div>
+
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-3">
+				<input type="submit" value="Salvar" class="btn btn-default form-control" />
+			</div>
+		</div>
+	</div>
+}

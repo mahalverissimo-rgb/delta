@@ -1,0 +1,116 @@
+﻿@model VillaBisutti.Delta.Core.Model.ItemDecoracaoSelecionado
+@{
+	Layout = null;
+}
+<h3>Você tem certeza que quer excluir?</h3>
+<div>
+	<h4>Item Decoração Selecionado</h4>
+	<hr />
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.ContratoAditivo.Arquivo)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.ContratoAditivo.Arquivo)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Evento.NomeResponsavel)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Evento.NomeResponsavel)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.ItemDecoracao.Nome)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.ItemDecoracao.Nome)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Definido)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Definido)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Contratado)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Contratado)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.ContratacaoBisutti)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.ContratacaoBisutti)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.FornecimentoBisutti)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.FornecimentoBisutti)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.FornecedorStartado)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.FornecedorStartado)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Quantidade)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Quantidade)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.HorarioMontagem)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.HorarioMontagem)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.ContatoFornecimento)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.ContatoFornecimento)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Observacoes)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Observacoes)
+		</dd>
+
+	</dl>
+
+	@using (Html.BeginForm())
+	{
+		@Html.AntiForgeryToken()
+
+		<div class="form-actions no-color">
+			<input type="submit" value="Excluir" class="btn btn-default" />
+		</div>
+	}
+</div>

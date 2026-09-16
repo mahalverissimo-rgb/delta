@@ -1,0 +1,143 @@
+﻿@model IEnumerable<VillaBisutti.Delta.Core.Model.Reuniao>
+@{
+	Layout = "~/Views/Shared/_ConfiguracoesLayout.cshtml";
+}
+
+<script language="javascript" type="text/javascript">
+	$(document).ready(function () {
+		$("#FiltroReuniao input, #FiltroReuniao select").change(function () {
+			this.form.submit();
+		});
+		$(".ir-evento").click(function () {
+			window.location.href = $(this).attr("data-href");
+		});
+	});
+</script>
+<div class="col-xl-12 widget-container-col row">
+	<div class="widget-box">
+		<div class="widget-header widget-header-flat">
+			<h4 class="widget-title lighter">
+				<i class="fa fa-filter green"></i>
+				Filtros
+			</h4>
+			<div class="widget-toolbar">
+				<a href="#" data-toggle="collapse" data-target="#Filtro">
+					<i class="fa fa-chevron-up" onclick="$(this).toggleClass('fa-chevron-up fa-chevron-down')"></i>
+				</a>
+			</div>
+		</div>
+		<div class="widget-body" id="Filtro">
+			<div class="widget-main padding-8">
+				<form id="FiltroReuniao" class="form-horizontal">
+					<div class="row">
+						<label for="inicio" class="control-label col-md-2"> Data inicial </label>
+						<input type="date" name="inicio" id="inicio" value="@((Request.QueryString["inicio"] != null ? DateTime.Parse(Request.QueryString["inicio"]) : DateTime.Now).ToString("yyyy-MM-dd"))" class="col-md-2" />
+						<label for="termino" class="control-label col-md-2"> Data final </label>
+						<input type="date" name="termino" id="termino" value="@((Request.QueryString["termino"] != null ? DateTime.Parse(Request.QueryString["termino"]) : DateTime.Now.AddDays(7)).ToString("yyyy-MM-dd"))" class="col-md-2" />
+
+					</div>
+					<div class="row">
+						<label for="produtorId" class="control-label col-md-2">Tipo de Reunião</label>
+						@Html.DropDownList("tipoReuniaoId", (SelectList)ViewBag.TipoReuniao, "Selecione", new { @class = "col-md-2" })
+						<label for="termino" class="control-label col-md-2"> Filtro </label>
+						<input type="text" name="filtro" value="@Request.QueryString["filtro"]" />
+					</div>
+					<div class="row">
+						<label for="Id" class="control-label col-md-2">Responsável</label>
+						@Html.DropDownList("usuarioId", (SelectList)ViewBag.Usuario, "Selecione", new { @class = "col-md-2" })
+						<span class="col-md-2"> </span>
+						<label for="realizada" class="control-label col-md-2">realizada</label>
+						<input type="checkbox" name="realizada" id="realizada" value="True" class="col-md-2" @(Request.QueryString["realizada"] != null ? " checked=\"checked\"" : "") />
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col-xl-12 widget-container-col row">
+	<div class="widget-box">
+		<div class="widget-body" id="Acoes">
+			<div class="widget-main padding-0">
+				@if (Model.Count() > 0)
+				{
+					<table class="table table-striped">
+						<tr>
+							<th>
+								Data do evento
+							</th>
+							<th>
+								@Html.DisplayNameFor(model => model.Evento.Local)
+							</th>
+							<th>
+								@Html.DisplayNameFor(model => model.Evento.NomeHomenageados)
+							</th>
+							<th>
+								@Html.DisplayNameFor(model => model.TipoReuniao.Nome)
+							</th>
+							<th>
+								Envolvido
+							</th>
+							<th>
+								Data da reunião
+							</th>
+							<th>
+								Horário da Reunião
+							</th>
+							<th>
+								@Html.DisplayNameFor(model => model.Definida)
+							</th>
+							<th>
+								Realizada
+							</th>
+						</tr>
+						@foreach (VillaBisutti.Delta.Core.Model.Reuniao item in Model)
+						{
+                            <tr class="ir-evento" data-href="@Url.Action("Details", "Evento", new { id = item.Evento.Id })">
+							<td>
+							@item.Evento.Data.ToString("ddd, dd / MM / yyyy")
+							</td>
+							<td>
+							@item.Evento.Local.NomeCasa
+							</td>
+							<td>
+							@item.Evento.NomeHomenageados
+							</td>
+							<td>
+							@item.TipoReuniao.Nome
+							</td>
+							<td>
+							@if (@item.Usuario != null)
+							{
+								@item.Usuario.Nome
+							}
+
+							</td>
+							<td>
+							@item.Data.ToString("ddd, dd / MM / yyyy")
+							</td>
+							<td>
+							@item.Horario.ToString()
+							</td>
+							<td>
+							@Html.DisplayFor(modelItem => item.Definida)
+							</td>
+							<td>
+							@Html.DisplayFor(modelItem => item.Executada)
+							</td>
+							</tr>
+						}
+					</table>
+				}
+				else
+				{
+					<div class="alert alert-warning">
+						<h5><i class="fa fa-exclamation-triangle"></i>Sem dados para este filtro</h5>
+						<p>Modifique a seleção nos filtros e tente novamente </p>
+					</div>
+				}
+			</div>
+		</div>
+	</div>
+</div>

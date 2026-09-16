@@ -1,0 +1,3 @@
+﻿{DIAEXTENSO} - {DIA}
+
+{LOCAL} ({TIPOEVENTO}): Cores: {COR} - {HORA}

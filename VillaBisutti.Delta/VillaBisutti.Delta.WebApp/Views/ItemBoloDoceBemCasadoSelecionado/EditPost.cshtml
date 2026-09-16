@@ -1,0 +1,17 @@
+﻿@model VillaBisutti.Delta.Core.Model.ItemBoloDoceBemCasadoSelecionado
+@{
+	Layout = null;
+	bool erro = false;
+	if (Model.ContratacaoBisutti)
+	{
+		erro = Model.StateErrorBisutti;
+	}
+	else if (Model.ContratacaoBisutti)
+	{
+		erro = Model.StateErrorFornecedor;
+	}
+	else
+	{
+		erro = Model.StateErrorContratante;
+	}
+}@(erro ? "true" : "false")

@@ -1,0 +1,435 @@
+2025-04-24 20:25:07.341 -03:00 [INF] Iniciando aplicação
+2025-04-24 20:25:07.396 -03:00 [INF] User profile is available. Using '/Users/mahalverissimo/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-04-24 20:25:07.401 -03:00 [INF] Creating key {5304e9ff-88c0-4e65-8bc6-93b4c7335f30} with creation date 2025-04-24 23:25:07Z, activation date 2025-04-24 23:25:07Z, and expiration date 2025-07-23 23:25:07Z.
+2025-04-24 20:25:07.409 -03:00 [WRN] No XML encryptor configured. Key {5304e9ff-88c0-4e65-8bc6-93b4c7335f30} may be persisted to storage in unencrypted form.
+2025-04-24 20:25:07.410 -03:00 [INF] Writing data to file '/Users/mahalverissimo/.aspnet/DataProtection-Keys/key-5304e9ff-88c0-4e65-8bc6-93b4c7335f30.xml'.
+2025-04-24 20:25:07.533 -03:00 [WRN] The application is trying to access the ASP.NET Core developer certificate key. A prompt might appear to ask for permission to access the key. When that happens, select 'Always Allow' to grant 'dotnet' access to the certificate key in the future.
+2025-04-24 20:25:15.927 -03:00 [INF] Now listening on: http://localhost:5000
+2025-04-24 20:25:15.927 -03:00 [INF] Now listening on: https://localhost:5001
+2025-04-24 20:25:15.934 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-04-24 20:25:15.934 -03:00 [INF] Hosting environment: Production
+2025-04-24 20:25:15.934 -03:00 [INF] Content root path: /Users/mahalverissimo/Library/CloudStorage/OneDrive-Pessoal/Documentos/_Delta/Delta-master/VillaBisutti.Delta.New/
+2025-04-24 20:25:29.831 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/ - -
+2025-04-24 20:25:29.838 -03:00 [INF] HTTP GET / responded 307 in 1.1924 ms
+2025-04-24 20:25:29.841 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/ - - - 307 0 - 12.4379ms
+2025-04-24 20:25:58.559 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/ - -
+2025-04-24 20:25:58.593 -03:00 [INF] Executing endpoint 'VillaBisutti.Delta.WebApp.Controllers.HomeController.Index (VillaBisutti.Delta.WebApp)'
+2025-04-24 20:25:58.611 -03:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller VillaBisutti.Delta.WebApp.Controllers.HomeController (VillaBisutti.Delta.WebApp).
+2025-04-24 20:25:58.615 -03:00 [INF] Executing action method VillaBisutti.Delta.WebApp.Controllers.HomeController.Index (VillaBisutti.Delta.WebApp) - Validation state: "Valid"
+2025-04-24 20:25:58.619 -03:00 [INF] Executed action method VillaBisutti.Delta.WebApp.Controllers.HomeController.Index (VillaBisutti.Delta.WebApp), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.1971ms.
+2025-04-24 20:25:58.626 -03:00 [INF] Executing ViewResult, running view Index.
+2025-04-24 20:25:58.699 -03:00 [INF] Executed ViewResult - view Index executed in 73.5329ms.
+2025-04-24 20:25:58.699 -03:00 [INF] Executed action VillaBisutti.Delta.WebApp.Controllers.HomeController.Index (VillaBisutti.Delta.WebApp) in 87.8414ms
+2025-04-24 20:25:58.699 -03:00 [INF] Executed endpoint 'VillaBisutti.Delta.WebApp.Controllers.HomeController.Index (VillaBisutti.Delta.WebApp)'
+2025-04-24 20:25:58.699 -03:00 [INF] HTTP GET / responded 200 in 139.3092 ms
+2025-04-24 20:25:58.701 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/ - - - 200 - text/html;+charset=utf-8 141.3430ms
+2025-04-24 20:25:58.726 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css - -
+2025-04-24 20:25:58.727 -03:00 [INF] HTTP GET /lib/bootstrap/dist/css/bootstrap.min.css responded 404 in 1.6003 ms
+2025-04-24 20:25:58.728 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css - - - 404 0 - 2.1891ms
+2025-04-24 20:25:58.728 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/fontawesome-free/css/all.min.css - -
+2025-04-24 20:25:58.730 -03:00 [INF] HTTP GET /lib/fontawesome-free/css/all.min.css responded 404 in 1.3961 ms
+2025-04-24 20:25:58.730 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/fontawesome-free/css/all.min.css - - - 404 0 - 1.5585ms
+2025-04-24 20:25:58.731 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/icheck-bootstrap/icheck-bootstrap.min.css - -
+2025-04-24 20:25:58.731 -03:00 [INF] HTTP GET /lib/icheck-bootstrap/icheck-bootstrap.min.css responded 404 in 0.0518 ms
+2025-04-24 20:25:58.731 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/icheck-bootstrap/icheck-bootstrap.min.css - - - 404 0 - 0.1812ms
+2025-04-24 20:25:58.732 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/css/adminlte.min.css - -
+2025-04-24 20:25:58.732 -03:00 [INF] HTTP GET /css/adminlte.min.css responded 404 in 0.1199 ms
+2025-04-24 20:25:58.732 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/css/adminlte.min.css - - - 404 0 - 0.4374ms
+2025-04-24 20:25:58.733 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/css/site.css?v=b12CLB6RMJCHOpvuhTmAEy6Wqg-7k4BnVGlK0O21Dxo - -
+2025-04-24 20:25:58.741 -03:00 [INF] Sending file. Request path: '/css/site.css'. Physical path: '/Users/mahalverissimo/Library/CloudStorage/OneDrive-Pessoal/Documentos/_Delta/Delta-master/VillaBisutti.Delta.New/wwwroot/css/site.css'
+2025-04-24 20:25:58.741 -03:00 [INF] HTTP GET /css/site.css responded 200 in 8.2244 ms
+2025-04-24 20:25:58.742 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/css/site.css?v=b12CLB6RMJCHOpvuhTmAEy6Wqg-7k4BnVGlK0O21Dxo - - - 200 2011 text/css 8.7846ms
+2025-04-24 20:25:58.742 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/jquery/dist/jquery.min.js - -
+2025-04-24 20:25:58.743 -03:00 [INF] HTTP GET /lib/jquery/dist/jquery.min.js responded 404 in 0.7413 ms
+2025-04-24 20:25:58.743 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/jquery/dist/jquery.min.js - - - 404 0 - 0.8690ms
+2025-04-24 20:25:58.744 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js - -
+2025-04-24 20:25:58.744 -03:00 [INF] HTTP GET /lib/bootstrap/dist/js/bootstrap.bundle.min.js responded 404 in 0.0738 ms
+2025-04-24 20:25:58.744 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js - - - 404 0 - 0.1920ms
+2025-04-24 20:25:58.745 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/adminlte/js/adminlte.min.js - -
+2025-04-24 20:25:58.745 -03:00 [INF] HTTP GET /lib/adminlte/js/adminlte.min.js responded 404 in 0.3563 ms
+2025-04-24 20:25:58.745 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/adminlte/js/adminlte.min.js - - - 404 0 - 0.4543ms
+2025-04-24 20:25:58.746 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/js/site.js?v=NcGsHUU_jFX2EHv0emhWF73v1g36XLcaeht_m_v8Q8c - -
+2025-04-24 20:25:58.746 -03:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: '/Users/mahalverissimo/Library/CloudStorage/OneDrive-Pessoal/Documentos/_Delta/Delta-master/VillaBisutti.Delta.New/wwwroot/js/site.js'
+2025-04-24 20:25:58.746 -03:00 [INF] HTTP GET /js/site.js responded 200 in 0.7974 ms
+2025-04-24 20:25:58.747 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/js/site.js?v=NcGsHUU_jFX2EHv0emhWF73v1g36XLcaeht_m_v8Q8c - - - 200 4766 application/javascript 0.8764ms
+2025-04-24 20:25:58.747 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/images/logo.png - -
+2025-04-24 20:25:58.747 -03:00 [INF] HTTP GET /images/logo.png responded 404 in 0.0585 ms
+2025-04-24 20:25:58.747 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/images/logo.png - - - 404 0 - 0.1788ms
+2025-04-24 20:25:58.822 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/favicon.ico - -
+2025-04-24 20:25:58.822 -03:00 [INF] HTTP GET /favicon.ico responded 404 in 0.1599 ms
+2025-04-24 20:25:58.822 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/favicon.ico - - - 404 0 - 0.4289ms
+2025-04-24 20:26:08.910 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/Cardapio - -
+2025-04-24 20:26:08.913 -03:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-04-24 20:26:08.915 -03:00 [INF] AuthenticationScheme: Identity.Application was challenged.
+2025-04-24 20:26:08.915 -03:00 [INF] HTTP GET /Cardapio responded 302 in 4.5653 ms
+2025-04-24 20:26:08.915 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/Cardapio - - - 302 0 - 4.9539ms
+2025-04-24 20:26:08.916 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/Auth/Login?ReturnUrl=%2FCardapio - -
+2025-04-24 20:26:08.916 -03:00 [INF] Executing endpoint 'VillaBisutti.Delta.WebApp.Controllers.AuthController.Login (VillaBisutti.Delta.WebApp)'
+2025-04-24 20:26:08.923 -03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(System.String) on controller VillaBisutti.Delta.WebApp.Controllers.AuthController (VillaBisutti.Delta.WebApp).
+2025-04-24 20:26:09.009 -03:00 [INF] Executing action method VillaBisutti.Delta.WebApp.Controllers.AuthController.Login (VillaBisutti.Delta.WebApp) - Validation state: "Valid"
+2025-04-24 20:26:09.010 -03:00 [INF] Executed action method VillaBisutti.Delta.WebApp.Controllers.AuthController.Login (VillaBisutti.Delta.WebApp), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.055ms.
+2025-04-24 20:26:09.010 -03:00 [INF] Executing ViewResult, running view Login.
+2025-04-24 20:26:09.033 -03:00 [INF] Executed ViewResult - view Login executed in 23.2459ms.
+2025-04-24 20:26:09.033 -03:00 [INF] Executed action VillaBisutti.Delta.WebApp.Controllers.AuthController.Login (VillaBisutti.Delta.WebApp) in 109.9718ms
+2025-04-24 20:26:09.033 -03:00 [INF] Executed endpoint 'VillaBisutti.Delta.WebApp.Controllers.AuthController.Login (VillaBisutti.Delta.WebApp)'
+2025-04-24 20:26:09.033 -03:00 [INF] HTTP GET /Auth/Login responded 200 in 116.9733 ms
+2025-04-24 20:26:09.034 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/Auth/Login?ReturnUrl=%2FCardapio - - - 200 - text/html;+charset=utf-8 118.2165ms
+2025-04-24 20:26:09.045 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css - -
+2025-04-24 20:26:09.047 -03:00 [INF] HTTP GET /lib/bootstrap/dist/css/bootstrap.min.css responded 404 in 2.3771 ms
+2025-04-24 20:26:09.047 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css - - - 404 0 - 2.5735ms
+2025-04-24 20:26:09.049 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/fontawesome-free/css/all.min.css - -
+2025-04-24 20:26:09.049 -03:00 [INF] HTTP GET /lib/fontawesome-free/css/all.min.css responded 404 in 0.0954 ms
+2025-04-24 20:26:09.049 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/fontawesome-free/css/all.min.css - - - 404 0 - 0.2027ms
+2025-04-24 20:26:09.051 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/icheck-bootstrap/icheck-bootstrap.min.css - -
+2025-04-24 20:26:09.051 -03:00 [INF] HTTP GET /lib/icheck-bootstrap/icheck-bootstrap.min.css responded 404 in 0.0529 ms
+2025-04-24 20:26:09.051 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/icheck-bootstrap/icheck-bootstrap.min.css - - - 404 0 - 0.1367ms
+2025-04-24 20:26:09.051 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/css/adminlte.min.css - -
+2025-04-24 20:26:09.052 -03:00 [INF] HTTP GET /css/adminlte.min.css responded 404 in 0.0352 ms
+2025-04-24 20:26:09.052 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/css/adminlte.min.css - - - 404 0 - 0.0967ms
+2025-04-24 20:26:09.052 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/images/logo.png - -
+2025-04-24 20:26:09.052 -03:00 [INF] HTTP GET /images/logo.png responded 404 in 0.1536 ms
+2025-04-24 20:26:09.053 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/images/logo.png - - - 404 0 - 0.3252ms
+2025-04-24 20:26:09.053 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/jquery/dist/jquery.min.js - -
+2025-04-24 20:26:09.053 -03:00 [INF] HTTP GET /lib/jquery/dist/jquery.min.js responded 404 in 0.0413 ms
+2025-04-24 20:26:09.053 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/jquery/dist/jquery.min.js - - - 404 0 - 0.2149ms
+2025-04-24 20:26:09.054 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js - -
+2025-04-24 20:26:09.054 -03:00 [INF] HTTP GET /lib/bootstrap/dist/js/bootstrap.bundle.min.js responded 404 in 0.0321 ms
+2025-04-24 20:26:09.054 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js - - - 404 0 - 0.0817ms
+2025-04-24 20:26:09.054 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/adminlte/js/adminlte.min.js - -
+2025-04-24 20:26:09.054 -03:00 [INF] HTTP GET /lib/adminlte/js/adminlte.min.js responded 404 in 0.0275 ms
+2025-04-24 20:26:09.054 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/adminlte/js/adminlte.min.js - - - 404 0 - 0.0747ms
+2025-04-24 20:26:09.054 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/jquery-validation/dist/jquery.validate.min.js - -
+2025-04-24 20:26:09.055 -03:00 [INF] HTTP GET /lib/jquery-validation/dist/jquery.validate.min.js responded 404 in 0.0348 ms
+2025-04-24 20:26:09.055 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/jquery-validation/dist/jquery.validate.min.js - - - 404 0 - 0.0972ms
+2025-04-24 20:26:09.055 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js - -
+2025-04-24 20:26:09.055 -03:00 [INF] HTTP GET /lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js responded 404 in 0.0293 ms
+2025-04-24 20:26:09.055 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js - - - 404 0 - 0.0830ms
+2025-04-24 20:26:09.055 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/jquery-validation-pt-br/jquery.validate.pt-br.js - -
+2025-04-24 20:26:09.055 -03:00 [INF] HTTP GET /lib/jquery-validation-pt-br/jquery.validate.pt-br.js responded 404 in 0.0423 ms
+2025-04-24 20:26:09.055 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/jquery-validation-pt-br/jquery.validate.pt-br.js - - - 404 0 - 0.1145ms
+2025-04-24 20:26:16.379 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/Auth/ForgotPassword - -
+2025-04-24 20:26:16.383 -03:00 [INF] Executing endpoint 'VillaBisutti.Delta.WebApp.Controllers.AuthController.ForgotPassword (VillaBisutti.Delta.WebApp)'
+2025-04-24 20:26:16.385 -03:00 [INF] Route matched with {action = "ForgotPassword", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ForgotPassword() on controller VillaBisutti.Delta.WebApp.Controllers.AuthController (VillaBisutti.Delta.WebApp).
+2025-04-24 20:26:16.394 -03:00 [INF] Executing action method VillaBisutti.Delta.WebApp.Controllers.AuthController.ForgotPassword (VillaBisutti.Delta.WebApp) - Validation state: "Valid"
+2025-04-24 20:26:16.394 -03:00 [INF] Executed action method VillaBisutti.Delta.WebApp.Controllers.AuthController.ForgotPassword (VillaBisutti.Delta.WebApp), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.1046ms.
+2025-04-24 20:26:16.395 -03:00 [INF] Executing ViewResult, running view ForgotPassword.
+2025-04-24 20:26:16.408 -03:00 [INF] Executed ViewResult - view ForgotPassword executed in 13.4575ms.
+2025-04-24 20:26:16.408 -03:00 [INF] Executed action VillaBisutti.Delta.WebApp.Controllers.AuthController.ForgotPassword (VillaBisutti.Delta.WebApp) in 22.6882ms
+2025-04-24 20:26:16.408 -03:00 [INF] Executed endpoint 'VillaBisutti.Delta.WebApp.Controllers.AuthController.ForgotPassword (VillaBisutti.Delta.WebApp)'
+2025-04-24 20:26:16.408 -03:00 [INF] HTTP GET /Auth/ForgotPassword responded 200 in 29.0770 ms
+2025-04-24 20:26:16.409 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/Auth/ForgotPassword - - - 200 - text/html;+charset=utf-8 29.8047ms
+2025-04-24 20:26:16.416 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css - -
+2025-04-24 20:26:16.417 -03:00 [INF] HTTP GET /lib/bootstrap/dist/css/bootstrap.min.css responded 404 in 0.2106 ms
+2025-04-24 20:26:16.417 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css - - - 404 0 - 0.6907ms
+2025-04-24 20:26:16.424 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/fontawesome-free/css/all.min.css - -
+2025-04-24 20:26:16.425 -03:00 [INF] HTTP GET /lib/fontawesome-free/css/all.min.css responded 404 in 0.1054 ms
+2025-04-24 20:26:16.425 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/fontawesome-free/css/all.min.css - - - 404 0 - 0.2570ms
+2025-04-24 20:26:16.425 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/icheck-bootstrap/icheck-bootstrap.min.css - -
+2025-04-24 20:26:16.425 -03:00 [INF] HTTP GET /lib/icheck-bootstrap/icheck-bootstrap.min.css responded 404 in 0.0465 ms
+2025-04-24 20:26:16.425 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/icheck-bootstrap/icheck-bootstrap.min.css - - - 404 0 - 0.1263ms
+2025-04-24 20:26:16.426 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/css/adminlte.min.css - -
+2025-04-24 20:26:16.426 -03:00 [INF] HTTP GET /css/adminlte.min.css responded 404 in 0.0394 ms
+2025-04-24 20:26:16.426 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/css/adminlte.min.css - - - 404 0 - 0.1130ms
+2025-04-24 20:26:16.426 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/images/logo.png - -
+2025-04-24 20:26:16.426 -03:00 [INF] HTTP GET /images/logo.png responded 404 in 0.0287 ms
+2025-04-24 20:26:16.426 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/images/logo.png - - - 404 0 - 0.0751ms
+2025-04-24 20:26:16.427 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/jquery/dist/jquery.min.js - -
+2025-04-24 20:26:16.427 -03:00 [INF] HTTP GET /lib/jquery/dist/jquery.min.js responded 404 in 0.0472 ms
+2025-04-24 20:26:16.427 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/jquery/dist/jquery.min.js - - - 404 0 - 0.1220ms
+2025-04-24 20:26:16.427 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js - -
+2025-04-24 20:26:16.427 -03:00 [INF] HTTP GET /lib/bootstrap/dist/js/bootstrap.bundle.min.js responded 404 in 0.0386 ms
+2025-04-24 20:26:16.427 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js - - - 404 0 - 0.0945ms
+2025-04-24 20:26:16.427 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/adminlte/js/adminlte.min.js - -
+2025-04-24 20:26:16.427 -03:00 [INF] HTTP GET /lib/adminlte/js/adminlte.min.js responded 404 in 0.0408 ms
+2025-04-24 20:26:16.428 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/adminlte/js/adminlte.min.js - - - 404 0 - 0.1195ms
+2025-04-24 20:26:16.428 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/jquery-validation/dist/jquery.validate.min.js - -
+2025-04-24 20:26:16.428 -03:00 [INF] HTTP GET /lib/jquery-validation/dist/jquery.validate.min.js responded 404 in 0.0293 ms
+2025-04-24 20:26:16.428 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/jquery-validation/dist/jquery.validate.min.js - - - 404 0 - 0.0832ms
+2025-04-24 20:26:16.428 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js - -
+2025-04-24 20:26:16.428 -03:00 [INF] HTTP GET /lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js responded 404 in 0.0323 ms
+2025-04-24 20:26:16.428 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js - - - 404 0 - 0.0868ms
+2025-04-24 20:26:16.428 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/jquery-validation-pt-br/jquery.validate.pt-br.js - -
+2025-04-24 20:26:16.428 -03:00 [INF] HTTP GET /lib/jquery-validation-pt-br/jquery.validate.pt-br.js responded 404 in 0.0280 ms
+2025-04-24 20:26:16.429 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/jquery-validation-pt-br/jquery.validate.pt-br.js - - - 404 0 - 0.0916ms
+2025-04-24 20:27:33.284 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/Auth/Login - -
+2025-04-24 20:27:33.290 -03:00 [INF] Executing endpoint 'VillaBisutti.Delta.WebApp.Controllers.AuthController.Login (VillaBisutti.Delta.WebApp)'
+2025-04-24 20:27:33.291 -03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(System.String) on controller VillaBisutti.Delta.WebApp.Controllers.AuthController (VillaBisutti.Delta.WebApp).
+2025-04-24 20:27:33.305 -03:00 [INF] Executing action method VillaBisutti.Delta.WebApp.Controllers.AuthController.Login (VillaBisutti.Delta.WebApp) - Validation state: "Valid"
+2025-04-24 20:27:33.305 -03:00 [INF] Executed action method VillaBisutti.Delta.WebApp.Controllers.AuthController.Login (VillaBisutti.Delta.WebApp), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.0372ms.
+2025-04-24 20:27:33.305 -03:00 [INF] Executing ViewResult, running view Login.
+2025-04-24 20:27:33.308 -03:00 [INF] Executed ViewResult - view Login executed in 2.8932ms.
+2025-04-24 20:27:33.308 -03:00 [INF] Executed action VillaBisutti.Delta.WebApp.Controllers.AuthController.Login (VillaBisutti.Delta.WebApp) in 16.1202ms
+2025-04-24 20:27:33.308 -03:00 [INF] Executed endpoint 'VillaBisutti.Delta.WebApp.Controllers.AuthController.Login (VillaBisutti.Delta.WebApp)'
+2025-04-24 20:27:33.308 -03:00 [INF] HTTP GET /Auth/Login responded 200 in 22.6739 ms
+2025-04-24 20:27:33.308 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/Auth/Login - - - 200 - text/html;+charset=utf-8 25.4370ms
+2025-04-24 20:27:33.317 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css - -
+2025-04-24 20:27:33.317 -03:00 [INF] HTTP GET /lib/bootstrap/dist/css/bootstrap.min.css responded 404 in 0.3072 ms
+2025-04-24 20:27:33.318 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css - - - 404 0 - 0.6194ms
+2025-04-24 20:27:33.320 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/fontawesome-free/css/all.min.css - -
+2025-04-24 20:27:33.320 -03:00 [INF] HTTP GET /lib/fontawesome-free/css/all.min.css responded 404 in 0.1476 ms
+2025-04-24 20:27:33.320 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/fontawesome-free/css/all.min.css - - - 404 0 - 0.5995ms
+2025-04-24 20:27:33.323 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/icheck-bootstrap/icheck-bootstrap.min.css - -
+2025-04-24 20:27:33.323 -03:00 [INF] HTTP GET /lib/icheck-bootstrap/icheck-bootstrap.min.css responded 404 in 0.0693 ms
+2025-04-24 20:27:33.323 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/icheck-bootstrap/icheck-bootstrap.min.css - - - 404 0 - 0.1796ms
+2025-04-24 20:27:33.324 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/css/adminlte.min.css - -
+2025-04-24 20:27:33.324 -03:00 [INF] HTTP GET /css/adminlte.min.css responded 404 in 0.1000 ms
+2025-04-24 20:27:33.324 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/css/adminlte.min.css - - - 404 0 - 0.2119ms
+2025-04-24 20:27:33.324 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/images/logo.png - -
+2025-04-24 20:27:33.324 -03:00 [INF] HTTP GET /images/logo.png responded 404 in 0.0565 ms
+2025-04-24 20:27:33.325 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/images/logo.png - - - 404 0 - 0.1503ms
+2025-04-24 20:27:33.325 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/jquery/dist/jquery.min.js - -
+2025-04-24 20:27:33.325 -03:00 [INF] HTTP GET /lib/jquery/dist/jquery.min.js responded 404 in 0.0335 ms
+2025-04-24 20:27:33.325 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/jquery/dist/jquery.min.js - - - 404 0 - 0.1622ms
+2025-04-24 20:27:33.326 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js - -
+2025-04-24 20:27:33.326 -03:00 [INF] HTTP GET /lib/bootstrap/dist/js/bootstrap.bundle.min.js responded 404 in 0.0502 ms
+2025-04-24 20:27:33.326 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js - - - 404 0 - 0.1384ms
+2025-04-24 20:27:33.326 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/adminlte/js/adminlte.min.js - -
+2025-04-24 20:27:33.327 -03:00 [INF] HTTP GET /lib/adminlte/js/adminlte.min.js responded 404 in 0.0350 ms
+2025-04-24 20:27:33.327 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/adminlte/js/adminlte.min.js - - - 404 0 - 0.1182ms
+2025-04-24 20:27:33.327 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/jquery-validation/dist/jquery.validate.min.js - -
+2025-04-24 20:27:33.328 -03:00 [INF] HTTP GET /lib/jquery-validation/dist/jquery.validate.min.js responded 404 in 0.0415 ms
+2025-04-24 20:27:33.328 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/jquery-validation/dist/jquery.validate.min.js - - - 404 0 - 1.1880ms
+2025-04-24 20:27:33.336 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js - -
+2025-04-24 20:27:33.337 -03:00 [INF] HTTP GET /lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js responded 404 in 0.1938 ms
+2025-04-24 20:27:33.337 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js - - - 404 0 - 0.5602ms
+2025-04-24 20:27:33.343 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/jquery-validation-pt-br/jquery.validate.pt-br.js - -
+2025-04-24 20:27:33.343 -03:00 [INF] HTTP GET /lib/jquery-validation-pt-br/jquery.validate.pt-br.js responded 404 in 0.2055 ms
+2025-04-24 20:27:33.343 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/jquery-validation-pt-br/jquery.validate.pt-br.js - - - 404 0 - 0.5105ms
+2025-04-24 20:45:17.289 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/Auth/Login - -
+2025-04-24 20:45:17.292 -03:00 [INF] Executing endpoint 'VillaBisutti.Delta.WebApp.Controllers.AuthController.Login (VillaBisutti.Delta.WebApp)'
+2025-04-24 20:45:17.294 -03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(System.String) on controller VillaBisutti.Delta.WebApp.Controllers.AuthController (	)).
+2025-04-24 20:45:17.299 -03:00 [INF] Executing action method VillaBisutti.Delta.WebApp.Controllers.AuthController.Login (VillaBisutti.Delta.WebApp) - Validation state: "Valid"
+2025-04-24 20:45:17.299 -03:00 [INF] Executed action method VillaBisutti.Delta.WebApp.Controllers.AuthController.Login (VillaBisutti.Delta.WebApp), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.0817ms.
+2025-04-24 20:45:17.300 -03:00 [INF] Executing ViewResult, running view Login.
+2025-04-24 20:45:17.305 -03:00 [INF] Executed ViewResult - view Login executed in 5.7319ms.
+2025-04-24 20:45:17.305 -03:00 [INF] Executed action VillaBisutti.Delta.WebApp.Controllers.AuthController.Login (VillaBisutti.Delta.WebApp) in 11.2942ms
+2025-04-24 20:45:17.306 -03:00 [INF] Executed endpoint 'VillaBisutti.Delta.WebApp.Controllers.AuthController.Login (VillaBisutti.Delta.WebApp)'
+2025-04-24 20:45:17.306 -03:00 [INF] HTTP GET /Auth/Login responded 200 in 15.3544 ms
+2025-04-24 20:45:17.306 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/Auth/Login - - - 200 - text/html;+charset=utf-8 16.8317ms
+2025-04-24 20:45:17.341 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css - -
+2025-04-24 20:45:17.342 -03:00 [INF] HTTP GET /lib/bootstrap/dist/css/bootstrap.min.css responded 404 in 0.5144 ms
+2025-04-24 20:45:17.342 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css - - - 404 0 - 0.9663ms
+2025-04-24 20:45:17.350 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/fontawesome-free/css/all.min.css - -
+2025-04-24 20:45:17.350 -03:00 [INF] HTTP GET /lib/fontawesome-free/css/all.min.css responded 404 in 0.1353 ms
+2025-04-24 20:45:17.350 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/fontawesome-free/css/all.min.css - - - 404 0 - 0.5140ms
+2025-04-24 20:45:17.368 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/icheck-bootstrap/icheck-bootstrap.min.css - -
+2025-04-24 20:45:17.368 -03:00 [INF] HTTP GET /lib/icheck-bootstrap/icheck-bootstrap.min.css responded 404 in 0.1098 ms
+2025-04-24 20:45:17.368 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/icheck-bootstrap/icheck-bootstrap.min.css - - - 404 0 - 0.3831ms
+2025-04-24 20:45:17.369 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/css/adminlte.min.css - -
+2025-04-24 20:45:17.369 -03:00 [INF] HTTP GET /css/adminlte.min.css responded 404 in 0.0578 ms
+2025-04-24 20:45:17.369 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/css/adminlte.min.css - - - 404 0 - 0.1250ms
+2025-04-24 20:45:17.370 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/css/site.css?v=b12CLB6RMJCHOpvuhTmAEy6Wqg-7k4BnVGlK0O21Dxo - -
+2025-04-24 20:45:17.377 -03:00 [INF] The file /css/site.css was not modified
+2025-04-24 20:45:17.377 -03:00 [INF] HTTP GET /css/site.css responded 304 in 6.7591 ms
+2025-04-24 20:45:17.377 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/css/site.css?v=b12CLB6RMJCHOpvuhTmAEy6Wqg-7k4BnVGlK0O21Dxo - - - 304 - text/css 6.9281ms
+2025-04-24 20:45:17.378 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/jquery/dist/jquery.min.js - -
+2025-04-24 20:45:17.378 -03:00 [INF] HTTP GET /lib/jquery/dist/jquery.min.js responded 404 in 0.0662 ms
+2025-04-24 20:45:17.378 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/jquery/dist/jquery.min.js - - - 404 0 - 0.1474ms
+2025-04-24 20:45:17.379 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js - -
+2025-04-24 20:45:17.379 -03:00 [INF] HTTP GET /lib/bootstrap/dist/js/bootstrap.bundle.min.js responded 404 in 0.1755 ms
+2025-04-24 20:45:17.379 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js - - - 404 0 - 0.2269ms
+2025-04-24 20:45:17.380 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/adminlte/js/adminlte.min.js - -
+2025-04-24 20:45:17.380 -03:00 [INF] HTTP GET /lib/adminlte/js/adminlte.min.js responded 404 in 0.0312 ms
+2025-04-24 20:45:17.380 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/adminlte/js/adminlte.min.js - - - 404 0 - 0.0839ms
+2025-04-24 20:45:17.381 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/js/site.js?v=NcGsHUU_jFX2EHv0emhWF73v1g36XLcaeht_m_v8Q8c - -
+2025-04-24 20:45:17.382 -03:00 [INF] The file /js/site.js was not modified
+2025-04-24 20:45:17.382 -03:00 [INF] HTTP GET /js/site.js responded 304 in 0.1965 ms
+2025-04-24 20:45:17.382 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/js/site.js?v=NcGsHUU_jFX2EHv0emhWF73v1g36XLcaeht_m_v8Q8c - - - 304 - application/javascript 0.3090ms
+2025-04-24 20:45:17.382 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/jquery-validation/dist/jquery.validate.min.js - -
+2025-04-24 20:45:17.382 -03:00 [INF] HTTP GET /lib/jquery-validation/dist/jquery.validate.min.js responded 404 in 0.0310 ms
+2025-04-24 20:45:17.383 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/jquery-validation/dist/jquery.validate.min.js - - - 404 0 - 0.0867ms
+2025-04-24 20:45:17.383 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js - -
+2025-04-24 20:45:17.383 -03:00 [INF] HTTP GET /lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js responded 404 in 0.0238 ms
+2025-04-24 20:45:17.383 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js - - - 404 0 - 0.0772ms
+2025-04-24 20:45:17.384 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/jquery-validation-pt-br/jquery.validate.pt-br.js - -
+2025-04-24 20:45:17.384 -03:00 [INF] HTTP GET /lib/jquery-validation-pt-br/jquery.validate.pt-br.js responded 404 in 0.0297 ms
+2025-04-24 20:45:17.384 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/lib/jquery-validation-pt-br/jquery.validate.pt-br.js - - - 404 0 - 0.1016ms
+2025-04-24 20:45:17.385 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/images/logo.png - -
+2025-04-24 20:45:17.385 -03:00 [INF] HTTP GET /images/logo.png responded 404 in 0.0281 ms
+2025-04-24 20:45:17.385 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/images/logo.png - - - 404 0 - 0.1060ms
+2025-04-24 20:50:26.050 -03:00 [INF] Request starting HTTP/1.1 POST https://localhost:5001/Auth/Login application/x-www-form-urlencoded 257
+2025-04-24 20:50:26.051 -03:00 [INF] Executing endpoint 'VillaBisutti.Delta.WebApp.Controllers.AuthController.Login (VillaBisutti.Delta.WebApp)'
+2025-04-24 20:50:26.065 -03:00 [INF] Executed endpoint 'VillaBisutti.Delta.WebApp.Controllers.AuthController.Login (VillaBisutti.Delta.WebApp)'
+2025-04-24 20:50:26.065 -03:00 [ERR] HTTP POST /Auth/Login responded 500 in 14.7038 ms
+System.InvalidProgramException: Common Language Runtime detected an invalid program.
+   at System.Runtime.CompilerServices.RuntimeHelpers.CompileMethod(RuntimeMethodHandleInternal method)
+   at System.Reflection.Emit.DynamicMethod.CreateDelegate(Type delegateType, Object target)
+   at System.Linq.Expressions.Compiler.LambdaCompiler.Compile(LambdaExpression lambda)
+   at System.Linq.Expressions.Expression`1.Compile()
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.GetExecutor(MethodInfo methodInfo, TypeInfo targetTypeInfo)
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor..ctor(MethodInfo methodInfo, TypeInfo targetTypeInfo, Object[] parameterDefaultValues)
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Create(MethodInfo methodInfo, TypeInfo targetTypeInfo, Object[] parameterDefaultValues)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvokerCache.GetCachedResult(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Routing.ControllerRequestDelegateFactory.<>c__DisplayClass12_0.<CreateRequestDelegate>b__0(HttpContext context)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2025-04-24 20:50:26.075 -03:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidProgramException: Common Language Runtime detected an invalid program.
+   at System.Runtime.CompilerServices.RuntimeHelpers.CompileMethod(RuntimeMethodHandleInternal method)
+   at System.Reflection.Emit.DynamicMethod.CreateDelegate(Type delegateType, Object target)
+   at System.Linq.Expressions.Compiler.LambdaCompiler.Compile(LambdaExpression lambda)
+   at System.Linq.Expressions.Expression`1.Compile()
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.GetExecutor(MethodInfo methodInfo, TypeInfo targetTypeInfo)
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor..ctor(MethodInfo methodInfo, TypeInfo targetTypeInfo, Object[] parameterDefaultValues)
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Create(MethodInfo methodInfo, TypeInfo targetTypeInfo, Object[] parameterDefaultValues)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvokerCache.GetCachedResult(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Routing.ControllerRequestDelegateFactory.<>c__DisplayClass12_0.<CreateRequestDelegate>b__0(HttpContext context)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
+2025-04-24 20:50:26.081 -03:00 [INF] Executing endpoint 'VillaBisutti.Delta.WebApp.Controllers.HomeController.Error (VillaBisutti.Delta.WebApp)'
+2025-04-24 20:50:26.082 -03:00 [INF] Executed endpoint 'VillaBisutti.Delta.WebApp.Controllers.HomeController.Error (VillaBisutti.Delta.WebApp)'
+2025-04-24 20:50:26.082 -03:00 [ERR] HTTP POST /Home/Error responded 500 in 1.1662 ms
+System.BadImageFormatException: Bad IL format.
+   at System.Runtime.CompilerServices.RuntimeHelpers.CompileMethod(RuntimeMethodHandleInternal method)
+   at System.Reflection.Emit.DynamicMethod.CreateDelegate(Type delegateType, Object target)
+   at System.Linq.Expressions.Compiler.LambdaCompiler.Compile(LambdaExpression lambda)
+   at System.Linq.Expressions.Expression`1.Compile()
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.GetExecutor(MethodInfo methodInfo, TypeInfo targetTypeInfo)
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor..ctor(MethodInfo methodInfo, TypeInfo targetTypeInfo, Object[] parameterDefaultValues)
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Create(MethodInfo methodInfo, TypeInfo targetTypeInfo, Object[] parameterDefaultValues)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvokerCache.GetCachedResult(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Routing.ControllerRequestDelegateFactory.<>c__DisplayClass12_0.<CreateRequestDelegate>b__0(HttpContext context)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2025-04-24 20:50:26.082 -03:00 [ERR] An exception was thrown attempting to execute the error handler.
+System.BadImageFormatException: Bad IL format.
+   at System.Runtime.CompilerServices.RuntimeHelpers.CompileMethod(RuntimeMethodHandleInternal method)
+   at System.Reflection.Emit.DynamicMethod.CreateDelegate(Type delegateType, Object target)
+   at System.Linq.Expressions.Compiler.LambdaCompiler.Compile(LambdaExpression lambda)
+   at System.Linq.Expressions.Expression`1.Compile()
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.GetExecutor(MethodInfo methodInfo, TypeInfo targetTypeInfo)
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor..ctor(MethodInfo methodInfo, TypeInfo targetTypeInfo, Object[] parameterDefaultValues)
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Create(MethodInfo methodInfo, TypeInfo targetTypeInfo, Object[] parameterDefaultValues)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvokerCache.GetCachedResult(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Routing.ControllerRequestDelegateFactory.<>c__DisplayClass12_0.<CreateRequestDelegate>b__0(HttpContext context)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+2025-04-24 20:50:26.085 -03:00 [ERR] Connection id "0HNC3GT6LIML8", Request id "0HNC3GT6LIML8:00000002": An unhandled exception was thrown by the application.
+System.InvalidProgramException: Common Language Runtime detected an invalid program.
+   at System.Runtime.CompilerServices.RuntimeHelpers.CompileMethod(RuntimeMethodHandleInternal method)
+   at System.Reflection.Emit.DynamicMethod.CreateDelegate(Type delegateType, Object target)
+   at System.Linq.Expressions.Compiler.LambdaCompiler.Compile(LambdaExpression lambda)
+   at System.Linq.Expressions.Expression`1.Compile()
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.GetExecutor(MethodInfo methodInfo, TypeInfo targetTypeInfo)
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor..ctor(MethodInfo methodInfo, TypeInfo targetTypeInfo, Object[] parameterDefaultValues)
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Create(MethodInfo methodInfo, TypeInfo targetTypeInfo, Object[] parameterDefaultValues)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvokerCache.GetCachedResult(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Routing.ControllerRequestDelegateFactory.<>c__DisplayClass12_0.<CreateRequestDelegate>b__0(HttpContext context)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+2025-04-24 20:50:26.086 -03:00 [INF] Request finished HTTP/1.1 POST https://localhost:5001/Auth/Login application/x-www-form-urlencoded 257 - 500 0 - 36.3166ms
+2025-04-24 20:50:32.607 -03:00 [INF] Request starting HTTP/1.1 POST https://localhost:5001/Auth/Login application/x-www-form-urlencoded 257
+2025-04-24 20:50:32.607 -03:00 [INF] Executing endpoint 'VillaBisutti.Delta.WebApp.Controllers.AuthController.Login (VillaBisutti.Delta.WebApp)'
+2025-04-24 20:50:32.608 -03:00 [INF] Executed endpoint 'VillaBisutti.Delta.WebApp.Controllers.AuthController.Login (VillaBisutti.Delta.WebApp)'
+2025-04-24 20:50:32.608 -03:00 [ERR] HTTP POST /Auth/Login responded 500 in 0.9549 ms
+System.InvalidProgramException: Common Language Runtime detected an invalid program.
+   at System.Runtime.CompilerServices.RuntimeHelpers.CompileMethod(RuntimeMethodHandleInternal method)
+   at System.Reflection.Emit.DynamicMethod.CreateDelegate(Type delegateType, Object target)
+   at System.Linq.Expressions.Compiler.LambdaCompiler.Compile(LambdaExpression lambda)
+   at System.Linq.Expressions.Expression`1.Compile()
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.GetExecutor(MethodInfo methodInfo, TypeInfo targetTypeInfo)
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor..ctor(MethodInfo methodInfo, TypeInfo targetTypeInfo, Object[] parameterDefaultValues)
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Create(MethodInfo methodInfo, TypeInfo targetTypeInfo, Object[] parameterDefaultValues)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvokerCache.GetCachedResult(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Routing.ControllerRequestDelegateFactory.<>c__DisplayClass12_0.<CreateRequestDelegate>b__0(HttpContext context)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2025-04-24 20:50:32.609 -03:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidProgramException: Common Language Runtime detected an invalid program.
+   at System.Runtime.CompilerServices.RuntimeHelpers.CompileMethod(RuntimeMethodHandleInternal method)
+   at System.Reflection.Emit.DynamicMethod.CreateDelegate(Type delegateType, Object target)
+   at System.Linq.Expressions.Compiler.LambdaCompiler.Compile(LambdaExpression lambda)
+   at System.Linq.Expressions.Expression`1.Compile()
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.GetExecutor(MethodInfo methodInfo, TypeInfo targetTypeInfo)
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor..ctor(MethodInfo methodInfo, TypeInfo targetTypeInfo, Object[] parameterDefaultValues)
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Create(MethodInfo methodInfo, TypeInfo targetTypeInfo, Object[] parameterDefaultValues)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvokerCache.GetCachedResult(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Routing.ControllerRequestDelegateFactory.<>c__DisplayClass12_0.<CreateRequestDelegate>b__0(HttpContext context)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
+2025-04-24 20:50:32.611 -03:00 [INF] Executing endpoint 'VillaBisutti.Delta.WebApp.Controllers.HomeController.Error (VillaBisutti.Delta.WebApp)'
+2025-04-24 20:50:32.612 -03:00 [INF] Executed endpoint 'VillaBisutti.Delta.WebApp.Controllers.HomeController.Error (VillaBisutti.Delta.WebApp)'
+2025-04-24 20:50:32.612 -03:00 [ERR] HTTP POST /Home/Error responded 500 in 0.6046 ms
+System.BadImageFormatException: Bad IL format.
+   at System.Runtime.CompilerServices.RuntimeHelpers.CompileMethod(RuntimeMethodHandleInternal method)
+   at System.Reflection.Emit.DynamicMethod.CreateDelegate(Type delegateType, Object target)
+   at System.Linq.Expressions.Compiler.LambdaCompiler.Compile(LambdaExpression lambda)
+   at System.Linq.Expressions.Expression`1.Compile()
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.GetExecutor(MethodInfo methodInfo, TypeInfo targetTypeInfo)
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor..ctor(MethodInfo methodInfo, TypeInfo targetTypeInfo, Object[] parameterDefaultValues)
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Create(MethodInfo methodInfo, TypeInfo targetTypeInfo, Object[] parameterDefaultValues)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvokerCache.GetCachedResult(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Routing.ControllerRequestDelegateFactory.<>c__DisplayClass12_0.<CreateRequestDelegate>b__0(HttpContext context)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2025-04-24 20:50:32.612 -03:00 [ERR] An exception was thrown attempting to execute the error handler.
+System.BadImageFormatException: Bad IL format.
+   at System.Runtime.CompilerServices.RuntimeHelpers.CompileMethod(RuntimeMethodHandleInternal method)
+   at System.Reflection.Emit.DynamicMethod.CreateDelegate(Type delegateType, Object target)
+   at System.Linq.Expressions.Compiler.LambdaCompiler.Compile(LambdaExpression lambda)
+   at System.Linq.Expressions.Expression`1.Compile()
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.GetExecutor(MethodInfo methodInfo, TypeInfo targetTypeInfo)
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor..ctor(MethodInfo methodInfo, TypeInfo targetTypeInfo, Object[] parameterDefaultValues)
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Create(MethodInfo methodInfo, TypeInfo targetTypeInfo, Object[] parameterDefaultValues)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvokerCache.GetCachedResult(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Routing.ControllerRequestDelegateFactory.<>c__DisplayClass12_0.<CreateRequestDelegate>b__0(HttpContext context)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+2025-04-24 20:50:32.613 -03:00 [ERR] Connection id "0HNC3GT6LIMLB", Request id "0HNC3GT6LIMLB:00000002": An unhandled exception was thrown by the application.
+System.InvalidProgramException: Common Language Runtime detected an invalid program.
+   at System.Runtime.CompilerServices.RuntimeHelpers.CompileMethod(RuntimeMethodHandleInternal method)
+   at System.Reflection.Emit.DynamicMethod.CreateDelegate(Type delegateType, Object target)
+   at System.Linq.Expressions.Compiler.LambdaCompiler.Compile(LambdaExpression lambda)
+   at System.Linq.Expressions.Expression`1.Compile()
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.GetExecutor(MethodInfo methodInfo, TypeInfo targetTypeInfo)
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor..ctor(MethodInfo methodInfo, TypeInfo targetTypeInfo, Object[] parameterDefaultValues)
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Create(MethodInfo methodInfo, TypeInfo targetTypeInfo, Object[] parameterDefaultValues)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvokerCache.GetCachedResult(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Routing.ControllerRequestDelegateFactory.<>c__DisplayClass12_0.<CreateRequestDelegate>b__0(HttpContext context)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+2025-04-24 20:50:32.614 -03:00 [INF] Request finished HTTP/1.1 POST https://localhost:5001/Auth/Login application/x-www-form-urlencoded 257 - 500 0 - 6.8940ms
+2025-04-24 20:52:40.317 -03:00 [INF] Application is shutting down...

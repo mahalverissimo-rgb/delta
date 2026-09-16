@@ -1,0 +1,49 @@
+﻿@model VillaBisutti.Delta.Core.Model.Usuario
+
+@{
+	Layout = null;
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Usuario</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.Senha)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nome, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nome)
+                @Html.ValidationMessageFor(model => model.Nome)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email)
+                @Html.ValidationMessageFor(model => model.Email)
+            </div>
+        </div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.Perfil, new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.DropDownList("PerfilId", (IEnumerable<SelectListItem>)ViewBag.Profile, string.Empty)
+				@Html.ValidationMessageFor(model => model.Perfil)
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<input type="submit" value="Salvar" class="btn btn-default" />
+				<input type="button" value="Cancelar" data-dismiss="modal" aria-label="Close" class="btn btn-default" aria-hidden="true" />
+			</div>
+		</div>
+    </div>
+}

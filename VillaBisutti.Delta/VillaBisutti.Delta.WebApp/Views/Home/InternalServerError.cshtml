@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "InternalServerError";
+}
+<script>
+    $(document).ready(function () {
+        var width = $('.main-container').width();
+        $('.main-container')
+        .css('background', 'url(/Content/images/500.jpg) center top repeat')
+        .css('background-size', width);
+        $('.footer').css('padding-top', 0)
+    });
+</script>
+<div style="position:absolute; top: 100px; left: 200px; background-color:rgba(255, 255, 255, 0.7); padding: 0px 20px 20px 20px" class="col-md-5 text-center">
+    <h1 class="grey lighter smaller">
+        <span class="blue bigger-125">
+            <i class="ace-icon fa fa-server"></i>
+            500
+        </span>
+        <br>
+        Erro interno do servidor
+    </h1>
+    <h4 class="red">Entre em contato com o administrador do sistema.</h4>
+</div>

@@ -1,0 +1,36 @@
+﻿@model VillaBisutti.Delta.Core.Model.ItemCerimonial
+@{
+	Layout = null;
+}
+<script language="javascript" type="text/javascript">
+	$(document).ready(function () {
+		$(".submit-on-change-@(Model.Id)").change(function () {
+			ValidateField($(this), "Edit_@(Model.Id)");
+		});
+	});
+</script>
+<a name="Pos_@Model.Id"></a>
+@using (Html.BeginForm("Edit", "Cerimonial", FormMethod.Post, new { @class = "FormItemEditor", @id = "Edit_" + Model.Id }))
+{
+	@Html.AntiForgeryToken()
+	<tr class="inline-row-editor@(Model.Id) @(Model.Importante ? "bg-warning" : "")">
+		<td align="center">
+			@Html.TextBoxFor(model => Model.HorarioInicio, new { @type = "number", @class = "form-control submit-on-change-" + Model.Id })
+		</td>
+		<td>
+			<input type="hidden" name="Id" id="Id" value="@Model.Id" />
+			@Html.TextAreaFor(model => Model.Titulo, new { @rows = 3, @class = "form-control submit-on-change-" + Model.Id })
+		</td>
+		<td>
+			@Html.TextAreaFor(model => Model.Observacao, new { @rows = 3, @class = "form-control submit-on-change-" + Model.Id })
+		</td>
+		<td>
+			<a href="@Url.Action("ToggleImportant", "Cerimonial", new { id = Model.Id })" title="Definir importância">
+				<i class="fa fa-exclamation-circle"></i>
+			</a>
+			<a href="@Url.Action("Delete", "Cerimonial", new { id = Model.Id })" title="Excluir item" class="PopUpActionLinks">
+				<i class="fa fa-trash"></i>
+			</a>
+		</td>
+	</tr>
+}

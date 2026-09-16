@@ -1,0 +1,122 @@
+﻿@model VillaBisutti.Delta.Core.Model.ItemMontagem
+@{
+	Layout = null;
+    //ViewBag.Title = "Create";
+}
+@Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript" language="javascript">
+	var enviado;
+	function Buscar(texto, item) {
+		window.clearTimeout(enviado);
+		if (texto == undefined)
+			texto = "";
+		if (item == undefined || isNaN(item)|| item == "")
+			item = 0;
+		var url = "@Url.Action("Buscar", "ItemMontagem", new { combo="~0", texto="~1" })";
+		url = url.replace("~0", item).replace("~1", encodeURI(texto)).replace("&amp;", "&");
+		enviado = window.setTimeout("LoadPage(\"" + url + "\", \"ResultView\");", 1000);
+		
+	}
+	$(document).ready(function () {
+		$("#EditarTipoItem").attr("disabled", "disabled");
+		$("#ExcluirTipoItem").attr("disabled", "disabled");
+		$("#TipoItemMontagemId").change(function () {
+			var id = $(this).val();
+			if (id == "") {
+				$("#EditarTipoItem").attr("disabled", "disabled");
+				$("#ExcluirTipoItem").attr("disabled", "disabled");
+			} else {
+				$("#EditarTipoItem").removeAttr("disabled");
+				$("#ExcluirTipoItem").removeAttr("disabled");
+			}
+			var urlEditar = "@(Url.Action("Edit", "TipoItemMontagem"))/";
+			var urlDeletar = "@(Url.Action("Delete", "TipoItemMontagem"))/";
+			$("#EditarTipoItem").click(function () {
+				ShowPopUp(urlEditar + id, "Editar tipo de item de montagem", 790);
+			});
+			$("#ExcluirTipoItem").click(function () {
+				ShowPopUp(urlDeletar + id, "Excluir tipo de item de montagem", 790);
+		    });
+			Buscar($("#Nome").val(), $("#TipoItemMontagemId").val());
+		});
+		$("#Nome").keyup(function () {
+			if($(this).val().length > 3)
+				Buscar($("#Nome").val(), $("#TipoItemMontagemId").val());
+		});
+		PreventNegativeNumbers("Quantidade");
+		Buscar($("#Nome").val(), $("#TipoItemMontagemId").val());
+
+		$(".PopUpActionLinks").click(function (e) {
+		    e.preventDefault();
+		    ShowPopUp($(this).attr("href"), $(this).attr("title"), 790);
+		});
+	});
+</script>
+
+
+@using (Html.BeginForm("ItemCreated","ItemMontagem")) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Configuração de itens de Montagem</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TipoItemMontagem, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.DropDownList("TipoItemMontagemId", (IEnumerable<SelectListItem>)ViewBag.TipoItemMontagem, string.Empty, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                <a href="@(Url.Action("Create", "TipoItemMontagem"))" class="btn btn-sm btn-default PopUpActionLinks" id="CriarTipoItem"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Criar</a>
+                <a href="javascript:void(0);" class="btn btn-sm btn-default" id="EditarTipoItem"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</a>
+                <a href="javascript:void(0);" class="btn btn-sm btn-default" id="ExcluirTipoItem"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Excluir</a>
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(model => model.TipoItemMontagem)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nome, new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Nome)
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(model => model.Nome)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Quantidade, new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Quantidade)
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(model => model.Quantidade)
+            </div>
+        </div>
+
+		<div class="form-group">
+			@Html.LabelFor(model => model.BloqueiaOutrasPropriedades, new { @class = "control-label col-md-2" })
+			<span class="col-md-2"></span>
+			<div class="col-md-6">
+				@Html.EditorFor(model => model.BloqueiaOutrasPropriedades)
+			</div>
+			<div class="col-md-4">
+				@Html.ValidationMessageFor(model => model.BloqueiaOutrasPropriedades)
+			</div>
+		</div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-3">
+                <input type="submit" value="Salvar" class="btn btn-default form-control" />
+            </div>
+        </div>
+    </div>
+}
+<div class="clear-fix"></div>
+<div id="ResultView" class="row col-sm-12">
+
+</div>

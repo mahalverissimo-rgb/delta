@@ -1,0 +1,36 @@
+﻿@model IEnumerable<VillaBisutti.Delta.Core.Model.RoteiroPadrao>
+
+@{
+    //ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+		<th>
+			@Html.DisplayNameFor(model => model.TipoEvento)
+		</th>
+		<th>
+			Opções
+		</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+		<td>
+			@Html.DisplayFor(modelItem => item.TipoEvento)
+		</td>
+
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
+			@Html.ActionLink("Excluir", "Delete", new { id = item.Id }) |
+            @Html.ActionLink("Criar roteiro padrão", "Create", "ItemRoteiro", new { roteiroPadraoId=item.Id }, null)
+        </td>
+    </tr>
+}
+
+</table>

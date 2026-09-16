@@ -1,0 +1,60 @@
+		[Marcar área da OS como "Encerrado"] IMPORTANTE!!!
+		Exibir no evento quais partes já estão definidas
+		
+		Tirar quantidade de item de BDBC
+		
+		Gastronomia -> importar para o evento reseta a porra toda
+			Incluir prato que não está no cardápio
+		
+		OS só pode ser impressa (gerada) conforme todas as áreas estiverem finalizadas
+OK			Trocar ">" por "-"
+OK			Se a quantiodade for 0, não exibir a quantidade
+OK			Se não tiver observação, sem o tracinho anterior
+OK			Nova formatação: TipoItem: Quantidade Item[0] - observação; Quantidade Item[1] - observação; (...) Quantidade Item[N] - observação;
+OK			Gastronomia e Bebida - Manter igual formatação atual mas:
+OK			Roteiro está com quantidade
+OK			Contato de fornecedores terceiros não aparece na OS
+			
+OK		Roteiro -> horário após 0 horas vai pro começo do evento
+		
+		Excluir usuário -> tem que set null no evento
+		Validação de farmulários -> após validar, desabilita o botão
+		Bolo, Doce e bem casado -> fornecedor está em branco
+		Filtrar Eventos -> Filtro de email não enviado
+OK		Cardápio da OS -> exibir somente os TIPOS DE COMIDA que contenham pratos e na ordem de exibição da OS
+OK		Cardápio da OS -> Observações de cada prato
+		Decoração do cerimonial -> Campo Cores
+		Robôs
+			Layout de cada e-mail para clientes
+			Inicialização e verificação do funcionamento dos robôs
+			Configuração dos robôs
+
+		Todas as áreas da OS - Botão "Definido" não funciona
+
+		Montagem de Cardápio -> Selecionando o cardápio, os pratos sejam agrupados por tipo de prato (exibidos na ordem da OS)
+		
+OK		URGENTE - OS em batch
+OK		URGENTE - OS Degustação > Trazer o link correto
+OK		Prevenir double click nos "cadastrar" e "salvar" da vida
+OK		Itens da harmonização dos cardápios (importar apenas faltantes)
+OK		Criar ambiente de homologação
+OK		BDBC -> Adicionar campo "Grupo" e agrupar na OS
+OK		BDBC -> Nova entidade para definir padrões do evento 
+OK		BDBC -> Salvar padrões do evento 
+OK		Organização dos botões para separação de responsabilidade (ResponsabilidadeVB, FornecidoBisutti)
+		Correção nas telas
+OK			- BDBC - Item que Bloqueia deve cair no "Não villa Bisutti"
+OK			- Ocultar quantidade de itens "BloqueiaOutros" na OS
+OK			- Ocultar link "Decoração Cerimonial" quando não tem cerimonial
+OK			- não deixar entrar em nenhuma área se não tem contrato pro evento
+OK			- evento com cerimônia externa está aparecendo decoração do cerimonial
+			- OS > Itens copiados > Tipo Item no texto na linha
+OK			- Edit TipoItemDecoracao -> antiforgery faltando
+OK		Importação de bolo, doce e bem-casado
+OK		Várias fotos de layout
+OK		Botão para enviar e-mail no cabeçalho
+		Lista dos não preenchidos, ao clicar, seleciona o item na combo TipoItemXXXId (incluir item)
+		relatórios
+			- Itens / período
+			-
+OK		Configuração de envio de email por evento

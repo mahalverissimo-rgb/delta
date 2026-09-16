@@ -1,0 +1,54 @@
+﻿@model IEnumerable<VillaBisutti.Delta.Core.Model.ItemCerimonial>
+@{
+	Layout = "~/Views/Shared/_EventosLayout.cshtml";
+}
+@if (ViewBag.IsBlocked == "TRUE")
+{
+	<script language="javascript" type="text/javascript">
+		$(document).ready(function () {
+			LockPage();
+		});
+	</script>
+}
+<script language="javascript" type="text/javascript">
+	$(document).ready(function () {
+		$(".PopUpActionLinks").click(function (e) {
+			e.preventDefault();
+			ShowPopUp($(this).attr("href"), $(this).attr("title"), 790);
+		});
+	});
+</script>
+<div class="col-xs-12 widget-container-col">
+	<div class="widget-box widget-color-dark">
+		<div class="widget-header widget-header-large">
+			<h4 class="widget-title">
+				<i class="menu-icon fa fa-caret-right red"></i>
+				<i class="menu-icon fa fa-list-ol"></i>
+				Roteiro do cerimonial
+			</h4>
+		</div>
+	</div>
+</div>
+@Html.Action("Create", "Cerimonial")
+<table class="table">
+	<tr>
+		<th width="10%">
+			@Html.DisplayNameFor(model => model.HorarioInicio)
+		</th>
+		<th width="40%">
+			@Html.DisplayNameFor(model => model.Titulo)
+		</th>
+		<th width="40%">
+			@Html.DisplayNameFor(model => model.Observacao)
+		</th>
+		<th width="10%">
+			Opções
+		</th>
+	</tr>
+
+	@foreach (var item in Model)
+	{
+    @Html.Partial("../Cerimonial/Edit", item)
+	}
+
+</table>

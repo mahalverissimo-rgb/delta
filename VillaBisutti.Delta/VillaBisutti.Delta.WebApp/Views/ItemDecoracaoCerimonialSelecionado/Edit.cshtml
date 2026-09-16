@@ -1,0 +1,118 @@
+﻿@model VillaBisutti.Delta.Core.Model.ItemDecoracaoCerimonialSelecionado
+
+@{@{
+    Layout = null;
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>ItemDecoracaoCerimonialSelecionado</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ContratoAditivoId, "ContratoAditivoId", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ContratoAditivoId", String.Empty)
+                @Html.ValidationMessageFor(model => model.ContratoAditivoId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ItemDecoracaoCerimonialId, "ItemDecoracaoCerimonialId", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ItemDecoracaoCerimonialId", String.Empty)
+                @Html.ValidationMessageFor(model => model.ItemDecoracaoCerimonialId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Definido, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Definido)
+                @Html.ValidationMessageFor(model => model.Definido)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Contratado, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Contratado)
+                @Html.ValidationMessageFor(model => model.Contratado)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ContratacaoBisutti, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ContratacaoBisutti)
+                @Html.ValidationMessageFor(model => model.ContratacaoBisutti)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FornecimentoBisutti, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FornecimentoBisutti)
+                @Html.ValidationMessageFor(model => model.FornecimentoBisutti)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FornecedorStartado, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FornecedorStartado)
+                @Html.ValidationMessageFor(model => model.FornecedorStartado)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Quantidade, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Quantidade)
+                @Html.ValidationMessageFor(model => model.Quantidade)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Montagem, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Montagem)
+                @Html.ValidationMessageFor(model => model.Montagem)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ContatoFornecimento, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ContatoFornecimento)
+                @Html.ValidationMessageFor(model => model.ContatoFornecimento)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Observacoes, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Observacoes)
+                @Html.ValidationMessageFor(model => model.Observacoes)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+				<input type="submit" value="Salvar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

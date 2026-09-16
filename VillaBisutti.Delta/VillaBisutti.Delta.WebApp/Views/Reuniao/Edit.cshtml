@@ -1,0 +1,53 @@
+﻿@model VillaBisutti.Delta.Core.Model.Reuniao
+@{
+	Layout = null;
+}
+<script language="javascript" type="text/javascript">
+	$(document).ready(function () {
+		CreateHorarioEditor("HorarioReuniao_@(Model.Id)");
+		$("tr.inline-row-editor@(Model.Id)>td :input").change(function () {
+			ValidateField($(this), "Edit_@(Model.Id)");
+		});
+	});
+</script>
+<tr id="Item_@(Model.Id)" class="inline-row-editor@(Model.Id)">
+	@using (Html.BeginForm("Edit", "Reuniao", FormMethod.Post, new { @class = "FormItemEditor", @id = "Edit_" + Model.Id }))
+	{
+		@Html.AntiForgeryToken()
+		<td>
+			<input type="hidden" name="Id" id="Id" value="@(Model.Id)" />
+			<input type="hidden" name="EventoId" id="EventoId" value="@(Model.EventoId)" />
+			<input type="hidden" name="TipoReuniaoId" id="TipoReuniaoId" value="@(Model.TipoReuniaoId)" />
+			@Html.DisplayFor(model => model.TipoReuniao.Nome)
+		</td>
+		<td>
+			<select name="UsuarioId" class="form-control">
+				<option value="">Selecione</option>
+				@foreach(VillaBisutti.Delta.Core.Model.Usuario item in (IEnumerable<VillaBisutti.Delta.Core.Model.Usuario>)ViewBag.UsuarioId)
+				{
+					<option value="@item.Id" @(Model.UsuarioId.HasValue && item.Id == Model.UsuarioId.Value ? "selected=\"selected\"" : "" )>@item.Nome</option>
+				}
+			</select>
+		</td>
+		<td id="DataReuniao_@(Model.Id)" title="@Model.Data.ToString("ddd, dd/MM/yyyy")">
+			<input name="Data" id="Data" type="date" value="@Model.Data.ToString("yyyy-MM-dd")" />
+		</td>
+		<td>
+			@Html.TextBoxFor(model => model.HorarioReuniao, new { @type = "number", @id = "HorarioReuniao_" + Model.Id })
+		</td>
+		<td>
+			<input type="checkbox" class="check-box" name="Definida" id="Definida" value="@(Model.Definida)" @(Model.Definida ? "checked=\"checked\"" : "") />
+		</td>
+		<td>
+			<input type="checkbox" class="check-box" name="Executada" id="Executada" value="@(Model.Executada)" @(Model.Executada ? "checked=\"checked\"" : "") />
+		</td>
+		<td>
+			@Html.EditorFor(model => model.Observacoes)
+		</td>
+		<td>
+			<a href="@Url.Action("Delete", "Reuniao", new { id = Model.Id })" class="btn btn-default" title="Excluir reunião">
+				<span class="menu-icon fa fa-trash"></span>
+			</a>
+		</td>
+	}
+</tr>

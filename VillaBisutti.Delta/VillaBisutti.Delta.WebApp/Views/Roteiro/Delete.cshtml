@@ -1,0 +1,53 @@
+﻿@model VillaBisutti.Delta.Core.Model.ItemRoteiro
+@{
+	Layout = null;
+}
+<h3>
+	Você tem certeza que deseja excluir?
+</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HorarioInicio)
+        </dt>
+
+        <dd>
+			@(Model.Inicio.ToString())
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Importante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Importante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Observacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observacao)
+        </dd>
+    </dl>
+	<h3>
+		Esta ação não poderá ser desfeita
+	</h3>
+	@using (Html.BeginForm())
+	{
+		@Html.AntiForgeryToken()
+		<div class="form-actions no-color">
+			<input type="submit" value="Excluir" class="btn btn-default" />
+			<input type="button" value="Cancelar" data-dismiss="modal" aria-label="Close" class="btn btn-default" aria-hidden="true" />
+		</div>
+	}
+</div>

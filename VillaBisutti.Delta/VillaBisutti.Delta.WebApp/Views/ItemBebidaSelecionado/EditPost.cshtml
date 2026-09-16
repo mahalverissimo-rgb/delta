@@ -1,0 +1,17 @@
+﻿@model VillaBisutti.Delta.Core.Model.ItemBebidaSelecionado
+@{
+	Layout = null;
+	bool erro = false;
+	if (Model.ContratacaoBisutti && Model.FornecimentoBisutti)
+	{
+		erro = Model.StateErrorBisutti;
+	}
+	else if (Model.ContratacaoBisutti)
+	{
+		erro = Model.StateErrorFornecedor;
+	}
+	else
+	{
+		erro = Model.StateErrorContratante;
+	}
+}@(erro ? "true" : "false")

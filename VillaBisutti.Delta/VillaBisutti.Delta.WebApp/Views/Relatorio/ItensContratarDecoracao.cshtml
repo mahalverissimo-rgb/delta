@@ -1,0 +1,120 @@
+﻿@using VillaBisutti.Delta
+@using VillaBisutti.Delta.Core
+@model IEnumerable<VillaBisutti.Delta.Core.Model.Itens>
+@{
+	List<VillaBisutti.Delta.Core.Model.TipoItemDecoracao> tipos = (List<VillaBisutti.Delta.Core.Model.TipoItemDecoracao>)ViewBag.TiposItem;
+	ViewBag.Title = "ItensContratar";
+}
+<script language="javascript" type="text/javascript">
+	$(document).ready(function () {
+		$('[data-behavior~="switch-area"]').change(function () {
+			var checkedBoxes = "|";
+			$('[data-behavior~="switch-area"]').each(function () {
+				if (undefined != $(this).attr("checked")) {
+					checkedBoxes += $(this).val() + "|";
+				}
+			});
+			console.log(checkedBoxes)
+			$("#itens").val(checkedBoxes)
+			this.form.submit();
+		});
+		$("#FiltroEventos input[type=date], #FiltroEventos select").change(function () {
+			this.form.submit();
+		});
+	});
+</script>
+<div class="col-xl-12 widget-container-col row">
+	<div class="widget-box">
+		<div class="widget-header widget-header-flat">
+			<h4 class="widget-title lighter">
+				<i class="fa fa-filter green"></i>
+				Relatório de itens (decoração recepção)
+				<i class="fa fa-leaf red"></i>
+			</h4>
+			<div class="widget-toolbar">
+				<a href="#" data-toggle="collapse" data-target="#Filtro">
+					<i class="fa fa-chevron-up" onclick="$(this).toggleClass('fa-chevron-up fa-chevron-down')"></i>
+				</a>
+			</div>
+		</div>
+		<div class="widget-body" id="Filtro">
+			<div class="widget-main padding-8">
+				<form id="FiltroEventos" class="form-horizontal">
+					<div class="row">
+						<div class="col-md-4">
+							<div class="row">
+								<label for="inicio" class="control-label col-md-4"> Data inicial </label>
+								<input type="date" name="inicio" id="inicio" value="@((Request.QueryString["inicio"] != null ? DateTime.Parse(Request.QueryString["inicio"]) : DateTime.Now.AddDays(14)).ToString("yyyy-MM-dd"))" class="col-md-8" />
+							</div>
+							<div class="row">
+								<label for="termino" class="control-label col-md-4"> Data final </label>
+								<input type="date" name="termino" id="termino" value="@((Request.QueryString["termino"] != null ? DateTime.Parse(Request.QueryString["termino"]) : DateTime.Now.AddDays(15)).ToString("yyyy-MM-dd"))" class="col-md-8" />
+							</div>
+							<div class="row">
+								<label for="fornecimento" class="control-label col-md-4">Fornecido por </label>
+								<select class="col-md-8" name="fornecimento" id="fornecimento">
+									<option value="BISUTTI" @("BISUTTI".IsIn(Request.QueryString["fornecimento"]) ? " selected" : "")>Fornecimento próprio</option>
+									<option value="TERCEIRO" @("TERCEIRO".IsIn(Request.QueryString["fornecimento"]) ? " selected" : "")>Fornecedor externo</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-8">
+							<div class="row">
+								<div class="col-md-2">Tipos de item </div>
+								<div class="col-md-10">
+									<div class="row tipo-itens-list">
+										<input type="hidden" id="itens" name="itens" value="@(Request.QueryString["itens"] == null ? "|" : Request.QueryString["itens"])" />
+										@foreach (VillaBisutti.Delta.Core.Model.TipoItemDecoracao item in tipos)
+										{
+											<label for="@(item.Id)_item" class="col-md-6">
+												<input type="checkbox" value="@item.Id" id="@(item.Id)_item" data-behavior="switch-area" @(("|" + item.Id.ToString() + "|").IsIn(Request.QueryString["itens"]) ? "checked " : "") />
+												@item.Nome
+											</label>
+										}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="col-xl-12 widget-container-col">
+	<table class="table relatorio">
+		<tr>
+			<th width="5%">Local</th> <!--5-->
+			<th width="5%">Data</th> <!--10-->
+			<th width="4%">Início</th> <!--14-->
+			<th width="4%">Término</th> <!--19-->
+			<th width="15%">Homenageado(s)</th> <!--33-->
+			<th width="5%">Área</th>
+			<th width="15%">Tipo</th> <!--48-->
+			<th width="15%">Item</th> <!--63-->
+			<th width="4%">Disponível</th> <!--66-->
+			<th width="4%">Selecionado</th> <!--70-->
+			<th width="10%">Fornecedor</th> <!--80-->
+			<th width="15%">Obs.</th> <!--95-->
+		</tr>
+
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>@Html.DisplayFor(modelItem => item.Casa)</td>
+				<td>@(item.Data.ToString("dd/MM/yyyy"))</td>
+				<td>@(item.Inicio.ToString())</td>
+				<td>@(item.Termino.ToString())</td>
+				<td>@Html.DisplayFor(modelItem => item.NomeHomenageados)</td>
+				<td>@Html.Raw(item.Area.ToIcon())</td>
+				<td>@Html.DisplayFor(modelItem => item.TipoItem)</td>
+				<td>@Html.DisplayFor(modelItem => item.ItemNome)</td>
+				<td>@Html.DisplayFor(modelItem => item.QuantidadeDisponivel)</td>
+				<td>@Html.DisplayFor(modelItem => item.Quantidade)</td>
+				<td>@(item.Fornecedor == null ? "N/A" : item.Fornecedor)</td>
+				<td>@Html.DisplayFor(modelItem => item.Observacoes)</td>
+			</tr>
+		}
+
+	</table>
+</div>

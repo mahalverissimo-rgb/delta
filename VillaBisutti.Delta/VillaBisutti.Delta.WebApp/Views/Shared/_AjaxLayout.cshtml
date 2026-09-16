@@ -1,0 +1,9 @@
+﻿<script>
+    $(document).ready(function () {
+        HandleCheckbox();
+        $('#PopUp').on('hidden.bs.modal', function () {
+            $(this).removeData('bs.modal');
+        });
+    });
+</script>
+@RenderBody();

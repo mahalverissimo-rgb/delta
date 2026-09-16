@@ -1,0 +1,72 @@
+﻿@model VillaBisutti.Delta.Core.Model.Decoracao
+@{
+	Layout = "~/Views/Shared/_EventosLayout.cshtml";
+}
+@if (ViewBag.IsBlocked == "TRUE")
+{
+	<script language="javascript" type="text/javascript">
+		$(document).ready(function () {
+			LockPage();
+		});
+	</script>
+}
+@section scripts {
+	<script language="javascript" type="text/javascript">
+		$(document).ready(function () {
+			$('form').each(function () {
+				$(this).validate();
+			});
+		});
+	</script>
+	@Scripts.Render("~/bundles/jqueryval")
+}
+<div class="col-xs-12 widget-container-col">
+	<div class="widget-box widget-color-dark">
+		<div class="widget-header widget-header-large">
+			<h4 class="widget-title">
+				<i class="menu-icon fa fa-caret-right red"></i>
+				<i class="menu-icon fa fa-leaf"></i>
+				Decoração da recepção
+			</h4>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	@Html.Action("ListNaoSelecionados", "TipoItemDecoracao", new { id = @ViewBag.Id })
+</div>
+
+<div class="row">
+	<div class="col-md-4">
+		<fieldset>
+			<legend>Informações básicas</legend>
+			@Html.Action("Edit", "Decoracao", new { id = @ViewBag.Id })
+		</fieldset>
+	</div>
+	<div class="col-md-8">
+		<fieldset>
+			<legend>Adicionar item</legend>
+			@Html.Partial("../ItemDecoracaoSelecionado/Create", new VillaBisutti.Delta.Core.Model.ItemDecoracaoSelecionado())
+		</fieldset>
+	</div>
+</div>
+
+<div class="row">
+	<h3 class="header smaller blue">Itens Villa Bisutti (Contratação e Fornecimento)</h3>
+	<div id="ItensBisutti" data-collection-url="@Url.Action("ListFornecimentoBisutti", "ItemDecoracaoSelecionado", new { id = @ViewBag.Id })">
+		@Html.Partial("../ItemDecoracaoSelecionado/ListFornecimentoBisutti", Model.Itens.Where(i => i.ContratacaoBisutti && i.FornecimentoBisutti))
+	</div>
+</div>
+<div class="row">
+	<h3 class="header smaller blue">Fornecedores externos (Contratação Villa Bisutti)</h3>
+	<div id="ItensTerceiro" data-collection-url="@Url.Action("ListFornecimentoTerceiro", "ItemDecoracaoSelecionado", new { id = @ViewBag.Id })">
+		@Html.Partial("../ItemDecoracaoSelecionado/ListFornecimentoTerceiro", Model.Itens.Where(i => i.ContratacaoBisutti && !i.FornecimentoBisutti))
+	</div>
+</div>
+<div class="row">
+	<h3 class="header smaller blue">Fornecedores externos (Responsabilidade do contratante)</h3>
+	<div id="ItensContratante" data-collection-url="@Url.Action("ListFornecimentoContratante", "ItemDecoracaoSelecionado", new { id = @ViewBag.Id })">
+		@Html.Partial("../ItemDecoracaoSelecionado/ListFornecimentoContratante", Model.Itens.Where(i => !i.ContratacaoBisutti))
+	</div>
+</div>
+

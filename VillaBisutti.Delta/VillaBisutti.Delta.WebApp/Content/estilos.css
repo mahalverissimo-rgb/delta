@@ -1,0 +1,113 @@
+*{margin:0;padding:0; font-family: 'Arial'}
+
+/* Projeto Vila Bisutti */
+
+.main-content { min-height: 500px !important; }
+
+.brand-dark-brown{color: #522D1C !important;}
+.navbar, .navbar.navbar-collapse .navbar-container{background-color: #11100C !important;}
+.ace-nav>li.light-blue>a{background-color: #522D1C !important;}
+.no-skin .nav-list-left>li>a{background-color: #664131 !important; color:#FFF !important;}
+.no-skin .sidebar-toggle{background-color: #94785c !important; color:#FFF !important;}
+.no-skin .sidebar.menu-min .nav-list>li>a>.menu-text{background-color: #664131 !important;}
+.nav-list>li:before{background-color: #B79C81 !important;}
+.no-skin .sidebar.menu-min .nav-list>li>.arrow:after{border-right-color: #664131 !important;}
+.no-skin .nav-list>li .submenu>li>a:hover{background-color: #664131 !important; color: #fefefe !important;}
+.no-skin .nav-list>li .submenu>li>a{background-color: #FFFBF7 !important;}
+.no-skin .sidebar.menu-min .nav-list>li>.arrow-submenu:after{border-right-color: #FFFBF7 !important;}
+.no-skin .navbar .navbar-toggle, .no-skin .navbar .navbar-toggle:hover{background-color: #94785C !important;}
+.login-layout .widget-box .widget-main{background-color: #DBC6B1 !important;}
+.login-layout .widget-box{background-color: #522D1C !important;}
+.field-validation-error { color: #CF2B2B; }
+fieldset{border: 1px solid #522D1C !important;}
+.sidebar+.main-content{margin-left: 240px}
+.bg-primary { background-color: #522d1c !important; color: #fefefe !important; margin: 10px; padding: 5px;}
+.inline-form-group span, .inline-form-group input, .inline-form-group select  { margin-bottom: 15px; }
+.casa-submenu-menu { position: relative; }
+.alert-info{padding: 5px}
+.list-group-item h5{margin: 0}
+div.tooltip{min-width: 100px}
+.borderless{border-width: 0}
+.clear-margin { margin-left: -10px !important; margin-right: -10px !important; }
+.clear-margin-vert { margin-top: 0px !important; margin-bottom: 0px !important; }
+.clear-padding { padding: 3px !important; }
+.tababble-min-height { height: 330px; overflow: auto; padding-top: 10px; padding-bottom: 0px; }
+.button-padding { padding-left: 15px !important; padding-right: 5px !important; }
+
+.tipo-itens-list { max-height: 150px; overflow: auto; }
+.tipo-itens-list label { height: 25px; }
+
+.row{margin-left: 0 !important; margin-right: 0 !important; margin-bottom: 15px}
+
+.relatorio th, .relatorio td { overflow: hidden; }
+/* Pratos dos cardápios */
+#PainelTipoComida, #PainelCardapios{height: 600px; overflow-y: scroll}
+
+/* Navbar toggle */
+
+@media (max-width: 991px) {
+	#sidebar{margin-top: 47px}
+
+    .navbar-toggle {display: block !important;}
+    .page-content{padding-top: 60px}
+
+	.navbar.navbar-collapse .navbar-buttons .user-info {
+		position: absolute;
+		margin-top: 40px;
+		margin-left: 1px;
+		right: 2px;
+		z-index: 1032;
+		color: #777;
+		font-size: 14px;
+		width: 156px;
+		max-width: 156px;
+		padding-left: 8px;
+		padding-right: 8px;
+		height: 32px;
+		line-height: 26px!important;
+		display: none;
+		border-bottom: 1px solid #E5E5E5;
+		text-align: center;
+		vertical-align: none;
+		line-height: normal;
+		cursor: text;
+	}
+}
+
+@media (min-width: 768px){
+    .form-inline .input-group .form-control,.form-inline .input-group .input-group-addon,.form-inline .input-group .input-group-btn{}
+}
+
+@media (min-width: 300px){
+	.col-sm-12 { width: 100%; margin: 0 auto}
+}
+
+/* Modal */
+.modal-header{background: #11100C; color:#DBC6B1}
+.modal-body{overflow: auto}
+
+/* Content Background */
+.main-content { background:url(images/bg-logo-villa-bisutti.png); background-attachment:fixed; background-position: center center; background-repeat:no-repeat; background-attachment: fixed; }
+.page-content{background-color: transparent}
+.bg-list-warning{background-color: #fcf8e3 !important}
+
+/* Botões */
+
+.btn-default { border: solid 1px #11100C !important; background-color: #522d1c !important; color: #fefefe !important; }
+.btn-default:hover { background-color: #94785C !important; }
+.btn-default:active, .btn-default:focus { background-color: #94785C !important; color: #FEFEFE !important;}
+.btn.disabled, .btn-default.disabled, .btn[disabled], .btn-default[disabled], .disabled{background-color: #926856 !important;}
+
+/* Fixed Sidebar */
+.sidebar{width: 230px}
+
+/* Footer */
+.footer .footer-inner .footer-content{position: fixed; bottom: 0}
+.footer{background: #FEFEFE !important; width: 100%}
+.footer-content {background-color: #FEFEFE !important;}
+.footer .footer-inner .footer-content{right: 5px !important}
+
+/* Login */
+.field-validation-error{font-weight: normal; font-size: 14px;}
+.widget-color-dark>.widget-header.bg-danger { background-color: #990000 !important; }
+.bg-default { background-color: #dfdfdf !important; }

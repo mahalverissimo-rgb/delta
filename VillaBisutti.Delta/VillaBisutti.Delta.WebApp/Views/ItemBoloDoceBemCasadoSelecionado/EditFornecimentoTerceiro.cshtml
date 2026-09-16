@@ -1,0 +1,49 @@
+﻿@model VillaBisutti.Delta.Core.Model.ItemBoloDoceBemCasadoSelecionado
+@{
+	Layout = null;
+}
+<script language="javascript" type="text/javascript">
+	$(document).ready(function () {
+		CreateHorarioEditor("HorarioEntrega_@(Model.Id)");
+		$("tr.inline-row-editor@(Model.Id)>td  :input").change(function () {
+			ValidateField($(this), "Edit_@(Model.Id)");
+		});
+		PreventNegativeNumbers("Quantidade");
+	});
+</script>
+<tr class="inline-row-editor@(Model.Id) bg-default">
+	@using (Html.BeginForm("EditPost", "ItemBoloDoceBemCasadoSelecionado", FormMethod.Post, new { @class = "FormItemEditor", @id = "Edit_" + Model.Id }))
+	{
+		<td>
+			@Html.AntiForgeryToken()
+			<input type="hidden" name="Id" value="@(Model.Id)" />
+			@(Model.ItemBoloDoceBemCasado.TipoItemBoloDoceBemCasado.Nome) - @(Model.ItemBoloDoceBemCasado.Nome)
+		</td>
+		<td>
+			@(Model.ItemBoloDoceBemCasado.Fornecedor == null ? "Indefinido" : Model.ItemBoloDoceBemCasado.Fornecedor.NomeFornecedor)
+		</td>
+		<td>
+			@Html.EditorFor(model => model.Quantidade)
+		</td>
+		<td>
+			@Html.TextBoxFor(model => model.HorarioEntrega, new { @type = "number", @id = "HorarioEntrega_" + Model.Id })
+		</td>
+		<td>
+			<input class="check-box" type="checkbox" name="Definido" id="Definido" value="@(Model.Definido ? "True" : "False")" @(Model.Definido ? "checked=\"checked\" " : "") />
+		</td>
+		<td>
+			<input class="check-box" type="checkbox" name="FornecedorStartado" id="FornecedorStartado" value="@(Model.FornecedorStartado ? "True" : "False")" @(Model.FornecedorStartado ? "checked=\"checked\" " : "") />
+		</td>
+		<td>
+			<input class="check-box" type="checkbox" name="Contratado" id="Contratado" value="@(Model.Contratado ? "True" : "False")" @(Model.Contratado ? "checked=\"checked\" " : "") />
+		</td>
+		<td>
+			@Html.EditorFor(model => model.Observacoes)
+		</td>
+		<td>
+			<a href="@Url.Action("Delete", "ItemBoloDoceBemCasadoSelecionado", new { id = Model.Id })" class="btn btn-default" title="Remover este item">
+				<span class="menu-icon fa fa-trash"></span>
+			</a>
+		</td>
+	}
+</tr>

@@ -1,0 +1,125 @@
+@model SGE.ViewModels.InitialSetupViewModel
+
+@{
+    ViewData["Title"] = "Configuração Inicial";
+    Layout = "_Layout";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Configuração Inicial</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <form asp-action="Save" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Configurações da Empresa</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label asp-for="CompanySettings.Name">Nome da Empresa</label>
+                                <input asp-for="CompanySettings.Name" class="form-control" value="SGE - Sistema de Gerenciamento de Eventos" />
+                                <span asp-validation-for="CompanySettings.Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="CompanySettings.ShortName">Nome Curto</label>
+                                <input asp-for="CompanySettings.ShortName" class="form-control" value="SGE" />
+                                <span asp-validation-for="CompanySettings.ShortName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="LogoFile">Logo</label>
+                                @if (!string.IsNullOrEmpty(Model.CompanySettings.Logo))
+                                {
+                                    <div class="mb-2">
+                                        <img src="@Model.CompanySettings.Logo" alt="Logo atual" class="img-thumbnail" style="max-height: 100px" />
+                                        <small class="d-block text-muted">Logo atual</small>
+                                    </div>
+                                }
+                                <div class="custom-file">
+                                    <input asp-for="LogoFile" class="custom-file-input" type="file" accept="image/*" />
+                                    <label class="custom-file-label" for="LogoFile">Escolher arquivo...</label>
+                                </div>
+                                <span asp-validation-for="LogoFile" class="text-danger"></span>
+                                <small class="form-text text-muted">Formatos aceitos: JPG, PNG, GIF. Tamanho máximo: 2MB</small>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="CompanySettings.Theme">Tema</label>
+                                <select asp-for="CompanySettings.Theme" class="form-control">
+                                    <option value="default">Padrão</option>
+                                    <option value="dark">Escuro</option>
+                                    <option value="light">Claro</option>
+                                </select>
+                                <span asp-validation-for="CompanySettings.Theme" class="text-danger"></span>
+                            </div>
+                            <hr />
+                            <h4>Usuário Administrador</h4>
+                            <div class="form-group">
+                                <label asp-for="AdminUser.Nome">Nome</label>
+                                <input asp-for="AdminUser.Nome" class="form-control" />
+                                <span asp-validation-for="AdminUser.Nome" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="AdminUser.Email">Email</label>
+                                <input asp-for="AdminUser.Email" class="form-control" />
+                                <span asp-validation-for="AdminUser.Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="AdminUser.Password">Senha</label>
+                                <input asp-for="AdminUser.Password" class="form-control" type="password" />
+                                <span asp-validation-for="AdminUser.Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="AdminUser.ConfirmPassword">Confirmar Senha</label>
+                                <input asp-for="AdminUser.ConfirmPassword" class="form-control" type="password" />
+                                <span asp-validation-for="AdminUser.ConfirmPassword" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Tipos de Usuário</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <h5>Administrador</h5>
+                                    <p>Acesso total ao sistema, incluindo configurações e gerenciamento de usuários.</p>
+                                </li>
+                                <li class="list-group-item">
+                                    <h5>Gerente</h5>
+                                    <p>Acesso a relatórios e aprovações de eventos.</p>
+                                </li>
+                                <li class="list-group-item">
+                                    <h5>Vendedor</h5>
+                                    <p>Pode criar e gerenciar eventos.</p>
+                                </li>
+                                <li class="list-group-item">
+                                    <h5>Operador</h5>
+                                    <p>Acesso limitado para operações específicas.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

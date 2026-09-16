@@ -1,0 +1,24 @@
+Serviços terceiros (SVC3OS) DESENV... -> Relatório
+	IntervaloServicosTerceiros
+
+Boas Vindas e Manual de Eventos (BVMNEV) OK
+	IntervaloBoasVindas
+	LayoutBoasVindas
+
+Agenda Semanal (AGSMNL) OK
+	IntervaloAgendaSemanal
+	LayoutAgendaSemanal
+	TiposIncluir
+
+Produtos Contratados (PRDCTR)
+	IntervaloProdutosContratados
+
+Prazo final OS (PRZOSF) OK
+	IntervaloPrazoFinalOS
+	Envios
+		MotivoEnvio
+		PeriodoEnvio
+	LayoutPrazoFinalOS
+
+OS Finalizada (OSFNLD) OK
+	IntervaloOSFinalizada

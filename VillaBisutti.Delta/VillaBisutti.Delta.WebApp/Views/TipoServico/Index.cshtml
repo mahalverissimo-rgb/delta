@@ -1,0 +1,48 @@
+﻿@model IEnumerable<VillaBisutti.Delta.Core.Model.TipoServico>
+@{
+	Layout = "~/Views/shared/_ConfiguracoesLayout.cshtml";
+}
+@section scripts {
+	<script language="javascript" type="text/javascript">
+		$(document).ready(function () {
+			$(".PopUpActionLinks").click(function (e) {
+				event.preventDefault();
+				ShowPopUp($(this).attr("href"), $(this).attr("title"), 790);
+			});
+		});
+	</script>
+}
+@if (ViewBag.IsBlocked == "TRUE")
+{
+	<script language="javascript" type="text/javascript">
+		$(document).ready(function () {
+			LockPage();
+		});
+	</script>
+}
+@Html.Action("Create", "TipoServico")
+<table class="table">
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.Nome)
+		</th>
+		<th>
+			Opções
+		</th>
+		<th></th>
+	</tr>
+
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.Nome)
+			</td>
+			<td>
+				@Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "PopUpActionLinks" }) |
+				@Html.ActionLink("Excluir", "Delete", new { id = item.Id }, new { @class = "PopUpActionLinks" })
+			</td>
+		</tr>
+	}
+
+</table>

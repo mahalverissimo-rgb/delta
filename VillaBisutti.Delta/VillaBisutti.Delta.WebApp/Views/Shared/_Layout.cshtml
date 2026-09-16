@@ -1,0 +1,292 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>&Delta; - Villa Bisutti</title>
+	@Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/modernizr")
+	@Scripts.Render("~/bundles/bootstrap")
+	@Scripts.Render("~/bundles/own")
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+	@RenderSection("scripts", required: false)
+	<script>
+		$(document).ready(function () {
+			$(".download-link").click(function (e) {
+				e.preventDefault();
+				ShowPopUp($(this).attr("href"), $(this).attr("title"));
+			});
+		});
+	</script>
+	@if (ViewBag.IsBlocked == "TRUE")
+	{
+		<script language="javascript" type="text/javascript">
+			LockPage();
+		</script>
+	}
+	
+</head>
+<body class="no-skin">
+	<div id="navbar" class="navbar navbar-default navbar-collapse navbar-fixed-top">
+		<script type="text/javascript">
+			try { ace.settings.check('navbar', 'fixed') } catch (e) { }
+		</script>
+
+		<div class="navbar-container" id="navbar-container">
+			<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+				<span class="sr-only">Toggle sidebar</span>
+
+				<span class="icon-bar"></span>
+
+				<span class="icon-bar"></span>
+
+				<span class="icon-bar"></span>
+			</button>
+			<div class="navbar-header pull-left">
+				<a href="@Url.Action("Filtrar","Evento")" class="navbar-brand">
+					<small>
+						<img src="~/Content/Images/delta.png" /> Delta - Villa Bisutti
+					</small>
+				</a>
+				<button class="pull-right navbar-toggle navbar-toggle-img collapsed" type="button" data-toggle="collapse" data-target=".navbar-buttons">
+					<span class="sr-only">Toggle user menu</span>
+					<b>RV</b>
+				</button>
+			</div>
+			@{VillaBisutti.Delta.Core.Model.Usuario usuario = VillaBisutti.Delta.SessionFacade.UsuarioLogado;}
+			<div class="navbar-buttons navbar-header pull-right" role="navigation">
+				<ul class="nav ace-nav">
+					<li class="transparent">
+						<a class="download-link" href="@Url.Action("Degustacoes", "OS")" data-rel="tooltip" data-placement="bottom" data-original-title="Baixar Dossiês de degustação"><i class="menu-icon fa fa-cloud-download"></i></a>
+					</li>
+					<li class="transparent">
+						<a class="download-link" href="@Url.Action("Index", "OS")" data-rel="tooltip" data-placement="bottom" data-original-title="Baixar OSs"><i class="menu-icon fa fa-download"></i></a>
+					</li>
+
+					@if (VillaBisutti.Delta.Core.Business.Usuario.UsuarioPodeLer(usuario, Url.Action("Index", "Cerimonial")))
+					{
+						<li class="transparent">
+							<a href="javascript:void(0)" data-rel="tooltip" data-placement="bottom" data-original-title="Robôs e automatizações"><i class="menu-icon fa fa-cogs"></i></a>
+						</li>
+					}
+					@if (VillaBisutti.Delta.Core.Business.Usuario.UsuarioPodeLer(usuario, Url.Action("Index", "Order")))
+					{
+						<li class="transparent">
+							<a href="@Url.Action("Index", "Order")" data-rel="tooltip" data-placement="bottom" data-original-title="Ordem de ítens da OS"><i class="menu-icon fa fa-sort-numeric-desc"></i></a>
+						</li>
+					}
+
+					<li class="transparent">
+						<a data-toggle="dropdown" href="#" data-rel="tooltip" data-placement="bottom" data-original-title="Usuários" class="dropdown-toggle">
+							<i class="menu-icon fa fa-group"></i>
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+						<ul role="menu" class="user-menu dropdown-menu dropdown-yellow dropdown-menu-right dropdown-caret">
+							@if (VillaBisutti.Delta.Core.Business.Usuario.UsuarioPodeLer(usuario, Url.Action("Index", "Perfil")))
+							{
+								<li>
+									<a href="@Url.Action("Index", "Perfil")">
+										Perfil
+									</a>
+									<b class="arrow"></b>
+								</li>
+							}
+							@if (VillaBisutti.Delta.Core.Business.Usuario.UsuarioPodeLer(usuario, Url.Action("Index", "Usuario")))
+							{
+								<li>
+									<a href="@Url.Action("Index", "Usuario")">
+										Usuário
+									</a>
+									<b class="arrow"></b>
+								</li>
+							}
+						</ul>
+					</li>
+					@if (VillaBisutti.Delta.Core.Business.Usuario.UsuarioPodeLer(usuario, Url.Action("HomeConfiguracao", "Home")))
+					{
+						<li class="transparent">
+							<a href="@Url.Action("HomeConfiguracao", "Home")" data-rel="tooltip" data-placement="bottom" data-original-title="Configurações"><i class="menu-icon fa fa-cog"></i></a>
+						</li>
+					}
+					<li class="transparent">
+						<a data-toggle="dropdown" href="#" data-rel="tooltip" data-placement="bottom" data-original-title="Eventos" class="dropdown-toggle">
+							<i class="menu-icon fa fa-calendar"></i>
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+						<ul role="menu" class="user-menu dropdown-menu dropdown-yellow dropdown-menu-right dropdown-caret">
+							@if (VillaBisutti.Delta.Core.Business.Usuario.UsuarioPodeLer(usuario, Url.Action("Create", "Evento")))
+							{
+								<li>
+									<a href="@Url.Action("Create", "Evento")">
+										<i class="ace-icon fa fa-plus"></i>
+										Adicionar Evento
+									</a>
+									<b class="arrow"></b>
+								</li>
+							}
+							<li>
+								<a href="@Url.Action("Filtrar", "Evento")">
+									<i class="ace-icon fa fa-search"></i>
+									Buscar evento
+								</a>
+								<b class="arrow"></b>
+							</li>
+							<li>
+								<a href="@Url.Action("Filtrar", "Reuniao")">
+									<i class="ace-icon fa fa-search"></i>
+									Buscar reuniões
+								</a>
+								<b class="arrow"></b>
+							</li>
+
+							<li class="divider"></li>
+							@Html.Action("MenuEventos", "Home")
+						</ul>
+					</li>
+					<li class="transparent">
+						<a data-toggle="dropdown" href="#" data-rel="tooltip" data-placement="bottom" data-original-title="Relatórios" class="dropdown-toggle">
+							<i class="menu-icon fa fa-dashboard"></i>
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+						<ul role="menu" class="user-menu dropdown-menu dropdown-yellow dropdown-menu-right dropdown-caret">
+							<li>
+								<a href="@Url.Action("Perfil", "Relatorio")">
+									<b class="fa fa-info-circle"></b>
+									Perfil dos eventos
+								</a>
+								<b class="arrow"></b>
+							</li>
+							<li>
+								<a href="@Url.Action("BoloDoceBemCasado", "Relatorio")">
+									<b class="fa fa-birthday-cake"></b>
+									Bolo, doce e bem-casado
+								</a>
+								<b class="arrow"></b>
+							</li>
+							<li>
+								<a href="@Url.Action("ItensContratar", "Relatorio")">
+									<b class="fa fa-fax"></b>
+									Relatório de itens externos
+								</a>
+								<b class="arrow"></b>
+							</li>
+							<li role="separator" class="divider"></li>
+							<li>
+								<a href="javascript:void(0);" class="btn btn-info disabled">
+									Itens responsabilidade Villa Bisutti
+									<b class="fa fa-caret-down"></b>
+								</a>
+							</li>
+							<li>
+								<a href="@Url.Action("ItensContratarBebida", "Relatorio")">
+									<b class="fa fa-glass"></b>
+									Bebidas
+								</a>
+								<b class="arrow"></b>
+							</li>
+							<li>
+								<a href="@Url.Action("ItensContratarDecoracao", "Relatorio")">
+									<b class="fa fa-leaf"></b>
+									Decoração recepção
+								</a>
+								<b class="arrow"></b>
+							</li>
+							<li>
+								<a href="@Url.Action("ItensContratarDecoracaoCerimonial", "Relatorio")">
+									<b class="fa fa-heart"></b>
+									Decoração cerimonial
+								</a>
+								<b class="arrow"></b>
+							</li>
+							<li>
+								<a href="@Url.Action("ItensContratarFotoVideo", "Relatorio")">
+									<b class="fa fa-camera-retro"></b>
+									Foto e Vídeo
+								</a>
+								<b class="arrow"></b>
+							</li>
+							<li>
+								<a href="@Url.Action("ItensContratarMontagem", "Relatorio")">
+									<b class="fa fa-trophy"></b>
+									Montagem do Salão
+								</a>
+								<b class="arrow"></b>
+							</li>
+							<li>
+								<a href="@Url.Action("ItensContratarOutrosItens", "Relatorio")">
+									<b class="fa fa-gift"></b>
+									Outros Itens
+								</a>
+								<b class="arrow"></b>
+							</li>
+							<li>
+								<a href="@Url.Action("ItensContratarSomIluminacao", "Relatorio")">
+									<b class="fa fa-headphones"></b>
+									Som e Iluminação
+								</a>
+								<b class="arrow"></b>
+							</li>
+						</ul>
+					</li>
+					<li class="light-blue">
+						<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+
+							<span class="user-info" title="@(usuario.Nome == null ? "" : usuario.Nome)">
+								<small>Olá,</small>
+								@if (usuario != null)
+								{
+									@usuario.Nome
+								}
+
+							</span>
+
+							<i class="ace-icon fa fa-caret-down"></i>
+						</a>
+
+						<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+							<li>
+								<a href="@Url.Action("Logout", "Usuario", new {id = @ViewBag.Id})">
+									<i class="ace-icon fa fa-power-off"></i>
+									Logout
+								</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div><!-- /.navbar-container -->
+	</div>
+	<div class="main-container" id="main-container">
+		<script type="text/javascript">
+			try { ace.settings.check('main-container', 'fixed') } catch (e) { }
+		</script>
+		@RenderSection("MenuLateral", required: false)
+		<div class="main-content">
+			<div class="main-content-inner">
+				<div class="page-content">
+					<!-- /.ace-settings-container -->
+					<div class="row">
+						<div class="col-xs-12">
+							<!-- PAGE CONTENT BEGINS -->
+							@RenderBody()
+							<!-- PAGE CONTENT ENDS -->
+						</div><!-- /.col -->
+					</div><!-- /.row -->
+				</div><!-- /.page-content -->
+			</div>
+		</div><!-- /.main-content -->
+	</div>
+	<div class="footer" style="bottom: 0;">
+		<div class="footer-inner">
+			<div class="footer-content" style="z-index:1000">
+				<span class="bolder bigger-120" style="color: #522d1c">Villa Bisutti &reg;</span>
+				@(DateTime.Now.Year)
+
+				&nbsp; &nbsp;
+
+			</div>
+		</div>
+	</div><!-- Footer -->
+</body>
+</html>

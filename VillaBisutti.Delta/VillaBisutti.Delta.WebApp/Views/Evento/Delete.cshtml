@@ -1,0 +1,67 @@
+﻿@using VillaBisutti.Delta
+@model VillaBisutti.Delta.Core.Model.Evento
+@{
+	Layout = null;
+}
+<script language="javascript" type="text/javascript">
+	$(document).ready(function () {
+	});
+</script>
+<div class="col-xs-12 widget-container-col" style="min-height: 50px; margin-bottom: 20px; z-index: 1000">
+	<div class="widget-box widget-color-dark" style="opacity: 1; z-index: 0;">
+		<div class="widget-header widget-header-large bg-danger">
+			<h4 class="widget-title">
+				Você tem certeza que deseja excluir esse evento e tudo já cadastrado para ele?
+			</h4>
+		</div>
+	</div>
+</div>
+<div class="col-xs-12 widget-container-col" style="min-height: 50px; margin-bottom: 20px; z-index: 1000">
+	<div class="widget-box widget-color-dark" style="opacity: 1; z-index: 0;">
+		<div class="widget-header widget-header-large">
+			<h4 class="widget-title" data-toggle="collapse" data-target="#CabecalhoEvento">
+				@(Model.Data.ToString("dddd", new System.Globalization.CultureInfo("pt-BR"))),  @(Model.Data.ToString("dd/MM/yyyy"))
+				<i class="ace-icon fa fa-angle-right"> </i>
+				@(Model.Local.NomeCasa)
+				<i class="ace-icon fa fa-angle-right"> </i>
+				@(Model.NomeHomenageados)
+			</h4>
+		</div>
+		<div class="widget-body in" id="CabecalhoEvento">
+			<div class="widget-main">
+				<div class="alert alert-info container-fluid">
+					<div class="col-sm-4">
+						<b>Tipo de Evento: </b>@(Model.TipoEvento.GetDescription())
+					</div>
+					<div class="col-sm-4">
+						<b>Pax: </b>@(Model.Pax) +10% (@(Model.PaxAproximado))
+					</div>
+					<div class="col-sm-4">
+						<b>Horário: </b>das @(Model.Inicio.ToString()) às @(Model.Termino.ToString())<br />
+						<b>Cerimonial: </b>@(Model.LocalCerimonia.GetDescription())
+					</div>
+					<div class="col-sm-12">
+						<b>Perfil: </b>@(Model.PerfilFesta)
+					</div>
+					<div class="col-sm-4">
+						<b>Produção: </b>@(Model.Produtora == null ? "Indefinido" : Model.Produtora.Nome)
+					</div>
+					<div class="col-sm-4">
+						<b>Cardápio: </b>@(Model.Cardapio == null ? "Indefinido" : Model.Cardapio.Nome)
+					</div>
+					<div class="col-sm-4">
+						<b>Tipo de serviço: </b>@(Model.TipoServico == null ? "Indefinido" : Model.TipoServico.Nome)
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	@using (Html.BeginForm())
+	{
+		@Html.AntiForgeryToken()
+
+		<div class="form-actions no-color">
+			<input type="submit" value="Excluir" class="btn btn-default" />
+		</div>
+	}
+</div>

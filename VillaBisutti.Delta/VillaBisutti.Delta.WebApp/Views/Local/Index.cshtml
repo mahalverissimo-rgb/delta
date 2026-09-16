@@ -1,0 +1,62 @@
+﻿@model IEnumerable<VillaBisutti.Delta.Core.Model.Local>
+@{
+	Layout = "~/Views/Shared/_ConfiguracoesLayout.cshtml";
+	//ViewBag.Title = "Index";
+}
+@if (ViewBag.IsBlocked == "TRUE")
+{
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            LockPage();
+        });
+    </script>
+}
+@section scripts {
+
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            $(".PopUpActionLinks").click(function (e) {
+                e.preventDefault();
+                ShowPopUp($(this).attr("href"), $(this).attr("title"), 790);
+            });
+        });
+    </script>
+}
+
+@Html.Action("Create", "Local")
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeCasa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SiglaCasa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EnderecoCasa)
+        </th>
+		<th>
+			Opções
+		</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomeCasa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SiglaCasa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EnderecoCasa)
+        </td>
+		<td>
+			@Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "PopUpActionLinks", @title = "Editar" }) |
+			@Html.ActionLink("Excluir", "Delete", new { id = item.Id }, new { @class = "PopUpActionLinks", @title = "Excluir" })
+		</td>
+    </tr>
+}
+
+</table>

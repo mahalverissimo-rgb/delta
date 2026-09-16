@@ -1,0 +1,83 @@
+*{margin:0;padding:0; font-family: 'Arial'}
+
+/* Projeto Vila Bisutti */
+
+.brand-dark-brown{color: #522D1C !important}
+.navbar, .navbar.navbar-collapse .navbar-container{background-color: #11100C !important}
+.ace-nav>li.light-blue>a{background-color: #522D1C !important}
+.no-skin .nav-list-left>li>a{background-color: #94785c !important; color:#FFF !important;}
+.no-skin .sidebar-toggle{background-color: #94785c !important; color:#FFF !important;}
+.no-skin .sidebar.menu-min .nav-list>li>a>.menu-text{background-color: #664131 !important}
+.nav-list>li:before{background-color: #B79C81 !important}
+.no-skin .sidebar.menu-min .nav-list>li>.arrow:after{border-right-color: #E1CBB6 !important}
+.no-skin .nav-list>li .submenu>li>a:hover{background-color: #FFFBF7 !important}
+.no-skin .nav-list>li .submenu>li>a{background-color: #FFFBF7 !important}
+.no-skin .sidebar.menu-min .nav-list>li>.arrow-submenu:after{border-right-color: #FFFBF7 !important}
+.user-info{top: 0px !important;}
+.no-skin .navbar .navbar-toggle, .no-skin .navbar .navbar-toggle:hover{background-color: #94785C !important}
+.login-layout .widget-box .widget-main{background-color: #DBC6B1 !important}
+.login-layout .widget-box{background-color: #522D1C !important}
+
+fieldset{border: 1px solid #522D1C !important}
+
+
+/*.ace-nav>li{line-height:71px !important; max-height:81px !important; height:45px !important;}*/
+.main-content{margin-left: 0px;}
+.user-info{line-height: 20px !important;}
+.table tr th{background: #eee !important}
+.navbar-nav > li > a{color:#565656 !important}
+.navbar-nav > li > a:hover{color:#bbbbbb !important}
+.itemdiv{min-height:40px !important;}
+.itemdiv.dialogdiv:before{border:none !important; background-color:transparent !important;}
+.modal-header{border:none}
+div.tab-content{width:770px;padding:8px 6px; min-height:200px; margin:0 !important; margin-bottom: 10px !important}
+
+.reset-padding-left{padding-left: 0px !important}
+.perdendo{background:red;padding:2px;color:#fff;font-weight: bolder;margin-top:2px;}
+.ganhando{background:green;padding:2px;color:#fff;font-weight: bolder;margin-top:2px;}
+.status-item{padding:2px; color:#fff}
+.legenda{margin-top: 3px}
+.ace-settings-container{top:0 !important;}
+.no-margin{margin:0 !important;}
+.modal-content .well{margin-bottom: 0 !important}
+.nav-tabs>li.active>a,.nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus{cursor:pointer !important;}
+.modal-dialog {width: 900px !important;}
+.modal-body {max-height: 800px !important; overflow: auto !important}
+.nav-tabs{border-color: #fff !important}
+
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {padding: 3px; padding-left: 8px;}
+
+.menor-lance thead>tr>th,.menor-lance tbody>tr>th,.menor-lance tbody>tr>td{text-align: center;}
+
+/* Chat */
+.itemdiv.dialogdiv>.body{padding:3px;}
+.itemdiv>.body{margin-left: 10px}
+.itemdiv.dialogdiv{padding-bottom: 8px;}
+.form-actions{padding: 5px; border:solid 1px #ccc; border-top: none;}
+.destaque{background:#FFFFCC}
+
+td, th{vertical-align: middle; text-align: center; padding-top: 5px !important; font-size: 110%}
+
+/* Forms */
+select{padding:0; height: 22px}
+
+dd{margin-top: 0px;}
+input[type="radio"]{margin:7px;}
+input[id^="LancePregao"]{height: 20px !important}
+input[id^="ImpugnacaoPregao"], textarea[id^="ImpugnacaoPregao"]{height: 30px !important; width:70%;}
+input[id^="EsclarecimentoPregao"], textarea[id^="EsclarecimentoPregao"]{height: 30px !important; width:70%;}
+
+.hidden{display: none}
+.margin-0{margin:0;}
+.links-home li a{font-size: 20px}
+.declaracoes-comprasnet{border:solid 1px #ccc; padding:10px;margin: 0 0 10px}
+span.popover-info{cursor: pointer;}
+.btn-marginlr{margin: 0 20px 0 20px}
+.strong{font-weight: bold; font-size: 120%}
+.chat{height: 90px;}
+
+.page-header{padding-bottom: 10px !important}
+p{margin-bottom: 3px !important}
+p>i.icon{font-size: 7px}
+
+.table-esclarecimentos>tbody>tr>th, .table-esclarecimentos>tbody>tr>td{text-align: left !important} 

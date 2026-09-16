@@ -1,0 +1,51 @@
+﻿@model IEnumerable<VillaBisutti.Delta.Core.Model.Usuario>
+
+@{
+	Layout = "~/Views/Shared/_ConfiguracoesLayout.cshtml";
+}
+
+@section scripts {
+
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            $(".PopUpActionLinks").click(function (e) {
+                e.preventDefault();
+                ShowPopUp($(this).attr("href"), $(this).attr("title"));
+            });
+        });
+    </script>
+}
+
+@Html.Action("Create", "Usuario")
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Perfil.Nome)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Perfil.Nome)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "PopUpActionLinks", @title = "Editar" }) |
+                @Html.ActionLink("Excluir", "Delete", new { id = item.Id }, new { @class = "PopUpActionLinks", @title = "Excluir" })
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,47 @@
+﻿@{
+	Layout = null;
+}
+
+<script language="javascript" type="text/javascript">
+	$(document).ready(function () {
+		$("#y,#m").change(function () {
+			$('#FilterResult').load("@(Url.Content("~/OS/Filtered"))/?m=" + $("#m").val() + "&y=" + $("#y").val(), function (response, status, xhr) {
+				HandleResponse(response, status, xhr.status, xhr.statusText, "#FilterResult");
+			});
+
+		});
+	});
+</script>
+<div class="col-xs-12 widget-container-col row">
+	<div class="widget-box">
+		<div class="widget-header widget-header-flat">
+			<h4 class="widget-title lighter">
+				<i class="fa fa-filter green"></i>
+				Filtros
+			</h4>
+		</div>
+		<div class="widget-body" id="Filtro">
+			<div class="widget-main padding-8">
+				<div class="form-horizontal row">
+					<label class="control-label col-md-2">Mês</label>
+					<select name="m" id="m" class="col-md-4">
+						@for (int i = 1; i < 13; i++)
+						{
+							<option value="@i" @(i == DateTime.Now.Month ? " selected=\"selected\"" : "")>@i</option>
+						}
+					</select>
+					<label class="control-label col-md-2">Ano</label>
+					<select name="y" id="y" class="col-md-4">
+						@for (int i = DateTime.Now.Year - 1; i < DateTime.Now.Year + 3; i++)
+						{
+							<option value="@i" @(i == DateTime.Now.Year ? " selected=\"selected\"" : "")>@i</option>
+						}
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="FilterResult">
+	@Html.Action("Filtered", "OS")
+</div>

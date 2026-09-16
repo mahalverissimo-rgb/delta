@@ -1,0 +1,145 @@
+﻿@using VillaBisutti.Delta
+@using VillaBisutti.Delta.Core
+@model IEnumerable<VillaBisutti.Delta.Core.Model.Itens>
+
+@{
+	ViewBag.Title = "ItensContratar";
+}
+<script language="javascript" type="text/javascript">
+	$(document).ready(function () {
+		$('[data-behavior~="switch-area"]').change(function () {
+			var checkedBoxes = "|";
+			console.log(undefined != $("#BE").attr("checked"), undefined != $("#BD").attr("checked"), undefined != $("#DR").attr("checked"), undefined != $("#DC").attr("checked"))
+			if (undefined != $("#BE").attr("checked"))
+				checkedBoxes += "BE|"
+			if (undefined != $("#BD").attr("checked"))
+				checkedBoxes += "BD|"
+			if (undefined != $("#DR").attr("checked"))
+				checkedBoxes += "DR|"
+			if (undefined != $("#DC").attr("checked"))
+				checkedBoxes += "DC|"
+			if (undefined != $("#FV").attr("checked"))
+				checkedBoxes += "FV|"
+			if (undefined != $("#MS").attr("checked"))
+				checkedBoxes += "MS|"
+			if (undefined != $("#OI").attr("checked"))
+				checkedBoxes += "OI|"
+			if (undefined != $("#SI").attr("checked"))
+				checkedBoxes += "SI|"
+			$("#area").val(checkedBoxes)
+			//|BE|BD|DR|DC|FV|MS|OI|SI|
+			console.log($("#area").val())
+			this.form.submit();
+		});
+		$("#FiltroEventos input[type=date], #FiltroEventos select").change(function () {
+			this.form.submit();
+		});
+	});
+</script>
+<div class="col-xl-12 widget-container-col row">
+	<div class="widget-box">
+		<div class="widget-header widget-header-flat">
+			<h4 class="widget-title lighter">
+				<i class="fa fa-filter green"></i>
+				Relatório de itens externos
+			</h4>
+			<div class="widget-toolbar">
+				<a href="#" data-toggle="collapse" data-target="#Filtro">
+					<i class="fa fa-chevron-up" onclick="$(this).toggleClass('fa-chevron-up fa-chevron-down')"></i>
+				</a>
+			</div>
+		</div>
+		<div class="widget-body" id="Filtro">
+			<div class="widget-main padding-8">
+				<form id="FiltroEventos" class="form-horizontal">
+					<div class="row">
+						<label for="inicio" class="control-label col-md-2"> Data inicial </label>
+						<input type="date" name="inicio" id="inicio" value="@((Request.QueryString["inicio"] != null ? DateTime.Parse(Request.QueryString["inicio"]) : DateTime.Now.AddDays(14)).ToString("yyyy-MM-dd"))" class="col-md-2" />
+						<label for="termino" class="control-label col-md-2"> Data final </label>
+						<input type="date" name="termino" id="termino" value="@((Request.QueryString["termino"] != null ? DateTime.Parse(Request.QueryString["termino"]) : DateTime.Now.AddDays(15)).ToString("yyyy-MM-dd"))" class="col-md-2" />
+					</div>
+					<div class="row">
+						<label for="fornecimento" class="control-label col-md-2">Fornecido por </label>
+						<select class="col-md-2" name="fornecimento" id="fornecimento">
+							<option value="TERCEIRO"@("TERCEIRO".IsIn(Request.QueryString["fornecimento"]) ? " selected" : "")>Villa Bisutti (Fornecedor externo)</option>
+							<option value="CONTRATANTE"@("CONTRATANTE".IsIn(Request.QueryString["fornecimento"]) ? " selected" : "")>Contratante</option>
+						</select>
+						<div class="control-label col-md-2">Áreas</div>
+						<div class="col-md-4 input-group">
+							<input type="hidden" id="area" name="area" value="@(Request.QueryString["area"] == null ? "|" : Request.QueryString["area"])" />
+							<label for="BE" class="input-group-addon">
+								<span class="fa fa-glass"></span>
+								<input type="checkbox" value="BE" id="BE" data-behavior="switch-area" @("BE".IsIn(Request.QueryString["area"]) ? "checked " : "")/>
+							</label>
+							<label for="BD" class="input-group-addon">
+								<span class="fa fa-birthday-cake"></span>
+								<input type="checkbox" value="BD" id="BD" data-behavior="switch-area" @("BD".IsIn(Request.QueryString["area"]) ? "checked " : "")/>
+							</label>
+							<label for="DR" class="input-group-addon">
+								<span class="fa fa-leaf"></span>
+								<input type="checkbox" value="DR" id="DR" data-behavior="switch-area" @("DR".IsIn(Request.QueryString["area"]) ? "checked " : "")/>
+							</label>
+							<label for="DC" class="input-group-addon">
+								<span class="fa fa-heart"></span>
+								<input type="checkbox" value="DC" id="DC" data-behavior="switch-area" @("DC".IsIn(Request.QueryString["area"]) ? "checked " : "")/>
+							</label>
+							<label for="FV" class="input-group-addon">
+								<span class="fa fa-camera-retro"></span>
+								<input type="checkbox" value="FV" id="FV" data-behavior="switch-area" @("FV".IsIn(Request.QueryString["area"]) ? "checked " : "")/>
+							</label>
+							<label for="MS" class="input-group-addon">
+								<span class="fa fa-trophy"></span>
+								<input type="checkbox" value="MS" id="MS" data-behavior="switch-area" @("MS".IsIn(Request.QueryString["area"]) ? "checked " : "")/>
+							</label>
+							<label for="OI" class="input-group-addon">
+								<span class="fa fa-gift"></span>
+								<input type="checkbox" value="OI" id="OI" data-behavior="switch-area" @("OI".IsIn(Request.QueryString["area"]) ? "checked " : "")/>
+							</label>
+							<label for="SI" class="input-group-addon">
+								<span class="fa fa-headphones"></span>
+								<input type="checkbox" value="SI" id="OI" data-behavior="switch-area" @("SI".IsIn(Request.QueryString["area"]) ? "checked " : "")/>
+							</label>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="col-xl-12 widget-container-col">
+	<table class="table relatorio">
+		<tr>
+			<th width="5%">Local</th> <!--5-->
+			<th width="5%">Data</th> <!--10-->
+			<th width="4%">Início</th> <!--14-->
+			<th width="4%">Término</th> <!--19-->
+			<th width="15%">Homenageado(s)</th> <!--33-->
+			<th width="5%">Área</th>
+			<th width="15%">Tipo</th> <!--48-->
+			<th width="15%">Item</th> <!--63-->
+			<th width="4%">Disponível</th> <!--66-->
+			<th width="4%">Selecionado</th> <!--70-->
+			<th width="10%">Fornecedor</th> <!--80-->
+			<th width="15%">Obs.</th> <!--95-->
+		</tr>
+
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>@Html.DisplayFor(modelItem => item.Casa)</td>
+				<td>@(item.Data.ToString("dd/MM/yyyy"))</td>
+				<td>@(item.Inicio.ToString())</td>
+				<td>@(item.Termino.ToString())</td>
+				<td>@Html.DisplayFor(modelItem => item.NomeHomenageados)</td>
+				<td>@Html.Raw(item.Area.ToIcon())</td>
+				<td>@Html.DisplayFor(modelItem => item.TipoItem)</td>
+				<td>@Html.DisplayFor(modelItem => item.ItemNome)</td>
+				<td>@Html.DisplayFor(modelItem => item.QuantidadeDisponivel)</td>
+				<td>@Html.DisplayFor(modelItem => item.Quantidade)</td>
+				<td>@(item.Fornecedor == null ? "N/A" : item.Fornecedor)</td>
+				<td>@Html.DisplayFor(modelItem => item.Observacoes)</td>
+			</tr>
+		}
+
+	</table>
+</div>

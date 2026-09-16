@@ -1,0 +1,20 @@
+﻿@using VillaBisutti.Delta;
+@model IEnumerable<VillaBisutti.Delta.Core.DTO.Degustacao>
+@{
+    Layout = null;
+}
+<style type="text/css" media="screen">
+	.existing-items-container { padding: 3px; }
+	.existing-items { border: 1px solid #666666; }
+</style>
+<div class="container-fluid">
+	@foreach (var item in Model)
+{
+	<div class="col-md-4 existing-items-container" title="@item.FileName">
+		<div class="bg-info existing-items">
+			@item.Identifyer
+			<i class="pull-right fa fa-@(item.Exists ? "check green" : "times red")"></i>
+		</div>
+	</div>
+}
+</div>

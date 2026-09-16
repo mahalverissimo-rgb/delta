@@ -1,0 +1,65 @@
+﻿@model IEnumerable<VillaBisutti.Delta.Core.Model.PratoSelecionado>
+@{
+	Layout = "~/Views/Shared/_ConfiguracoesLayout.cshtml";
+}
+<script language="javascript" type="text/javascript">
+	function FiltrarPratos(cId, tId)
+	{
+		if(isNaN(cId) || isNaN(tId) || cId == "" || tId == "")
+		{
+			var emptyMessage = "";
+			emptyMessage += "<p class=\"alert-info\">Selecione corretamente @Html.DisplayNameFor(model => model.Cardapio) e ";
+			emptyMessage += "@Html.DisplayNameFor(model => model.TipoServico) para editar os <strong>harmonização da degustação</strong></p>."
+			$("#PratosContainer").html(emptyMessage);
+			$("#PratosCarregados").hide();
+			$("#CopiarCardapioTipoServico").attr("href", "#");
+			return;
+		}
+	    $("#PratosCarregados").show();
+	    $('[data-rel=tooltip-info]').tooltip({ trigger: 'hover' }).tooltip('show');
+	    var createUrl = "@(Url.Action("Copiar", "PratoSelecionado", new { cardapioId = "CaRdApIoId", tipoServicoId = "TiPoSeRvIcOiD" }))"
+		createUrl = createUrl.replace("CaRdApIoId", cId).replace("TiPoSeRvIcOiD", tId).replace("&amp;", "&") + "&sid=" + Math.random();
+		var importUrl = createUrl.replace("Copiar", "Importar");
+		$("#CopiarCardapioTipoServico").attr("href", createUrl);
+		$("#CopiarPratosFaltantes").attr("href", importUrl);
+		var loadUrl = "@Url.Action("Configuracao", "PratoSelecionado", new { cardapioId = "CaRdApIoId", tipoServicoId = "TiPoSeRvIcOiD" })";
+		loadUrl = loadUrl.replace("CaRdApIoId", cId).replace("TiPoSeRvIcOiD", tId).replace("&amp;", "&");
+		LoadPage(loadUrl, "#PratosContainer");
+	}
+	$(document).ready(function () {
+		$("#CardapioId").change(function () {
+			FiltrarPratos($(this).val(), $("#TipoServicoId").val());
+		});
+		$("#TipoServicoId").change(function () {
+			FiltrarPratos($("#CardapioId").val(), $(this).val());
+		});
+		$(".ShowInPopUp").click(function (e) {
+			e.preventDefault();
+			LoadPage($(this).attr("href"), "#PratosContainer");
+		});
+		FiltrarPratos("");
+	});
+</script>
+<div class="row panel">
+	<div class="col-md-4">
+		@Html.DisplayNameFor(model => model.Cardapio)
+		@Html.DropDownList("CardapioId", (IEnumerable<SelectListItem>)ViewBag.CardapioId, "Selecione", new { @class = "form-control" })
+	</div>
+	<div class="col-md-4">
+		@Html.DisplayNameFor(model => model.TipoServico)
+		@Html.DropDownList("TipoServicoId", (IEnumerable<SelectListItem>)ViewBag.TipoServicoId, "Selecione", new { @class = "form-control" })
+	</div>
+	<div class="col-md-4" id="PratosCarregados" style="margin-top: 18px">
+		<p class="col-md-6">
+            <a id="CopiarCardapioTipoServico" class="ShowInPopUp btn btn-default tooltip-info form-control" data-rel="tooltip-info" data-placement="bottom" data-original-title="Redefinir toda a harmonização da degustação deste cardápio para este tipo de serviço" href="#">Redefinir harmonização</a>
+		</p>
+		<p class="col-md-6">
+			<a id="CopiarPratosFaltantes" class="ShowInPopUp btn btn-default tooltip-info form-control" data-rel="tooltip-info" data-placement="bottom" data-original-title="Importar apenas os pratos do cardápio que não estão exibidos" href="#">Importar pratos</a>
+		</p>
+	</div>
+</div>
+<div class="col-xs-12" id="PratosContainer">
+	<p class="alert-info">
+		Selecione corretamente @Html.DisplayNameFor(model => model.Cardapio) e @Html.DisplayNameFor(model => model.TipoServico) para editar os <strong>pratos padrão para degustação</strong>
+	</p>
+</div>

@@ -1,0 +1,12 @@
+﻿@model IEnumerable<VillaBisutti.Delta.Core.Model.TipoItemDecoracao>
+@{
+	Layout = null;
+}
+<div class="row"></div>
+<ul class="item-list">
+    @foreach (var item in Model)
+{
+    <li class="item-orange clearfix alert-warning bg-list-warning"><i class="fa fa-icon fa-exclamation-circle">&nbsp;</i>Defina o <strong>@Html.DisplayFor(modelItem => item.Nome)</strong>. Nenhum deste item foi selecionado até o momento.</li>
+}
+</ul>
+<br>

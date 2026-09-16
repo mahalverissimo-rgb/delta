@@ -1,0 +1,15 @@
+﻿@model VillaBisutti.Delta.Core.Model.PratoSelecionado
+@{
+	Layout = null;
+}
+<script language="javascript" type="text/javascript">
+	$(document).ready(function () {
+		AddStack("Pratos do evento", "Prato @(Model.Prato.Nome) @(Model.Rejeitado ? "" : "não ")foi rejeitado.");
+		$("#Rejeitar_@(Model.Id)").removeClass("btn-info").removeClass("btn-danger").addClass("@(Model.Rejeitado ? "btn-info" : "btn-danger")");
+		$("#Rejeitar_@(Model.Id)").attr("data-original-title", "Clique para @(Model.Rejeitado ? "incluir no" : "remover do") evento");
+		$("#Rejeitar_@(Model.Id)").html("@(Html.Raw(Model.Rejeitado ? "<i class=\\\"fa fa-frown-o\\\"></i> Item rejeitado" : "Rejeitar item"))");
+		$("#Escolher_@(Model.Id)").@(Model.Rejeitado ? "addClass" : "removeClass")("hidden");
+		$("#Degustar_@(Model.Id)").@(Model.Rejeitado ? "addClass" : "removeClass")("hidden");
+	});
+</script>
+@Html.Partial("../PratoSelecionado/_HandleInput", Model)

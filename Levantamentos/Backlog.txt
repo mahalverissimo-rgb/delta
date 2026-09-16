@@ -1,0 +1,17 @@
+		Especificar os "robôs" (Windows Services)
+			- Execução (passo a passo)
+				Robô prazo final
+				Robô de produtos já definidos (contratados) : pode negociar preço ~ ENTENDER MELHOR!!!
+	l			Robô de aviso de contratação de serviços terceiros
+	l			Robô de notificação dos clientes (com boas vindas e manual de eventos)
+	talinho		Robô de agenda semanal (com roteiro de eventos) (perguntar à pri o limite de dias antes do evento para incluir no mailing - lembrar explicação do talinho)
+	talinho		Robo que avisa todas as áreas que a OS está disponível para download na URL (dfskfjhd)
+			- Configurações necessárias para cada
+			
+		Especificar todas as regras de negócio (funcionais) que executam automaticamente e quando elas "disparam"	
+		Alinhar com a Pri se a OS finaliza automaticamente (e quando)
+
+v		Ver com Paulo a limpeza do layout
+v		Lógica de cópia do Roteiro Padrão para Roteiro ao criar evento (André)
+		Ver com a Priscila o Cerimonial Padrão
+		Ver com a Priscila Item Bolo Doce Bem Casado

@@ -1,0 +1,11 @@
+﻿@model VillaBisutti.Delta.Core.DTO.PratoCardapio
+@{
+	Layout = null;
+}
+<script language="javascript" type="text/javascript">
+	$(document).ready(function () {
+		$("#PratoCardapio_@(Model.Cardapio.Id)_@(Model.Prato.Id)").remove();
+		setTimeout("$(\"#DeletingTarget_@(Model.Cardapio.Id)_@(Model.Prato.Id)\").remove();", 500);
+		AddStack("Prato removido", "O prato <em>@(Model.Prato.Nome)</em> foi removido com sucesso do cardápio <em>@(Model.Cardapio.Nome)</em>");
+	});
+</script>

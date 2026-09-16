@@ -1,0 +1,142 @@
+@model VillaBisutti.Delta.WebApp.Models.Evento
+
+@{
+    ViewData["Title"] = "Novo Evento";
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">@ViewData["Title"]</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Dados Principais</h4>
+                        <hr />
+                        
+                        <div class="form-group">
+                            <label asp-for="TipoEvento" class="control-label"></label>
+                            <select asp-for="TipoEvento" asp-items="Html.GetEnumSelectList<TipoEvento>()" class="form-control">
+                                <option value="">Selecione...</option>
+                            </select>
+                            <span asp-validation-for="TipoEvento" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="LocalId" class="control-label"></label>
+                            <select asp-for="LocalId" class="form-control" asp-items="ViewBag.Locais">
+                                <option value="">Selecione...</option>
+                            </select>
+                            <span asp-validation-for="LocalId" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="CardapioId" class="control-label"></label>
+                            <select asp-for="CardapioId" class="form-control" asp-items="ViewBag.Cardapios">
+                                <option value="">Selecione...</option>
+                            </select>
+                            <span asp-validation-for="CardapioId" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="TipoServicoId" class="control-label"></label>
+                            <select asp-for="TipoServicoId" class="form-control" asp-items="ViewBag.TiposServico">
+                                <option value="">Selecione...</option>
+                            </select>
+                            <span asp-validation-for="TipoServicoId" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Data" class="control-label"></label>
+                            <input asp-for="Data" class="form-control" type="date" />
+                            <span asp-validation-for="Data" class="text-danger"></span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="HorarioInicio" class="control-label"></label>
+                                    <input asp-for="HorarioInicio" class="form-control time-mask" />
+                                    <span asp-validation-for="HorarioInicio" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="HorarioTermino" class="control-label"></label>
+                                    <input asp-for="HorarioTermino" class="form-control time-mask" />
+                                    <span asp-validation-for="HorarioTermino" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Pax" class="control-label"></label>
+                            <input asp-for="Pax" class="form-control" />
+                            <span asp-validation-for="Pax" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <h4>Dados do Responsável</h4>
+                        <hr />
+
+                        <div class="form-group">
+                            <label asp-for="NomeResponsavel" class="control-label"></label>
+                            <input asp-for="NomeResponsavel" class="form-control" />
+                            <span asp-validation-for="NomeResponsavel" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="EmailResponsavel" class="control-label"></label>
+                            <input asp-for="EmailResponsavel" class="form-control" type="email" />
+                            <span asp-validation-for="EmailResponsavel" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="TelefoneResponsavel" class="control-label"></label>
+                            <input asp-for="TelefoneResponsavel" class="form-control phone-mask" />
+                            <span asp-validation-for="TelefoneResponsavel" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input asp-for="PossuiAssessoria" class="custom-control-input" />
+                                <label asp-for="PossuiAssessoria" class="custom-control-label"></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="assessoriaGroup" style="display: none;">
+                            <label asp-for="ContatoAssessoria" class="control-label"></label>
+                            <input asp-for="ContatoAssessoria" class="form-control" />
+                            <span asp-validation-for="ContatoAssessoria" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mt-4">
+                    <input type="submit" value="Criar" class="btn btn-primary" />
+                    <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function() {
+            // Máscaras
+            $('.time-mask').mask('00:00');
+            $('.phone-mask').mask('(00) 00000-0000');
+
+            // Toggle campo de assessoria
+            $('#PossuiAssessoria').change(function() {
+                $('#assessoriaGroup').toggle(this.checked);
+            });
+        });
+    </script>
+}

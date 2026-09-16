@@ -1,0 +1,7 @@
+﻿Prezado sr, {NOME}.
+
+Faltam {DIAS} dias para o encerramento da OS.
+
+Por favor, providenciar as providencias providenciaveis.
+
+Acesse a OS: {LINK}

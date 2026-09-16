@@ -1,0 +1,59 @@
+﻿@model VillaBisutti.Delta.Core.Model.PratoSelecionado
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_ConfiguracoesLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PratoSelecionado</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Evento.ContatoAssessoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Evento.ContatoAssessoria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prato.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prato.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Escolhido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Escolhido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Degustar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Degustar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Observacoes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observacoes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

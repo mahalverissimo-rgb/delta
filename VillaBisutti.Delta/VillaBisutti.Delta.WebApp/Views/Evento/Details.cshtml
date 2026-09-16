@@ -1,0 +1,7 @@
+﻿@model VillaBisutti.Delta.Core.Model.Evento
+@{
+	Layout = "~/Views/Shared/_EventosLayout.cshtml";
+}
+<div class="col-xs-12">
+	@Html.Action("Edit", "Evento", new { @id = ViewBag.Id })
+</div>

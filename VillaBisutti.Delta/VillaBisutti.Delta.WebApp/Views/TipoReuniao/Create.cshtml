@@ -1,0 +1,95 @@
+﻿@model VillaBisutti.Delta.Core.Model.TipoReuniao
+@{
+	Layout = null;
+	//ViewBag.Title = "Create";
+}
+<script language="javascript" type="text/javascript">
+	$(document).ready(function () {
+		CreateHorarioEditor("HorarioDuracao");
+		PreventNegativeNumbers("DiasAntesEvento");
+	});
+</script>
+@Scripts.Render("~/bundles/jqueryval")
+@using (Html.BeginForm("ItemCreated", "TipoReuniao"))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+		<h4>Tipo de Reuniao</h4>
+		<hr />
+		@Html.ValidationSummary(true)
+
+		<div class="form-group">
+			@Html.LabelFor(model => model.Nome, new { @class = "control-label col-md-2" })
+			<div class="col-md-4">
+				@Html.EditorFor(model => model.Nome)
+			</div>
+			<div class="col-md-6">
+				@Html.ValidationMessageFor(model => model.Nome)
+			</div>
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.DiasAntesEvento, new { @class = "control-label col-md-2" })
+			<div class="col-md-4">
+				@Html.EditorFor(model => model.DiasAntesEvento)
+			</div>
+			<div class="col-md-6">
+				@Html.ValidationMessageFor(model => model.DiasAntesEvento)
+			</div>
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.HorarioDuracao, new { @class = "control-label col-md-2" })
+			<div class="col-md-4">
+				@Html.EditorFor(model => model.HorarioDuracao)
+			</div>
+			<div class="col-md-6">
+				@Html.ValidationMessageFor(model => model.HorarioDuracao)
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-2">Dias possíveis</label>
+			<div class="col-md-4">
+				<div class="row-fluid">
+					@Html.EditorFor(model => model.PodeDomingo)
+					@Html.LabelFor(model => model.PodeDomingo, new { @class = "control-label" })
+					@Html.ValidationMessageFor(model => model.PodeDomingo)
+				</div>
+				<div class="row-fluid">
+					@Html.EditorFor(model => model.PodeSegunda)
+					@Html.LabelFor(model => model.PodeSegunda, new { @class = "control-label" })
+					@Html.ValidationMessageFor(model => model.PodeSegunda)
+				</div>
+				<div class="row-fluid">
+					@Html.EditorFor(model => model.PodeTerca)
+					@Html.LabelFor(model => model.PodeTerca, new { @class = "control-label" })
+					@Html.ValidationMessageFor(model => model.PodeTerca)
+				</div>
+				<div class="row-fluid">
+					@Html.EditorFor(model => model.PodeQuarta)
+					@Html.LabelFor(model => model.PodeQuarta, new { @class = "control-label" })
+					@Html.ValidationMessageFor(model => model.PodeQuarta)
+				</div>
+				<div class="row-fluid">
+					@Html.EditorFor(model => model.PodeQuinta)
+					@Html.LabelFor(model => model.PodeQuinta, new { @class = "control-label" })
+					@Html.ValidationMessageFor(model => model.PodeQuinta)
+				</div>
+				<div class="row-fluid">
+					@Html.EditorFor(model => model.PodeSexta)
+					@Html.LabelFor(model => model.PodeSexta, new { @class = "control-label" })
+					@Html.ValidationMessageFor(model => model.PodeSexta)
+				</div>
+				<div class="row-fluid">
+					@Html.EditorFor(model => model.PodeSabado)
+					@Html.LabelFor(model => model.PodeSabado, new { @class = "control-label " })
+					@Html.ValidationMessageFor(model => model.PodeSabado)
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-4">
+				<input type="submit" value="Salvar" class="btn btn-default form-control" />
+			</div>
+		</div>
+    </div>
+}

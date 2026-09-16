@@ -1,0 +1,15 @@
+--use villabisutti_delta
+--use VillaBisuttiDelta
+/*
+
+ALTER TABLE Bebida ADD Encerrado BIT NOT NULL DEFAULT 0
+ALTER TABLE BoloDoceBemCasado ADD Encerrado BIT NOT NULL DEFAULT 0
+ALTER TABLE Decoracao ADD Encerrado BIT NOT NULL DEFAULT 0
+ALTER TABLE DecoracaoCerimonial ADD Encerrado BIT NOT NULL DEFAULT 0
+ALTER TABLE FotoVideo ADD Encerrado BIT NOT NULL DEFAULT 0
+ALTER TABLE Gastronomia ADD Encerrado BIT NOT NULL DEFAULT 0
+ALTER TABLE Montagem ADD Encerrado BIT NOT NULL DEFAULT 0
+ALTER TABLE OutrosItens ADD Encerrado BIT NOT NULL DEFAULT 0
+ALTER TABLE SomIluminacao ADD Encerrado BIT NOT NULL DEFAULT 0
+
+*/

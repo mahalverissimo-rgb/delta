@@ -1,0 +1,12 @@
+Todos os dias (sábados e domingos inclusive), num determinado horário, o sistema executará esta rotina
+o sistema deverá procurar em todos os itens (de todas as áreas), aqueles com as seguintes características:
+	contratação é responsabilidade da Bisutti
+	fornecedor não é a Bisutti
+	estão marcados como "Definido"
+	não estão marcados como "Contratado"
+o sistema deverá enviar um e-mail a um dado endereço (configuravel), informando:
+	cada um dos itens encontrados (descritivo)
+	qual é o contratante
+	qual é o fornecedor
+	em qual item contratual (ContratoAditivo) este item se encontra ~para conferência~
+	um link para marcar o item como "Contratado"

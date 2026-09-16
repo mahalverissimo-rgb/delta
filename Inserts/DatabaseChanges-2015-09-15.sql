@@ -1,0 +1,10 @@
+CREATE TABLE ItemBoloDoceBemCasadoEvento (
+	Id INT IDENTITY PRIMARY KEY,
+	UsuarioCreateId INT NOT NULL DEFAULT 1,
+	UsuarioCreateData DATETIME NOT NULL DEFAULT GETDATE(),
+	UsuarioUpdateId INT NOT NULL DEFAULT 1,
+	UsuarioUpdateData DATETIME NOT NULL DEFAULT GETDATE(),
+	EventoId INT NOT NULL,
+	TipoItemBoloDoceBemCasadoId INT NOT NULL,
+	Quantidade INT NOT NULL DEFAULT 1
+)

@@ -1,0 +1,107 @@
+﻿@model VillaBisutti.Delta.Core.Model.TipoItemSomIluminacao
+@{
+	Layout = null;
+}
+@Scripts.Render("~/bundles/jqueryval")
+@using (Html.BeginForm("ItemCreated", "TipoItemSomIluminacao"))
+{
+	@Html.AntiForgeryToken()
+	<script language="javascript" type="text/javascript">
+		$(document).ready(function () {
+			HandleCheckbox("CreateSomIluminacao");
+		});
+	</script>
+	<div class="form-horizontal" id="CreateSomIluminacao">
+		@Html.ValidationSummary(true)
+		<h4>Tipo de Item de Som e Iluminação</h4>
+		<hr />
+		<div class="form-group row">
+			@Html.LabelFor(model => model.Nome, new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.EditorFor(model => model.Nome)
+				@Html.ValidationMessageFor(model => model.Nome)
+			</div>
+		</div>
+		<div class="form-group row">
+			<div class="col-md-offset-2 col-md-4">
+				<div class="row-fluid">
+					@Html.EditorFor(model => model.PadraoAniversario)
+					@Html.LabelFor(model => model.PadraoAniversario, new { @class = "control-label" })
+					@Html.ValidationMessageFor(model => model.PadraoAniversario)
+				</div>
+				<div class="row-fluid">
+					@Html.EditorFor(model => model.PadraoBarmitzva)
+					@Html.ValidationMessageFor(model => model.PadraoBarmitzva)
+					@Html.LabelFor(model => model.PadraoBarmitzva, new { @class = "control-label" })
+				</div>
+				<div class="row-fluid">
+					@Html.EditorFor(model => model.PadraoBatmitzva)
+					@Html.LabelFor(model => model.PadraoBatmitzva, new { @class = "control-label" })
+					@Html.ValidationMessageFor(model => model.PadraoBatmitzva)
+				</div>
+				<div class="row-fluid">
+					@Html.EditorFor(model => model.PadraoBodas)
+					@Html.LabelFor(model => model.PadraoBodas, new { @class = "control-label" })
+					@Html.ValidationMessageFor(model => model.PadraoBodas)
+				</div>
+				<div class="row-fluid">
+					@Html.EditorFor(model => model.PadraoCasamento)
+					@Html.LabelFor(model => model.PadraoCasamento, new { @class = "control-label" })
+					@Html.ValidationMessageFor(model => model.PadraoCasamento)
+				</div>
+				<div class="row-fluid">
+					@Html.EditorFor(model => model.PadraoCorporativo)
+					@Html.ValidationMessageFor(model => model.PadraoCorporativo)
+					@Html.LabelFor(model => model.PadraoCorporativo, new { @class = "control-label" })
+				</div>
+				<div class="row-fluid">
+					@Html.EditorFor(model => model.PadraoDebutante)
+					@Html.LabelFor(model => model.PadraoDebutante, new { @class = "control-label" })
+					@Html.ValidationMessageFor(model => model.PadraoDebutante)
+				</div>
+				<div class="row-fluid">
+					@Html.EditorFor(model => model.PadraoOutro)
+					@Html.LabelFor(model => model.PadraoOutro, new { @class = "control-label" })
+					@Html.ValidationMessageFor(model => model.PadraoOutro)
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="row-fluid">
+					@Html.EditorFor(model => model.CopiaBebida)
+					@Html.LabelFor(model => model.CopiaBebida, new { @class = "control-label" })
+					@Html.ValidationMessageFor(model => model.CopiaBebida)
+				</div>
+				<div class="row-fluid">
+					@Html.EditorFor(model => model.CopiaDecoracao)
+					@Html.LabelFor(model => model.CopiaDecoracao, new { @class = "control-label" })
+					@Html.ValidationMessageFor(model => model.CopiaDecoracao)
+				</div>
+				<div class="row-fluid">
+					@Html.EditorFor(model => model.CopiaMontagem)
+					@Html.LabelFor(model => model.CopiaMontagem, new { @class = "control-label" })
+					@Html.ValidationMessageFor(model => model.CopiaMontagem)
+				</div>
+				<div class="row-fluid">
+					@Html.EditorFor(model => model.CopiaBoloDoceBemCasado)
+					@Html.LabelFor(model => model.CopiaBoloDoceBemCasado, new { @class = "control-label" })
+					@Html.ValidationMessageFor(model => model.CopiaBoloDoceBemCasado)
+				</div>
+				<div class="row-fluid">
+					@Html.EditorFor(model => model.CopiaFotoVideo)
+					@Html.LabelFor(model => model.CopiaFotoVideo, new { @class = "control-label" })
+					@Html.ValidationMessageFor(model => model.CopiaFotoVideo)
+				</div>
+				<div class="row-fluid">
+					@Html.EditorFor(model => model.CopiaOutrosItens)
+					@Html.LabelFor(model => model.CopiaOutrosItens, new { @class = "control-label" })
+					@Html.ValidationMessageFor(model => model.CopiaOutrosItens)
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<input type="submit" value="Salvar" class="btn btn-default form-control" />
+			</div>
+		</div>
+	</div>
+}

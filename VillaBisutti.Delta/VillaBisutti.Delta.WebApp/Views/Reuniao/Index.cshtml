@@ -1,0 +1,91 @@
+﻿@model IEnumerable<VillaBisutti.Delta.Core.Model.Reuniao>
+@{
+	Layout = "~/Views/Shared/_EventosLayout.cshtml";
+}
+@if (ViewBag.IsBlocked == "TRUE")
+{
+	<script language="javascript" type="text/javascript">
+		$(document).ready(function () {
+			LockPage();
+		});
+	</script>
+}
+<script language="javascript" type="text/javascript">
+	$(document).ready(function () {
+		$(".FormItemEditor").submit(function (evt) {
+			evt.preventDefault();
+			var myUrl = $(this).attr("action");
+			var id = $(this).attr("id").split("_")[1];
+			var myData = $(this).serialize();
+			$("#Item_" + id + " input[type='checkbox']").each(function () {
+				myData += "&" + $(this).attr("name");
+				myData += "=";
+				myData += $(this).attr("checked") == "checked" ? "True" : "False";
+			});
+			$.ajax({
+				type: "POST",
+				url: myUrl,
+				data: myData,
+				success: function (data) {
+					$("#Item_" + id).removeClass("bg-warning").removeClass("bg-success");
+					$("#Item_" + id).addClass(data.trim() == "true" ? "bg-warning" : "bg-success");
+					AddStack("Item salvo", "Item alterado com sucesso");
+				},
+				error: function (XMLHttpRequest, textStatus, errorThrown) {
+					AddError("Ops!", "Ocorreu um erro au tentar atualizar este campo.<br />Verifique os dados inseridos e tente novamente.");
+				}
+			});
+		});
+	});
+</script>
+<div class="col-xs-12 widget-container-col">
+	<div class="widget-box widget-color-dark">
+		<div class="widget-header widget-header-large">
+			<h4 class="widget-title">
+				<i class="menu-icon fa fa-caret-right red"></i>
+				<i class="menu-icon fa fa-group"></i>
+				Reuniões
+			</h4>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-8">
+		@Html.Partial("../Reuniao/Create", new VillaBisutti.Delta.Core.Model.Reuniao())
+	</div>
+	<a href="@Url.Action("Copy", "Reuniao", new { id = ViewBag.Id })" class="col-md-2">Importar padrões</a>
+</div>
+<div class="row">
+	<table class="table">
+		<tr>
+			<th class="col-md-2">
+				@Html.DisplayNameFor(model => model.TipoReuniao.Nome)
+			</th>
+			<th class="col-md-2">
+				Participante
+			</th>
+			<th class="col-md-1">
+				@Html.DisplayNameFor(model => model.Data)
+			</th>
+			<th class="col-md-1">
+				@Html.DisplayNameFor(model => model.Horario)
+			</th>
+			<th class="col-md-1">
+				@Html.DisplayNameFor(model => model.Definida)
+			</th>
+			<th class="col-md-1">
+				@Html.DisplayNameFor(model => model.Executada)
+			</th>
+			<th class="col-md-3">
+				@Html.DisplayNameFor(model => model.Observacoes)
+			</th>
+			<th class="col-md-1"></th>
+		</tr>
+
+		@foreach (VillaBisutti.Delta.Core.Model.Reuniao item in Model)
+		{
+			@Html.Partial("../Reuniao/Edit", item)
+		}
+
+	</table>
+</div>

@@ -1,0 +1,88 @@
+﻿@using VillaBisutti.Delta
+@model VillaBisutti.Delta.Core.DTO.TipoPratoPadrao
+@{
+	int i = 0;
+	Layout = "~/Views/Shared/_ConfiguracoesLayout.cshtml";
+}
+@if (ViewBag.IsBlocked == "TRUE")
+{
+	<script language="javascript" type="text/javascript">
+		$(document).ready(function () {
+			LockPage();
+		});
+	</script>
+}
+<script language="javascript" type="text/javascript">
+	$(document).ready(function () {
+		$("#FiltroGastronomia select").change(function () {
+			this.form.submit();
+		});
+	});
+</script>
+<div class="col-xl-12 widget-container-col row">
+	<div class="widget-box">
+		<div class="widget-header widget-header-flat">
+			<h4 class="widget-title lighter">
+				<i class="fa fa-filter green"></i>
+				Filtros
+			</h4>
+		</div>
+		<div class="widget-body" id="Filtro">
+			<div class="widget-main padding-8">
+				<div class="row">
+					<form id="FiltroGastronomia" class="form-horizontal">
+						<label for="cardapioId" class="control-label col-md-2">Cardápio</label>
+						<span class="col-md-4">@Html.DropDownList("cardapioId", (IEnumerable<SelectListItem>)ViewBag.Cardapios, String.Empty, new { @class = "form-control" })</span>
+						<label for="tipoServicoId" class="control-label col-md-2">Tipo de serviço</label>
+						<span class="col-md-4">@Html.DropDownList("tipoServicoId", (IEnumerable<SelectListItem>)ViewBag.TipoServicos, String.Empty, new { @class = "form-control" })</span>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	@foreach (VillaBisutti.Delta.Core.Model.Cardapio item in Model.Itens.Keys)
+	{
+		foreach (VillaBisutti.Delta.Core.Model.TipoServico tipoServico in Model.Itens[item].Keys)
+		{
+			using (Html.BeginForm())
+			{
+				<input type="hidden" name="cardapioId" value="@(Request.QueryString["cardapioId"])" />
+				<input type="hidden" name="tipoServicoId" value="@(Request.QueryString["tipoServicoId"])" />
+				<div class="col-xs-12 widget-container-col">
+					<div class="widget-box widget-color-dark">
+						<div class="widget-header widget-header-large">
+							<h4 class="widget-title">
+								<i class="menu-icon fa fa-caret-right red"></i>
+								<i class="menu-icon fa fa-cuterly"></i>
+								@(item.Nome) <i class="ace-icon fa fa-angle-right"> </i> @(tipoServico.Nome)
+							</h4>
+							<div class="widget-toolbar">
+								<button type="submit" class="btn btn-xs btn-info red">
+									<i class="fa fa-refresh fa-spin green"></i>
+									Salvar alterações
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					@foreach (VillaBisutti.Delta.Core.Model.TipoPratoPadrao prato in Model.Itens[item][tipoServico])
+					{
+						<div class="col-md-3 col-xs-6">
+							<span class="ui-helper-hidden">
+								<input type="hidden" name="itens[@i].Id" value="@(prato.Id)" />
+							</span>
+							<span class="form-group pull-right">
+								<input type="number" name="itens[@i].QuantidadePratos" value="@(prato.QuantidadePratos)" style="width:45px;" />
+							</span>
+							<span class="form-group">@(prato.TipoPrato.Nome)</span>
+						</div>
+						i++;
+					}
+				</div>
+			}
+		}
+	}
+</div>

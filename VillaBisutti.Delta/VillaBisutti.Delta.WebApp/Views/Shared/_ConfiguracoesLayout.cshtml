@@ -1,0 +1,258 @@
+﻿@using VillaBisutti.Delta;
+@{
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section MenuLateral{
+	@{VillaBisutti.Delta.Core.Model.Usuario usuario = VillaBisutti.Delta.SessionFacade.UsuarioLogado;}
+	<div data-sidebar-hover="true" data-sidebar-scroll="true" data-sidebar="true" id="sidebar" class="sidebar responsive sidebar-fixed sidebar-scroll menu-min">
+		<ul class="nav nav-list nav-list-left">
+			@if (VillaBisutti.Delta.Core.Business.Usuario.UsuarioPodeLer(usuario, Url.Action("Index", "ItemRoteiro")))
+			{
+				<li>
+					<a class="dropdown-toggle" href="#">
+						<i class="menu-icon fa fa-list-ul"></i>
+						<span class="menu-text"> Roteiro Padrão</span>
+					</a>
+					<b class="arrow"></b>
+					<ul class="submenu">
+						@foreach (VillaBisutti.Delta.Core.Model.TipoEvento tipoEvento in Util.TiposEvento.Keys)
+						{
+							<li>
+								<a href="@Url.Action("Index", "ItemRoteiro", new { TipoEvento = (int)tipoEvento })">
+									<i class="menu-icon fa caret-right"></i>
+									<span class="menu-text">@(tipoEvento.GetDescription())</span>
+								</a>
+							</li>
+						}
+					</ul>
+				</li>
+			}
+			@if (VillaBisutti.Delta.Core.Business.Usuario.UsuarioPodeLer(usuario, Url.Action("Index", "ItemCerimonial")))
+			{
+				<li>
+					<a class="dropdown-toggle" href="#">
+						<i class="menu-icon fa fa-list-ol"></i>
+						<span class="menu-text">Cerimonial Padrão</span>
+					</a>
+					<b class="arrow"></b>
+					<ul class="submenu">
+						@foreach (VillaBisutti.Delta.Core.Model.TipoEvento tipoEvento in Util.TiposEvento.Keys)
+						{
+							<li>
+								<a href="@Url.Action("Index", "ItemCerimonial", new { TipoEvento = (int)tipoEvento })">
+									<i class="menu-icon fa caret-right"></i>
+									<span class="menu-text">@(tipoEvento.GetDescription())</span>
+								</a>
+							</li>
+						}
+					</ul>
+				</li>
+			}
+			@if (VillaBisutti.Delta.Core.Business.Usuario.UsuarioPodeLer(usuario, Url.Action("Index", "TipoReuniao")))
+			{
+				<li>
+					<a href="@(Url.Action("Index", "TipoReuniao"))">
+						<i class="menu-icon fa fa-group"></i>
+						<span class="menu-text"> Reuniões </span>
+					</a>
+					<b class="arrow"></b>
+				</li>
+			}
+			@if (VillaBisutti.Delta.Core.Business.Usuario.UsuarioPodeLer(usuario, Url.Action("Index", "Local")))
+			{
+				<li>
+					<a href="@Url.Action("Index", "Local")">
+						<i class="menu-icon fa fa-map-marker"></i>
+						<span class="menu-text"> Casas </span>
+					</a>
+					<b class="arrow"></b>
+				</li>
+			}
+			<li>
+				<a class="dropdown-toggle" href="#">
+					<i class="menu-icon fa fa-leaf"></i>
+					<span class="menu-text"> Decoração </span>
+				</a>
+				<b class="arrow"></b>
+				<ul class="submenu">
+					@if (VillaBisutti.Delta.Core.Business.Usuario.UsuarioPodeLer(usuario, Url.Action("Index", "ItemDecoracao")))
+					{
+						<li>
+							<a href="@Url.Action("Index", "ItemDecoracao")">
+								<i class="menu-icon fa fa-caret-right"></i>
+								<span class="menu-text"> Decoração Recepção </span>
+							</a>
+						</li>
+					}
+					@if (VillaBisutti.Delta.Core.Business.Usuario.UsuarioPodeLer(usuario, Url.Action("Index", "ItemDecoracaoCerimonial")))
+					{
+						<li>
+							<a href="@Url.Action("Index", "ItemDecoracaoCerimonial")">
+								<i class=" menu-icon fa fa-caret-right">
+								</i>
+								<span class="menu-text"> Decoração Cerimonial </span>
+							</a>
+						</li>
+					}
+				</ul>
+			</li>
+			<li>
+				<a class="dropdown-toggle" href="#">
+					<i class="menu-icon fa fa-trophy"></i>
+					<span class="menu-text"> Serviço </span>
+				</a>
+				<b class="arrow"></b>
+				<ul class="submenu">
+
+					@if (VillaBisutti.Delta.Core.Business.Usuario.UsuarioPodeLer(usuario, Url.Action("Index", "ItemMontagem")))
+					{
+						<li>
+							<a href="@Url.Action("Index", "ItemMontagem")">
+								<i class="menu-icon fa fa-caret-right"></i>
+								<span class="menu-text"> Montagem </span>
+							</a>
+						</li>
+					}
+					@if (VillaBisutti.Delta.Core.Business.Usuario.UsuarioPodeLer(usuario, Url.Action("Index", "TipoServico")))
+					{
+						<li>
+							<a href="@Url.Action("Index", "TipoServico")">
+								<i class="menu-icon fa fa-caret-right"></i>
+								<span class="menu-text"> Tipos de serviço </span>
+							</a>
+							<b class="arrow"></b>
+						</li>
+					}
+				</ul>
+			</li>
+			<li>
+				<a class="dropdown-toggle" href="#">
+					<i class="menu-icon fa fa-cutlery"></i>
+					<span class="menu-text"> Gastronomia </span>
+				</a>
+				<b class="arrow"></b>
+				<ul class="submenu">
+					@if (VillaBisutti.Delta.Core.Business.Usuario.UsuarioPodeLer(usuario, Url.Action("Index", "Cardapio")))
+					{
+						<li>
+							<a href="@Url.Action("Index", "Cardapio")">
+								<i class="menu-icon fa fa-caret-right"></i>
+								<span class="menu-text">Cardápios</span>
+							</a>
+						</li>
+					}
+					@if (VillaBisutti.Delta.Core.Business.Usuario.UsuarioPodeLer(usuario, Url.Action("Index", "TipoPrato")))
+					{
+						<li>
+							<a href="@Url.Action("Index", "TipoPrato")">
+								<i class="menu-icon fa fa-caret-right"></i>
+								<span class="menu-text">Tipos de Prato</span>
+							</a>
+						</li>
+					}
+					@if (VillaBisutti.Delta.Core.Business.Usuario.UsuarioPodeLer(usuario, Url.Action("Index", "Prato")))
+					{
+						<li>
+							<a href="@Url.Action("Index", "Prato")">
+								<i class="menu-icon fa fa-caret-right"></i>
+								<span class="menu-text">Pratos</span>
+							</a>
+						</li>
+					}
+					@if (VillaBisutti.Delta.Core.Business.Usuario.UsuarioPodeLer(usuario, Url.Action("Index", "TipoPratoPadrao")))
+					{
+						<li>
+							<a href="@Url.Action("Index", "TipoPratoPadrao")">
+								<i class="menu-icon fa fa-caret-right"></i>
+								<span class="menu-text">Tipos de Prato (qtde)</span>
+							</a>
+						</li>
+					}
+					@if (VillaBisutti.Delta.Core.Business.Usuario.UsuarioPodeLer(usuario, Url.Action("Index", "Prato")))
+					{
+						<li>
+							<a href="@Url.Action("PratosDosCardapios", "Prato")">
+								<i class="menu-icon fa fa-caret-right"></i>
+								<span class="menu-text">Pratos dos cardápios</span>
+							</a>
+						</li>
+					}
+					@if (VillaBisutti.Delta.Core.Business.Usuario.UsuarioPodeLer(usuario, Url.Action("Index", "PratoSelecionado")))
+					{
+						<li>
+							<a href="@Url.Action("Index", "PratoSelecionado")">
+								<i class="menu-icon fa fa-caret-right"></i>
+								<span class="menu-text">Padrão para degustação</span>
+							</a>
+						</li>
+					}
+				</ul>
+			</li>
+			@if (VillaBisutti.Delta.Core.Business.Usuario.UsuarioPodeLer(usuario, Url.Action("Index", "ItemBebida")))
+			{
+				<li>
+					<a href="@Url.Action("Index", "ItemBebida")">
+						<i class="menu-icon fa fa-glass"></i>
+						<span class="menu-text"> Bebidas </span>
+					</a>
+					<b class="arrow"></b>
+				</li>
+			}
+			@if (VillaBisutti.Delta.Core.Business.Usuario.UsuarioPodeLer(usuario, Url.Action("Index", "ItemBoloDoceBemCasado")))
+			{
+				<li>
+					<a href="@Url.Action("Index", "ItemBoloDoceBemCasado")">
+						<i class="menu-icon fa fa-birthday-cake"></i>
+						<span class="menu-text"> Bolo, doce e bem-casado </span>
+					</a>
+					<b class="arrow"></b>
+				</li>
+			}
+			@if (VillaBisutti.Delta.Core.Business.Usuario.UsuarioPodeLer(usuario, Url.Action("Index", "ItemFotoVideo")))
+			{
+				<li>
+					<a href="@Url.Action("Index", "ItemFotoVideo")">
+						<i class="menu-icon fa fa-camera-retro"></i>
+						<span class="menu-text"> Foto e Vídeo </span>
+					</a>
+					<b class="arrow"></b>
+				</li>
+			}
+			@if (VillaBisutti.Delta.Core.Business.Usuario.UsuarioPodeLer(usuario, Url.Action("Index", "ItemSomIluminacao")))
+			{
+				<li>
+					<a href="@Url.Action("Index", "ItemSomIluminacao")">
+						<i class="menu-icon fa fa-headphones"></i>
+						<span class="menu-text"> Som e Iluminação </span>
+					</a>
+					<b class="arrow"></b>
+				</li>
+			}
+			@if (VillaBisutti.Delta.Core.Business.Usuario.UsuarioPodeLer(usuario, Url.Action("Index", "ItemOutrosItens")))
+			{
+				<li>
+					<a href="@Url.Action("Index", "ItemOutrosItens")">
+						<i class="menu-icon fa fa-gift"></i>
+						<span class="menu-text"> Outros Ítens </span>
+					</a>
+					<b class="arrow"></b>
+				</li>
+			}
+		</ul>
+		<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+			<i class="ace-icon fa fa-angle-double-right" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+		</div>
+	</div>
+}
+
+@RenderBody()
+
+@section scripts{
+	@RenderSection("scripts", required: false)
+	<script type="text/javascript">
+		$(document).ready(function () {
+			try { ace.settings.check('sidebar', 'fixed') } catch (e) { }
+			try { ace.settings.check('sidebar', 'collapsed') } catch (e) { }
+		})
+	</script>
+}

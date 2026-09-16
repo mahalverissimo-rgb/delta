@@ -1,0 +1,103 @@
+@model SGE.Models.Evento
+
+@{
+    ViewData["Title"] = "Detalhes do Evento";
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">@ViewData["Title"]</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Dados Principais</h4>
+                    <hr />
+                    
+                    <dl class="row">
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.TipoEvento)</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.TipoEvento)</dd>
+
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Local)</dt>
+                        <dd class="col-sm-8">@(Model.Local != null ? Model.Local.Nome : "")</dd>
+
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Data)</dt>
+                        <dd class="col-sm-8">@Model.Data.ToString("dd/MM/yyyy")</dd>
+
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.HorarioInicio)</dt>
+                        <dd class="col-sm-8">@Model.Inicio.ToString()</dd>
+
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.HorarioTermino)</dt>
+                        <dd class="col-sm-8">@Model.Termino.ToString()</dd>
+
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Pax)</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Pax)</dd>
+
+                        <dt class="col-sm-4">Pax Aproximado</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.PaxAproximado)</dd>
+
+                        @if (!string.IsNullOrEmpty(Model.PerfilFesta))
+                        {
+                            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.PerfilFesta)</dt>
+                            <dd class="col-sm-8">@Html.DisplayFor(model => model.PerfilFesta)</dd>
+                        }
+                    </dl>
+                </div>
+
+                <div class="col-md-6">
+                    <h4>Dados do Responsável</h4>
+                    <hr />
+
+                    <dl class="row">
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.NomeResponsavel)</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.NomeResponsavel)</dd>
+
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.EmailResponsavel)</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.EmailResponsavel)</dd>
+
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.TelefoneResponsavel)</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.TelefoneResponsavel)</dd>
+
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.PossuiAssessoria)</dt>
+                        <dd class="col-sm-8">@(Model.PossuiAssessoria ? "Sim" : "Não")</dd>
+
+                        @if (Model.PossuiAssessoria && !string.IsNullOrEmpty(Model.ContatoAssessoria))
+                        {
+                            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.ContatoAssessoria)</dt>
+                            <dd class="col-sm-8">@Html.DisplayFor(model => model.ContatoAssessoria)</dd>
+                        }
+                    </dl>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <h4>Informações do Sistema</h4>
+                    <hr />
+
+                    <dl class="row">
+                        <dt class="col-sm-2">Criado por</dt>
+                        <dd class="col-sm-4">@Html.DisplayFor(model => model.UsuarioCreateId) em @Model.UsuarioCreateData?.ToString("dd/MM/yyyy HH:mm")</dd>
+
+                        <dt class="col-sm-2">Última atualização</dt>
+                        <dd class="col-sm-4">
+                            @if (!string.IsNullOrEmpty(Model.UsuarioUpdateId))
+                            {
+                                @Html.DisplayFor(model => model.UsuarioUpdateId) <text>em</text> @Model.UsuarioUpdateData?.ToString("dd/MM/yyyy HH:mm")
+                            }
+                            else
+                            {
+                                <text>Nenhuma atualização</text>
+                            }
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Editar</a>
+                <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+            </div>
+        </div>
+    </div>
+</div>

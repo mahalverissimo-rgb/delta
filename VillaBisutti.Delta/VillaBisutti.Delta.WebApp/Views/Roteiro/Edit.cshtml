@@ -1,0 +1,46 @@
+﻿@model VillaBisutti.Delta.Core.Model.ItemRoteiro
+@{
+    Layout = null;
+}
+<script language="javascript" type="text/javascript">
+	$(document).ready(function () {
+		CreateHorarioEditor("Inicio_@(Model.Id)");
+		$(".submit-on-change-@(Model.Id)").change(function () {
+			ValidateField($(this), "Edit_@(Model.Id)");
+		});
+		$("#SubmitHorario@(Model.Id)").click(function () {
+			$("#Inicio_@(Model.Id)").change();
+		});
+	});
+</script>
+<a name="Pos_@Model.Id"></a>
+@using (Html.BeginForm("Edit", "Roteiro", new { antesInicio = Model.HorarioInicio > 24 * 60 }, FormMethod.Post, new { @class = "FormItemEditor", @id = "Edit_" + Model.Id }))
+{
+	@Html.AntiForgeryToken()
+	<tr class="inline-row-editor@(Model.Id) @(Model.Importante ? "bg-warning" : "")">
+		<td>
+			<input type="hidden" name="Id" id="Id" value="@Model.Id" />
+			@Html.TextAreaFor(model => Model.Titulo, new { @rows = 3, @class = "form-control submit-on-change-" + Model.Id })
+		</td>
+		<td align="center">
+			@Html.TextBoxFor(model => Model.HorarioInicio, new { @type = "number", @id = "Inicio_" + Model.Id, @class = "submit-on-change-" + Model.Id })
+			<a href="#" id="SubmitHorario@(Model.Id)">
+				<i id="SpinerDisplay_@Model.Id" class="fa fa-refresh"></i>
+			</a>
+		</td>
+		<td>
+			@Html.TextAreaFor(model => Model.Observacao, new { @rows = 3, @class = "form-control submit-on-change-" + Model.Id })
+		</td>
+		<td>
+			<a href="@Url.Action("ToggleBefore", "Roteiro", new { id = Model.Id })" title="Definir antecipação ao início do evento">
+				<i class="fa fa-retweet"></i>
+			</a>
+			<a href="@Url.Action("ToggleImportant", "Roteiro", new { id = Model.Id })" title="Definir importância">
+				<i class="fa fa-exclamation-circle"></i>
+			</a>
+			<a href="@Url.Action("Delete", "Roteiro", new { id = Model.Id })" title="Excluir item" class="PopUpActionLinks">
+				<i class="fa fa-trash"></i>
+			</a>
+		</td>
+	</tr>
+}
