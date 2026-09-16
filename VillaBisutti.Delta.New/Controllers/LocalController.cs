@@ -1,27 +1,26 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using VillaBisutti.Delta.WebApp.Data;
 using VillaBisutti.Delta.WebApp.Models;
+using VillaBisutti.Delta.WebApp.Services;
 
 namespace VillaBisutti.Delta.WebApp.Controllers
 {
     [Authorize]
     public class LocalController : AppController
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ILocalService _localService;
 
-        public LocalController(ApplicationDbContext context, UserManager<Usuario> userManager)
+        public LocalController(ILocalService localService, UserManager<Usuario> userManager)
             : base(userManager)
         {
-            _context = context;
+            _localService = localService;
         }
 
         // GET: Local
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Locais.ToListAsync());
+            return View(await _localService.GetAllAsync());
         }
 
         // GET: Local/Details/5
@@ -32,8 +31,7 @@ namespace VillaBisutti.Delta.WebApp.Controllers
                 return NotFound();
             }
 
-            var local = await _context.Locais
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var local = await _localService.GetByIdAsync(id.Value);
             if (local == null)
             {
                 return NotFound();
@@ -55,11 +53,7 @@ namespace VillaBisutti.Delta.WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                local.UsuarioCreateId = await GetCurrentUserIdAsync();
-                local.UsuarioCreateData = DateTime.Now;
-                
-                _context.Add(local);
-                await _context.SaveChangesAsync();
+                await _localService.CreateAsync(local, await GetCurrentUserIdAsync());
                 return RedirectToAction(nameof(Index));
             }
             return View(local);
@@ -73,7 +67,7 @@ namespace VillaBisutti.Delta.WebApp.Controllers
                 return NotFound();
             }
 
-            var local = await _context.Locais.FindAsync(id);
+            var local = await _localService.GetByIdAsync(id.Value);
             if (local == null)
             {
                 return NotFound();
@@ -93,24 +87,10 @@ namespace VillaBisutti.Delta.WebApp.Controllers
 
             if (ModelState.IsValid)
             {
-                try
+                var atualizado = await _localService.UpdateAsync(local, await GetCurrentUserIdAsync());
+                if (!atualizado)
                 {
-                    local.UsuarioUpdateId = await GetCurrentUserIdAsync();
-                    local.UsuarioUpdateData = DateTime.Now;
-                    
-                    _context.Update(local);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!LocalExists(local.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    return NotFound();
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -125,8 +105,7 @@ namespace VillaBisutti.Delta.WebApp.Controllers
                 return NotFound();
             }
 
-            var local = await _context.Locais
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var local = await _localService.GetByIdAsync(id.Value);
             if (local == null)
             {
                 return NotFound();
@@ -140,37 +119,25 @@ namespace VillaBisutti.Delta.WebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var local = await _context.Locais.FindAsync(id);
-            if (local != null)
+            var resultado = await _localService.DeleteAsync(id);
+            if (!resultado.Success)
             {
-                // Verifica se existem eventos associados a este local
-                var temEventos = await _context.Eventos.AnyAsync(e => e.LocalId == id);
-                if (temEventos)
+                ModelState.AddModelError(string.Empty, resultado.ErrorMessage!);
+                var local = await _localService.GetByIdAsync(id);
+                if (local == null)
                 {
-                    ModelState.AddModelError(string.Empty, "Não é possível excluir este local pois existem eventos associados a ele.");
-                    return View(local);
+                    return RedirectToAction(nameof(Index));
                 }
-
-                _context.Locais.Remove(local);
-                await _context.SaveChangesAsync();
+                return View(local);
             }
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool LocalExists(int id)
-        {
-            return _context.Locais.Any(e => e.Id == id);
         }
 
         // API Methods
         [HttpGet]
         public async Task<JsonResult> GetLocaisAtivos()
         {
-            var locais = await _context.Locais
-                .Where(l => l.Ativo)
-                .Select(l => new { l.Id, l.Nome, l.Capacidade })
-                .ToListAsync();
-            return Json(locais);
+            return Json(await _localService.GetAtivosAsync());
         }
     }
 }

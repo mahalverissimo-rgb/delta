@@ -74,6 +74,13 @@ namespace VillaBisutti.Delta.WebApp
             builder.Services.AddScoped<LogService>();
             builder.Services.AddScoped<UserService>();
 
+            // Camada de acesso a dados (repositório genérico) e serviços de domínio
+            builder.Services.AddScoped(typeof(Repositories.IRepositoryBase<>), typeof(Repositories.RepositoryBase<>));
+            builder.Services.AddScoped<ICardapioService, CardapioService>();
+            builder.Services.AddScoped<IEventoService, EventoService>();
+            builder.Services.AddScoped<ILocalService, LocalService>();
+            builder.Services.AddScoped<ITipoServicoService, TipoServicoService>();
+
             var app = builder.Build();
 
             // Preparar banco de dados e seed do administrador (assíncrono, credenciais via configuração)

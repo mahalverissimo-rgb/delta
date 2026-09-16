@@ -1,33 +1,26 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using VillaBisutti.Delta.WebApp.Data;
 using VillaBisutti.Delta.WebApp.Models;
+using VillaBisutti.Delta.WebApp.Services;
 
 namespace VillaBisutti.Delta.WebApp.Controllers
 {
     [Authorize]
     public class EventoController : AppController
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IEventoService _eventoService;
 
-        public EventoController(ApplicationDbContext context, UserManager<Usuario> userManager)
+        public EventoController(IEventoService eventoService, UserManager<Usuario> userManager)
             : base(userManager)
         {
-            _context = context;
+            _eventoService = eventoService;
         }
 
         // GET: Evento
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Eventos
-                .Include(e => e.Local)
-                .Include(e => e.Cardapio)
-                .Include(e => e.TipoServico)
-                .Include(e => e.Produtora)
-                .Include(e => e.PosVendedora)
-                .ToListAsync());
+            return View(await _eventoService.GetAllAsync());
         }
 
         // GET: Evento/Details/5
@@ -38,14 +31,7 @@ namespace VillaBisutti.Delta.WebApp.Controllers
                 return NotFound();
             }
 
-            var evento = await _context.Eventos
-                .Include(e => e.Local)
-                .Include(e => e.Cardapio)
-                .Include(e => e.TipoServico)
-                .Include(e => e.Produtora)
-                .Include(e => e.PosVendedora)
-                .FirstOrDefaultAsync(m => m.Id == id);
-                
+            var evento = await _eventoService.GetDetailsAsync(id.Value);
             if (evento == null)
             {
                 return NotFound();
@@ -67,11 +53,7 @@ namespace VillaBisutti.Delta.WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                evento.UsuarioCreateId = await GetCurrentUserIdAsync();
-                evento.UsuarioCreateData = DateTime.Now;
-                
-                _context.Add(evento);
-                await _context.SaveChangesAsync();
+                await _eventoService.CreateAsync(evento, await GetCurrentUserIdAsync());
                 return RedirectToAction(nameof(Index));
             }
             return View(evento);
@@ -85,7 +67,7 @@ namespace VillaBisutti.Delta.WebApp.Controllers
                 return NotFound();
             }
 
-            var evento = await _context.Eventos.FindAsync(id);
+            var evento = await _eventoService.GetByIdAsync(id.Value);
             if (evento == null)
             {
                 return NotFound();
@@ -105,24 +87,10 @@ namespace VillaBisutti.Delta.WebApp.Controllers
 
             if (ModelState.IsValid)
             {
-                try
+                var atualizado = await _eventoService.UpdateAsync(evento, await GetCurrentUserIdAsync());
+                if (!atualizado)
                 {
-                    evento.UsuarioUpdateId = await GetCurrentUserIdAsync();
-                    evento.UsuarioUpdateData = DateTime.Now;
-                    
-                    _context.Update(evento);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!EventoExists(evento.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    return NotFound();
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -137,11 +105,7 @@ namespace VillaBisutti.Delta.WebApp.Controllers
                 return NotFound();
             }
 
-            var evento = await _context.Eventos
-                .Include(e => e.Local)
-                .Include(e => e.Cardapio)
-                .FirstOrDefaultAsync(m => m.Id == id);
-                
+            var evento = await _eventoService.GetWithLocalCardapioAsync(id.Value);
             if (evento == null)
             {
                 return NotFound();
@@ -155,18 +119,8 @@ namespace VillaBisutti.Delta.WebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var evento = await _context.Eventos.FindAsync(id);
-            if (evento != null)
-            {
-                _context.Eventos.Remove(evento);
-                await _context.SaveChangesAsync();
-            }
+            await _eventoService.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool EventoExists(int id)
-        {
-            return _context.Eventos.Any(e => e.Id == id);
         }
     }
 }

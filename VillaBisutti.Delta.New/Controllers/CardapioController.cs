@@ -1,29 +1,26 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using VillaBisutti.Delta.WebApp.Data;
 using VillaBisutti.Delta.WebApp.Models;
+using VillaBisutti.Delta.WebApp.Services;
 
 namespace VillaBisutti.Delta.WebApp.Controllers
 {
     [Authorize]
     public class CardapioController : AppController
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ICardapioService _cardapioService;
 
-        public CardapioController(ApplicationDbContext context, UserManager<Usuario> userManager)
+        public CardapioController(ICardapioService cardapioService, UserManager<Usuario> userManager)
             : base(userManager)
         {
-            _context = context;
+            _cardapioService = cardapioService;
         }
 
         // GET: Cardapio
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Cardapios
-                .Include(c => c.Pratos)
-                .ToListAsync());
+            return View(await _cardapioService.GetAllAsync());
         }
 
         // GET: Cardapio/Details/5
@@ -34,9 +31,7 @@ namespace VillaBisutti.Delta.WebApp.Controllers
                 return NotFound();
             }
 
-            var cardapio = await _context.Cardapios
-                .Include(c => c.Pratos)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var cardapio = await _cardapioService.GetDetailsAsync(id.Value);
             if (cardapio == null)
             {
                 return NotFound();
@@ -58,11 +53,7 @@ namespace VillaBisutti.Delta.WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                cardapio.UsuarioCreateId = await GetCurrentUserIdAsync();
-                cardapio.UsuarioCreateData = DateTime.Now;
-                
-                _context.Add(cardapio);
-                await _context.SaveChangesAsync();
+                await _cardapioService.CreateAsync(cardapio, await GetCurrentUserIdAsync());
                 return RedirectToAction(nameof(Index));
             }
             return View(cardapio);
@@ -76,9 +67,7 @@ namespace VillaBisutti.Delta.WebApp.Controllers
                 return NotFound();
             }
 
-            var cardapio = await _context.Cardapios
-                .Include(c => c.Pratos)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var cardapio = await _cardapioService.GetDetailsAsync(id.Value);
             if (cardapio == null)
             {
                 return NotFound();
@@ -98,24 +87,10 @@ namespace VillaBisutti.Delta.WebApp.Controllers
 
             if (ModelState.IsValid)
             {
-                try
+                var atualizado = await _cardapioService.UpdateAsync(cardapio, await GetCurrentUserIdAsync());
+                if (!atualizado)
                 {
-                    cardapio.UsuarioUpdateId = await GetCurrentUserIdAsync();
-                    cardapio.UsuarioUpdateData = DateTime.Now;
-                    
-                    _context.Update(cardapio);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CardapioExists(cardapio.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    return NotFound();
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -130,9 +105,7 @@ namespace VillaBisutti.Delta.WebApp.Controllers
                 return NotFound();
             }
 
-            var cardapio = await _context.Cardapios
-                .Include(c => c.Pratos)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var cardapio = await _cardapioService.GetDetailsAsync(id.Value);
             if (cardapio == null)
             {
                 return NotFound();
@@ -146,37 +119,25 @@ namespace VillaBisutti.Delta.WebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var cardapio = await _context.Cardapios.FindAsync(id);
-            if (cardapio != null)
+            var resultado = await _cardapioService.DeleteAsync(id);
+            if (!resultado.Success)
             {
-                // Verifica se existem eventos associados a este cardápio
-                var temEventos = await _context.Eventos.AnyAsync(e => e.CardapioId == id);
-                if (temEventos)
+                ModelState.AddModelError(string.Empty, resultado.ErrorMessage!);
+                var cardapio = await _cardapioService.GetDetailsAsync(id);
+                if (cardapio == null)
                 {
-                    ModelState.AddModelError(string.Empty, "Não é possível excluir este cardápio pois existem eventos associados a ele.");
-                    return View(cardapio);
+                    return RedirectToAction(nameof(Index));
                 }
-
-                _context.Cardapios.Remove(cardapio);
-                await _context.SaveChangesAsync();
+                return View(cardapio);
             }
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool CardapioExists(int id)
-        {
-            return _context.Cardapios.Any(e => e.Id == id);
         }
 
         // API Methods
         [HttpGet]
         public async Task<JsonResult> GetCardapiosAtivos()
         {
-            var cardapios = await _context.Cardapios
-                .Where(c => c.Ativo)
-                .Select(c => new { c.Id, c.Nome, c.PrecoPorPessoa })
-                .ToListAsync();
-            return Json(cardapios);
+            return Json(await _cardapioService.GetAtivosAsync());
         }
     }
 }

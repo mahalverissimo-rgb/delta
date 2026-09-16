@@ -1,27 +1,26 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using VillaBisutti.Delta.WebApp.Data;
 using VillaBisutti.Delta.WebApp.Models;
+using VillaBisutti.Delta.WebApp.Services;
 
 namespace VillaBisutti.Delta.WebApp.Controllers
 {
     [Authorize]
     public class TipoServicoController : AppController
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ITipoServicoService _tipoServicoService;
 
-        public TipoServicoController(ApplicationDbContext context, UserManager<Usuario> userManager)
+        public TipoServicoController(ITipoServicoService tipoServicoService, UserManager<Usuario> userManager)
             : base(userManager)
         {
-            _context = context;
+            _tipoServicoService = tipoServicoService;
         }
 
         // GET: TipoServico
         public async Task<IActionResult> Index()
         {
-            return View(await _context.TiposServico.ToListAsync());
+            return View(await _tipoServicoService.GetAllAsync());
         }
 
         // GET: TipoServico/Details/5
@@ -32,8 +31,7 @@ namespace VillaBisutti.Delta.WebApp.Controllers
                 return NotFound();
             }
 
-            var tipoServico = await _context.TiposServico
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var tipoServico = await _tipoServicoService.GetByIdAsync(id.Value);
             if (tipoServico == null)
             {
                 return NotFound();
@@ -55,11 +53,7 @@ namespace VillaBisutti.Delta.WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                tipoServico.UsuarioCreateId = await GetCurrentUserIdAsync();
-                tipoServico.UsuarioCreateData = DateTime.Now;
-                
-                _context.Add(tipoServico);
-                await _context.SaveChangesAsync();
+                await _tipoServicoService.CreateAsync(tipoServico, await GetCurrentUserIdAsync());
                 return RedirectToAction(nameof(Index));
             }
             return View(tipoServico);
@@ -73,7 +67,7 @@ namespace VillaBisutti.Delta.WebApp.Controllers
                 return NotFound();
             }
 
-            var tipoServico = await _context.TiposServico.FindAsync(id);
+            var tipoServico = await _tipoServicoService.GetByIdAsync(id.Value);
             if (tipoServico == null)
             {
                 return NotFound();
@@ -93,24 +87,10 @@ namespace VillaBisutti.Delta.WebApp.Controllers
 
             if (ModelState.IsValid)
             {
-                try
+                var atualizado = await _tipoServicoService.UpdateAsync(tipoServico, await GetCurrentUserIdAsync());
+                if (!atualizado)
                 {
-                    tipoServico.UsuarioUpdateId = await GetCurrentUserIdAsync();
-                    tipoServico.UsuarioUpdateData = DateTime.Now;
-                    
-                    _context.Update(tipoServico);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!TipoServicoExists(tipoServico.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    return NotFound();
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -125,8 +105,7 @@ namespace VillaBisutti.Delta.WebApp.Controllers
                 return NotFound();
             }
 
-            var tipoServico = await _context.TiposServico
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var tipoServico = await _tipoServicoService.GetByIdAsync(id.Value);
             if (tipoServico == null)
             {
                 return NotFound();
@@ -140,37 +119,25 @@ namespace VillaBisutti.Delta.WebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var tipoServico = await _context.TiposServico.FindAsync(id);
-            if (tipoServico != null)
+            var resultado = await _tipoServicoService.DeleteAsync(id);
+            if (!resultado.Success)
             {
-                // Verifica se existem eventos associados a este tipo de serviço
-                var temEventos = await _context.Eventos.AnyAsync(e => e.TipoServicoId == id);
-                if (temEventos)
+                ModelState.AddModelError(string.Empty, resultado.ErrorMessage!);
+                var tipoServico = await _tipoServicoService.GetByIdAsync(id);
+                if (tipoServico == null)
                 {
-                    ModelState.AddModelError(string.Empty, "Não é possível excluir este tipo de serviço pois existem eventos associados a ele.");
-                    return View(tipoServico);
+                    return RedirectToAction(nameof(Index));
                 }
-
-                _context.TiposServico.Remove(tipoServico);
-                await _context.SaveChangesAsync();
+                return View(tipoServico);
             }
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool TipoServicoExists(int id)
-        {
-            return _context.TiposServico.Any(e => e.Id == id);
         }
 
         // API Methods
         [HttpGet]
         public async Task<JsonResult> GetTiposServicoAtivos()
         {
-            var tipos = await _context.TiposServico
-                .Where(t => t.Ativo)
-                .Select(t => new { t.Id, t.Nome })
-                .ToListAsync();
-            return Json(tipos);
+            return Json(await _tipoServicoService.GetAtivosAsync());
         }
     }
 }
