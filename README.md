@@ -1,4 +1,4 @@
-# Villa Bisutti Delta
+# Delta
 
 Sistema de gerenciamento de eventos.
 
@@ -21,7 +21,7 @@ Sistema de gerenciamento de eventos.
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/villabisutti/delta.git
+git clone https://github.com/mahalverissimo-rgb/delta.git
 ```
 
 2. Restaure os pacotes:
@@ -118,7 +118,7 @@ Utilizamos [SemVer](http://semver.org/) para controle de versão.
 
 ## 👥 Autores
 
-- **Villa Bisutti** - *Desenvolvimento* - [Villa Bisutti](https://github.com/villabisutti)
+- **Delta** - *Desenvolvimento* - https://github.com/mahalverissimo-rgb/delta.git
 
 ## 📄 Licença
 
